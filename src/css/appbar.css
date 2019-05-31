@@ -1,0 +1,20 @@
+.appbar-root{
+  /* background-color: black !important; */
+  background-image: url('../imgs/leather.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.tabs-root{
+}
+
+.tabs-indicator{
+  background-color: gold !important;
+  height: 100% !important;
+  opacity: .5 !important;
+}
+
+.tab-root{
+  font-size: 1.2em !important;
+  color: white !important;
+}
