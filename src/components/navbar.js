@@ -73,7 +73,7 @@ export default class NavBar extends PureComponent {
 
               <Switch>
                 <Route path="/appointment" render={() => <Appointments />} />
-                <Route path="/tab3" render={() => <div>Tab 3</div>} />
+                <Route path="/about" render={() => <div>Tab 3</div>} />
                 <Route path="/" render={() => <div>Tab 1</div>} />
               </Switch>
             </div>
