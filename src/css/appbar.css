@@ -9,12 +9,19 @@
 }
 
 .tabs-indicator{
-  background-color: gold !important;
-  height: 100% !important;
-  opacity: .5 !important;
+  /* background-color: gold !important; */
+  background: linear-gradient(to right, black, gold, black)	!important;
+  height: 15% !important;
+  opacity: .8 !important;
 }
 
 .tab-root{
   font-size: 1.2em !important;
   color: white !important;
+}
+
+.tab-selected{
+  /* font-size: 1.6em !important; */
+  color: gold !important;
+  /* font-weight: bold !important; */
 }

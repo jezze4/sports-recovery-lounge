@@ -6,8 +6,6 @@ import './App.css';
 /* Import Components */
 import NavBar from './components/navbar';
 
-/* Import Pages */
-
 function App() {
   return (
     <div className="App">

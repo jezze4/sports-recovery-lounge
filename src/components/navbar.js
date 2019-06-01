@@ -1,12 +1,25 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-import { NavLink } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+
+import Appointments from '../pages/appointments';
 
 import '../css/appbar.css';
 
+function LinkTab(props) {
+  return (
+    <Tab
+      component="a"
+      onClick={event => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
 
 export default class NavBar extends PureComponent {
   state={
@@ -19,26 +32,54 @@ export default class NavBar extends PureComponent {
 
   render(){
     return(
-      <div>
-        <AppBar position="static" classes={{root: 'appbar-root'}}>
-          <Tabs
-            classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
-            value={this.state.value}
-            onChange={this.handleChange}
-            variant="fullWidth"
-            >
-            <Tab classes={{root: 'tab-root'}} label="Home"/>
-            <Tab classes={{root: 'tab-root'}} label="Features"/>
-            <Tab classes={{root: 'tab-root'}} label="Appointments"/>
-            <Tab classes={{root: 'tab-root'}} label="About"/>
-          </Tabs>
-        </AppBar>
+      <BrowserRouter>
+        <Route
+          path="/"
+          render={({location}) =>(
+            <div>
+              <AppBar position="static" classes={{root: 'appbar-root'}}>
+                <Tabs
+                  classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
+                  value={this.state.value}
+                  onChange={this.handleChange}
+                  variant="fullWidth"
+                  >
+                  <Tab
+                    classes={{root: 'tab-root', selected: 'tab-selected'}}
+                    label="Home"
+                    component={Link}
+                    to="/"
+                  />
+                  <Tab
+                    classes={{root: 'tab-root', selected: 'tab-selected'}}
+                    label="Features"
+                    component={Link}
+                    to="/features"
+                  />
+                  <Tab
+                    classes={{root: 'tab-root', selected: 'tab-selected'}}
+                    label="Appointments"
+                    component={Link}
+                    to="/appointment"
+                  />
+                  <Tab
+                    classes={{root: 'tab-root', selected: 'tab-selected'}}
+                    label="About"
+                    component={Link}
+                    to="/about"
+                  />
+                </Tabs>
+              </AppBar>
 
-        {this.state.value === 0 && <div>Item One</div>}
-        {this.state.value === 1 && <div>Item Two</div>}
-        {this.state.value === 2 && <div>Item Three</div>}
-        {this.state.value === 3 && <div>Item Four</div>}
-      </div>
+              <Switch>
+                <Route path="/appointment" render={() => <Appointments />} />
+                <Route path="/tab3" render={() => <div>Tab 3</div>} />
+                <Route path="/" render={() => <div>Tab 1</div>} />
+              </Switch>
+            </div>
+          )}
+        />
+      </BrowserRouter>
     );
   }
 }
