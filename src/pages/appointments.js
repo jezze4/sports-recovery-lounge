@@ -1,33 +1,35 @@
 import React, {PureComponent} from 'react'
-import Calendar from 'react-big-calendar'
-import moment from 'moment'
-import "react-big-calendar/lib/css/react-big-calendar.css";
+import Container from '@material-ui/core/Container'
+import Calendar from 'react-calendar'
+import Grid from '@material-ui/core/Grid'
 
-const localizer = Calendar.momentLocalizer(moment)
+import '../css/appointments.css'
 
 export default class Appointments extends PureComponent {
-  state={
-    events: [
-      {
-        start: new Date(),
-        end: new Date(moment().add(1, "days")),
-        title: "Title"
-      }
-    ]
+  state = {
+    date: new Date(),
   }
 
   render(){
     return(
-      <div>
+      <Container>
         <h1>Make an appointment</h1>
-        <Calendar
-          localizer={localizer}
-          defaultDate={new Date()}
-          defaultView="month"
-          events={this.state.events}
-          style={{height: '100vh'}}
-        />
-      </div>
+        <Grid container direction="row">
+          <Grid item xs={12} md={4}>
+            <h2> Choose your date </h2>
+            <Calendar
+              className="calendar-root"
+              value={this.state.date}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <h2> Choose your timeslot </h2>
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <h2> Choose your session </h2>
+          </Grid>
+        </Grid>
+      </Container>
     );
   }
 }
