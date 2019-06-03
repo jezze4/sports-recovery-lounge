@@ -2,3 +2,11 @@
   border-width: 0;
   box-shadow: 0 0 10px lightgray;
 }
+
+.radio-checked{
+  /* color: gold !important; */
+}
+
+.radio-root:hover{
+  background-color: rgba(255, 215, 0, .1) !important;
+}
