@@ -40,7 +40,7 @@ export default class NavBar extends PureComponent {
               <AppBar position="static" classes={{root: 'appbar-root'}}>
                 <Tabs
                   classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
-                  value={this.state.value}
+                  value={location.pathname}
                   onChange={this.handleChange}
                   variant="fullWidth"
                   >
@@ -49,24 +49,28 @@ export default class NavBar extends PureComponent {
                     label="Home"
                     component={Link}
                     to="/"
+                    value="/"
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
                     label="Features"
                     component={Link}
                     to="/features"
+                    value="/features"
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
                     label="Appointments"
                     component={Link}
                     to="/appointment"
+                    value="/appointment"
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
                     label="About"
                     component={Link}
                     to="/about"
+                    value="/about"
                   />
                 </Tabs>
               </AppBar>

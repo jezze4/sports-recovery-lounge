@@ -34,14 +34,14 @@ export default class Appointments extends PureComponent {
       <Container>
         <h1>Make an appointment</h1>
         <Grid container direction="row">
-          <Grid item xs={12} md={4}>
-            <h2> Choose your date </h2>
+          <Grid item xs={12} md={4} className="appoint-col">
+            <h2>Choose your date</h2>
             <Calendar
               className="calendar-root"
               value={this.state.date}
             />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} className="appoint-col">
             <h2> Choose your timeslot </h2>
             <MuiPickersUtilsProvider utils={MomentUtils}>
               <TimePicker
@@ -54,7 +54,7 @@ export default class Appointments extends PureComponent {
             </MuiPickersUtilsProvider>
             <h4> Hours of Operation: 12pm-5pm</h4>
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} className="appoint-col">
             <h2> Choose your session </h2>
             <FormControl component="fieldset">
               <RadioGroup aria-label="session" name="session" value={this.state.session} onChange={this.handleSessionChange}>
