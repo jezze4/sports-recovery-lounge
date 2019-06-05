@@ -1,11 +1,16 @@
 .banner-container{
-  min-height: calc(100vh - 48px);
+  height: calc(100vh - 48px);
   width: 100%;
-  background-color: black;
 }
 
 .banner-text{
-  color: gold;
+  color: white;
+  background: gold;
+  padding: 10px 15px;
+}
+
+#banner-desc{
+  height: inherit;
 }
 
 #banner-title{
@@ -17,12 +22,16 @@
 }
 
 #banner-img{
-  min-height: 100%;
+  position: absolute;
+  left: 0;
+  height: inherit;
   /* max-height: 100vh; */
-  max-width: 100%;
+  width: 100%;
   /* position: absolute; */
   /* left: 0; */
-  filter: opacity(.5);
+  filter: opacity(1) blur(0px);
+  z-index: -10;
+  object-fit: cover;
 }
 
 .material-icons.md-24 { font-size: 24px; padding: 8px;}

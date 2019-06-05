@@ -6,7 +6,7 @@ export default class Home extends PureComponent {
     return(
       <Fragment>
         <Banner
-          img="https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt"
+          img="https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3"
         />
       </Fragment>
     );
