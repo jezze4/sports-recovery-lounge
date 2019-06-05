@@ -6,6 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
 import Appointments from '../pages/appointments';
+import Home from '../pages/home';
 
 import '../css/appbar.css';
 
@@ -78,7 +79,7 @@ export default class NavBar extends PureComponent {
               <Switch>
                 <Route path="/appointment" render={() => <Appointments />} />
                 <Route path="/about" render={() => <div>Tab 3</div>} />
-                <Route path="/" render={() => <div>Tab 1</div>} />
+                <Route path="/" render={() => <Home />} />
               </Switch>
             </div>
           )}
