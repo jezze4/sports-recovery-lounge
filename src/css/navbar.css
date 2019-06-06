@@ -1,17 +1,21 @@
 .appbar-root{
-  background-color: black !important;
-  /* background-image: url('../imgs/leather.jpg'); */
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: rgba(0, 0, 0, 0) !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 
 .tabs-root{
+  z-index: 100;
+  position: absolute;
+  right: 0;
 }
 
 .tabs-indicator{
   /* background-color: gold !important; */
   background: linear-gradient(to right, black, gold, black)	!important;
-  height: 15% !important;
+  height: 0% !important;
   opacity: .8 !important;
 }
 

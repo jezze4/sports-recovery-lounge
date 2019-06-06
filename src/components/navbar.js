@@ -8,7 +8,7 @@ import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import Appointments from '../pages/appointments';
 import Home from '../pages/home';
 
-import '../css/appbar.css';
+import '../css/navbar.css';
 
 function LinkTab(props) {
   return (
@@ -43,7 +43,7 @@ export default class NavBar extends PureComponent {
                   classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
                   value={location.pathname}
                   onChange={this.handleChange}
-                  variant="fullWidth"
+                  // variant="fullWidth"
                   >
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}

@@ -12,8 +12,7 @@ function App() {
     <div className="App">
       <Router>
         <div>
-          {/* <NavBar /> */}
-          <Home />
+          <NavBar />
         </div>
       </Router>
     </div>

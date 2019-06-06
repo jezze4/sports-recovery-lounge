@@ -16,9 +16,9 @@ export default class Banner extends PureComponent {
             <p className="banner-text" id="banner-subtitle">Sports Recovery Lounge description text or something</p>
           </Grid>
           <Grid item style={{position: 'absolute', bottom: '60px'}}>
-            <Button variant="contained" size="large" classes={{root: 'banner-bt-root'}}>
-              Make an Appointment
+            <Button variant="outlined" size="large" classes={{root: 'banner-bt-root'}}>
               <i class="material-icons md-24" style={{color: 'goldenrod'}}> calendar_today</i>
+              Make an Appointment
             </Button>
           </Grid>
         </Grid>
