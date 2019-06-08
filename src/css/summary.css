@@ -1,10 +1,19 @@
 .summary-card{
-  margin: 20px 18px;
+  margin: 24px 24px;
+  background-color: rgba(0,0,0,0) !important;
+  filter: grayscale(100%);
+  transition: filter .3s;
 }
 
 .summary-media{
   width: 100%;
   height: 100%;
+
+}
+
+.summary-card:hover{
+  filter: grayscale(0);
+  transition: filter .3s;
 }
 
 .summary-bt-root{

@@ -24,11 +24,11 @@ export default class Summary extends PureComponent {
             classes={{media: 'summary-media'}}
             component="img"
             alt="Contemplative Reptile"
-            src="https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3"
+            src="https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt"
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h3" component="h2">
               Summary
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
