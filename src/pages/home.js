@@ -12,7 +12,7 @@ export default class Home extends PureComponent {
         <Banner
           img="https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3"
         />
-        <Grid container direction="row" style={{background: 'white'}}>
+        <Grid container direction="row" style={{background: 'white', padding:'80px 18px'}}>
           <Grid item xs={12} sm={4}>
             <Summary />
           </Grid>

@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+
 import '../css/summary.css'
 
 
@@ -18,7 +19,14 @@ export default class Summary extends PureComponent {
     return(
 
       <Card className="summary-card" elevation={0}>
-        <CardActionArea>
+        {/* <CardActionArea> */}
+          <CardMedia
+            classes={{media: 'summary-media'}}
+            component="img"
+            alt="Contemplative Reptile"
+            src="https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3"
+            title="Contemplative Reptile"
+          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               Summary
@@ -28,20 +36,12 @@ export default class Summary extends PureComponent {
               across all continents except Antarctica
             </Typography>
           </CardContent>
-        </CardActionArea>
-      </Card>
+          <Button variant="outlined" size="large" classes={{root: 'summary-bt-root'}}>
+            <Typography>Make an Appointment</Typography>
+          </Button>
 
-      // <Grid container direction="column" jusity="center">
-      //   <Grid item>
-      //     <h1>Summary</h1>
-      //   </Grid>
-      //   <Grid item>
-      //     <p>stuff for summary</p>
-      //   </Grid>
-      //   <Grid item>
-      //     <div> too</div>
-      //   </Grid>
-      // </Grid>
+        {/* </CardActionArea> */}
+      </Card>
     );
   }
 }

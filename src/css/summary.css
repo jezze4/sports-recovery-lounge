@@ -1,3 +1,18 @@
 .summary-card{
-  margin: 20px 36px;
+  margin: 20px 18px;
+}
+
+.summary-media{
+  width: 100%;
+  height: 100%;
+}
+
+.summary-bt-root{
+  /* color: red !important;
+  border-color: red !important; */
+}
+
+.summary-bt-root:hover{
+  background-color: rgba(255, 210, 0, .5) !important;
+  border-color: rgb(255,210,0) !important;
 }
