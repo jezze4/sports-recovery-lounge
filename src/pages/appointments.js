@@ -31,9 +31,9 @@ export default class Appointments extends PureComponent {
 
   render(){
     return(
-      <Container>
+      <Container id="appointment-container">
         <h1>Make an appointment</h1>
-        <Grid container direction="row">
+        <Grid container direction="row" justify="center">
           <Grid item xs={12} md={4} className="appoint-col">
             <h2>Choose your date</h2>
             <Calendar

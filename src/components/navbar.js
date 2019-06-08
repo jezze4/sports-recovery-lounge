@@ -54,17 +54,17 @@ export default class NavBar extends PureComponent {
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Features"
+                    label="Services"
                     component={Link}
-                    to="/features"
-                    value="/features"
+                    to="/services"
+                    value="/services"
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Appointments"
+                    label="Pricing"
                     component={Link}
-                    to="/appointment"
-                    value="/appointment"
+                    to="/pricing"
+                    value="/pricing"
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
@@ -77,7 +77,7 @@ export default class NavBar extends PureComponent {
               </AppBar>
 
               <Switch>
-                <Route path="/appointment" render={() => <Appointments />} />
+                <Route path="/pricing" render={() => <Appointments />} />
                 <Route path="/about" render={() => <div>Tab 3</div>} />
                 <Route path="/" render={() => <Home />} />
               </Switch>

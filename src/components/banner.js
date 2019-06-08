@@ -17,7 +17,7 @@ export default class Banner extends PureComponent {
           </Grid>
           <Grid item style={{position: 'absolute', bottom: '60px'}}>
             <Button variant="outlined" size="large" classes={{root: 'banner-bt-root'}}>
-              <i class="material-icons md-24" style={{color: 'goldenrod'}}> calendar_today</i>
+              <i className="material-icons md-24" style={{color: 'goldenrod'}}> calendar_today</i>
               Make an Appointment
             </Button>
           </Grid>

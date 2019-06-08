@@ -20,12 +20,18 @@
 }
 
 .tab-root{
-  font-size: 1.2em !important;
+  font-size: 1em !important;
   color: white !important;
+}
+
+.tab-root:hover{
+  /* text-shadow: 0 0 2px white; */
+  color: gold !important;
 }
 
 .tab-selected{
   /* font-size: 1.6em !important; */
   color: gold !important;
+  /* text-shadow: 0 0 4px gold; */
   /* font-weight: bold !important; */
 }

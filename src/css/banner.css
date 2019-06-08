@@ -17,7 +17,7 @@
   border-color: goldenrod !important;
   border-width: 2px !important;
   /* background-image: url('../imgs/leather.jpg'); */
-  font-size: 1.5em !important;
+  font-size: 1.2em !important;
   color: goldenrod !important;
   opacity: .9;
 }
@@ -36,19 +36,22 @@
 }
 
 #banner-img{
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   height: inherit;
-  /* max-height: 100vh; */
   width: 100%;
-  /* position: absolute; */
-  /* left: 0; */
   filter: opacity(1) blur(0px) brightness(60%);
-  z-index: -10;
   object-fit: cover;
+  z-index: -1;
 }
 
 .material-icons.md-24 { font-size: 24px; padding-right: 8px;}
 .material-icons.md-36 { font-size: 36px; padding: 8px;}
 .material-icons.md-48 { font-size: 48px; }
+
+/* CSS for Mobile */
+
+@media screen and (min-width: 480px) {
+  
+}
