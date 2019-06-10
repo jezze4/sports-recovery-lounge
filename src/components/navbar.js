@@ -54,17 +54,10 @@ export default class NavBar extends PureComponent {
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Services"
+                    label="Services & Pricing"
                     component={Link}
                     to="/services"
                     value="/services"
-                  />
-                  <Tab
-                    classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Pricing"
-                    component={Link}
-                    to="/pricing"
-                    value="/pricing"
                   />
                   <Tab
                     classes={{root: 'tab-root', selected: 'tab-selected'}}

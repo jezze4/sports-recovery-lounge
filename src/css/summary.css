@@ -2,26 +2,25 @@
   margin: 24px 24px;
   background-color: rgba(0,0,0,0) !important;
   filter: grayscale(100%);
-  transition: filter .3s;
+  transition: filter .3s !important;
 }
 
 .summary-media{
   width: 100%;
   height: 100%;
-
 }
 
 .summary-card:hover{
-  filter: grayscale(0);
+  filter: grayscale(1%);
   transition: filter .3s;
 }
 
 .summary-bt-root{
-  /* color: red !important;
-  border-color: red !important; */
+  color: goldenrod !important;
+  border-color: gold !important;
 }
 
 .summary-bt-root:hover{
-  background-color: rgba(255, 210, 0, .5) !important;
+  background-color: rgba(255, 210, 0, .3) !important;
   border-color: rgb(255,210,0) !important;
 }
