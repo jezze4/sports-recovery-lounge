@@ -1,38 +1,49 @@
 .banner-container{
   height: 100vh;
   width: 100%;
-  /* position: absolute; */
   top: 0;
 }
 
 .banner-text{
   color: white;
   /* background: linear-gradient(to right, rgba(0, 0, 0, 0), goldenrod, rgba(0, 0, 0, 0)); */
-  padding: 10px 15px;
+  /* padding: 0px 15px; */
   border-radius: 10px;
 }
 
 .banner-bt-root{
-  background-color: rgba(0, 0, 0, .8) !important;
+  /* background-color: rgba(0, 0, 0, .8) !important; */
+  background-color: goldenrod !important;
   border-color: goldenrod !important;
-  border-width: 2px !important;
-  /* background-image: url('../imgs/leather.jpg'); */
-  font-size: 1.2em !important;
-  color: goldenrod !important;
+  /* border-width: 2px !important; */
+  font-size: .7em !important;
+  color: white !important;
   opacity: .9;
+  border-radius: 50px !important;
+  transition: .3s !important;
+}
+
+.banner-bt-root:hover{
+  filter: brightness(92%);
 }
 
 #banner-desc{
   height: inherit;
+  width: 50%;
 }
 
 #banner-title{
-  font-size: 1.5em;
+  color: gold;
+  font-size: .8em;
+  opacity: .8;
 }
 
 #banner-subtitle{
+  /* margin-right: 0;
+  margin-left: auto; */
+  /* text-align: end; */
+  text-align: left;
   font-size: 1em;
-  opacity: .8;
 }
 
 #banner-img{
@@ -50,11 +61,18 @@
 .material-icons.md-36 { font-size: 36px; padding: 8px;}
 .material-icons.md-48 { font-size: 48px; }
 
-/* CSS for Mobile */
+/* CSS for Desktop */
 
 @media screen and (min-width: 480px) {
+  .banner-bt-root{
+    font-size: 1.2em !important;
+  }
+
+  #banner-desc{
+    width: 40%;
+  }
   #banner-title{
-    font-size: 5em;
+    font-size: 1.5em;
   }
 
   #banner-subtitle{
