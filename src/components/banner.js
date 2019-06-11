@@ -49,12 +49,16 @@ export default class Banner extends PureComponent {
 
           <Grid container direction="column" justify='center' alignItems="flex-start"  id="banner-desc">
             <Grid item>
-              <Typography className="banner-text" id="banner-title" component="div">BANNER TITLE</Typography>
+              <Typography className="banner-text" id="banner-title" component="div">
+                {this.props.title}
+              </Typography>
             </Grid>
             <Grid item>
-              <Typography className="banner-text" id="banner-subtitle" gutterBottom>Banner description stuff might be multiple lines</Typography>
+              <Typography className="banner-text" id="banner-subtitle" gutterBottom>
+                {this.props.subtitle}
+              </Typography>
             </Grid>
-            {this.renderButton("button text")}
+            {this.renderButton(this.props.buttonText, this.props.buttonIcon)}
           </Grid>
 
         </Grid>
