@@ -1,5 +1,5 @@
 .banner-container{
-  height: inherit;
+  height: 100vh;
   width: 100%;
   top: 0;
 }
@@ -47,9 +47,8 @@
 }
 
 #banner-img{
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 0;
   height: inherit;
   width: 100%;
   filter: brightness(75%);

@@ -1,8 +1,14 @@
 .carousel-bt-root{
   border-radius: 50% !important;
-  margin: 0 20px !important;
+  margin: 0 15px !important;
   width: 20px !important;
   height: 20px !important;
   z-index: 2000;
   display: inline-flex;
+  transition: .3s !important;
+}
+
+.carousel-bt-root:hover{
+  cursor: pointer;
+  filter: brightness(80%);
 }

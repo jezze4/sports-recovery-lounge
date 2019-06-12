@@ -16,6 +16,10 @@ export default class Banner extends PureComponent {
       return "center";
   }
 
+  calcImgOffset(){
+    return this.props.index * 100 + '%';
+  }
+
   renderIcon(icon){
     if(icon !== undefined){
       return(
@@ -40,7 +44,7 @@ export default class Banner extends PureComponent {
   render(){
     return(
       <div className="banner-container">
-        <img src={this.props.img} id="banner-img" alt="banner"/>
+        <img src={this.props.img} id="banner-img" alt="banner" style={{left: this.calcImgOffset()}}/>
         <Grid container
           direction="column"
           justify='center'
