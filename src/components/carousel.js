@@ -56,7 +56,11 @@ export default class Carousel extends PureComponent {
     return(
       <div style={{ width: '100%', position:'absolute', bottom: '40px'}}>
         {this.carouselItems.map((item, i) => (
-          <Paper classes={{root: 'carousel-bt-root'}} onClick={()=>this.handleChangeIndex(i)}/>
+          <Paper
+            classes={{root: 'carousel-bt-root'}}
+            className={this.state.index===i ? 'active' : ''}
+            onClick={()=>this.handleChangeIndex(i)}
+          />
         ))}
       </div>
     );
@@ -69,7 +73,7 @@ export default class Carousel extends PureComponent {
         enableMouseEvents
         resistance
         index={index}
-        onChangeIndex={()=>this.handleChangeIndex()}
+        onChangeIndex={(i)=>this.handleChangeIndex(i)}
         >
         {this.carouselItems.map((item, i) =>(
           <Banner
