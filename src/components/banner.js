@@ -43,8 +43,8 @@ export default class Banner extends PureComponent {
 
   render(){
     return(
-      <div className="banner-container">
-        <img src={this.props.img} id="banner-img" alt="banner" style={{left: this.calcImgOffset()}}/>
+      <div className="banner-container"
+        style={{backgroundImage: 'url('+this.props.img+')'}}>
         <Grid container
           direction="column"
           justify='center'
