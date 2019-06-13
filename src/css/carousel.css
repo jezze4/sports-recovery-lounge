@@ -1,9 +1,8 @@
 .carousel-bt-root{
   border-radius: 50% !important;
-  margin: 0 15px !important;
-  width: 20px !important;
-  height: 20px !important;
-  z-index: 2000;
+  margin: 0 10px !important;
+  width: 10px !important;
+  height: 10px !important;
   display: inline-flex;
   transition: .3s !important;
 }
@@ -15,4 +14,30 @@
 
 .active{
   background-color: gold !important;
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.carouselControl{
+  color: whitesmoke;
+  opacity: .3;
+  font-size: 64px;
+  cursor: pointer;
+  transition: .3s;
+
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+
+  /* Rules below not implemented in browsers yet */
+  -o-user-select: none;
+  user-select: none;
+}
+
+.carouselControl:hover{
+  opacity: .8;
+}
+
+.carouselControl:active{
+  filter: brightness(80%);
 }

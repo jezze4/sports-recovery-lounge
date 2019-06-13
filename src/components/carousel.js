@@ -52,16 +52,38 @@ export default class Carousel extends PureComponent {
     this.setState({index});
   }
 
+  renderArrows(){
+    return(
+      <div style={{position: 'absolute', top: '50%', zIndex: '100', width: '100%'}}>
+        <i className="material-icons carouselControl"
+          style={{position: 'absolute', left: '5%'}}
+          onClick={()=>this.handleChangeIndex((this.state.index+(this.carouselItems.length-1))%(this.carouselItems.length))}
+          >
+          arrow_back_ios
+        </i>
+        <i className="material-icons carouselControl"
+          style={{position: 'absolute', right: '5%'}}
+          onClick={()=>this.handleChangeIndex((this.state.index+1)%this.carouselItems.length)}
+          >
+          arrow_forward_ios
+        </i>
+      </div>
+    );
+  }
+
   renderControls(){
     return(
-      <div style={{ width: '100%', position:'absolute', bottom: '40px'}}>
-        {this.carouselItems.map((item, i) => (
-          <Paper
-            classes={{root: 'carousel-bt-root'}}
-            className={this.state.index===i ? 'active' : ''}
-            onClick={()=>this.handleChangeIndex(i)}
-          />
-        ))}
+      <div>
+        {this.renderArrows()}
+        <div style={{ position: 'absolute', height: 'inherit', width: '100%', top: '90vh'}}>
+          {this.carouselItems.map((item, i) => (
+            <Paper
+              classes={{root: 'carousel-bt-root'}}
+              className={this.state.index===i ? 'active' : ''}
+              onClick={()=>this.handleChangeIndex(i)}
+            />
+          ))}
+        </div>
       </div>
     );
   }
@@ -74,6 +96,7 @@ export default class Carousel extends PureComponent {
         resistance
         index={index}
         onChangeIndex={(i)=>this.handleChangeIndex(i)}
+        springConfig={this.carouselConfig}
         >
         {this.carouselItems.map((item, i) =>(
           <Banner
@@ -101,5 +124,11 @@ export default class Carousel extends PureComponent {
         {this.renderControls()}
       </div>
     );
+  }
+
+  carouselConfig={
+    duration: '.5s',
+    easeFunction: 'ease',
+    delay: '0s'
   }
 }
