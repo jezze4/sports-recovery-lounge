@@ -44,7 +44,7 @@ export default class Banner extends PureComponent {
   render(){
     return(
       <div className="banner-container"
-        style={{backgroundImage: 'url('+this.props.img+')'}}>
+        style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.0)), url('+this.props.img+')'}}>
         <Grid container
           direction="column"
           justify='center'

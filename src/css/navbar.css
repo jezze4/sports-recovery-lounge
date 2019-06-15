@@ -1,37 +1,41 @@
 .appbar-root{
   background-color: rgba(0, 0, 0, 0) !important;
-  position: absolute;
+  position: absolute !important;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1000 !important;
+  box-shadow: none !important;
 }
 
 .tabs-root{
   z-index: 100;
-  position: absolute;
-  right: 0;
+  /* position: absolute; */
+  margin-right: 0;
+  margin-left: auto;
 }
 
 .tabs-indicator{
-  /* background-color: gold !important; */
-  background: linear-gradient(to right, black, gold, black)	!important;
   height: 0% !important;
   opacity: .8 !important;
 }
 
 .tab-root{
-  font-size: 1em !important;
+  font-size: 1.2em !important;
   color: white !important;
+  text-shadow: 0 1px 3px gray;
+  transition: .3s;
 }
 
 .tab-root:hover{
-  /* text-shadow: 0 0 2px white; */
   color: gold !important;
+  text-shadow: none;
 }
 
 .tab-selected{
-  /* font-size: 1.6em !important; */
+  filter: brightness(110%);
+  font-size: 1.3em !important;
   color: gold !important;
-  /* text-shadow: 0 0 4px gold; */
+  text-shadow: 0 1px 2px darkgray;
+  /* text-shadow: none; */
   /* font-weight: bold !important; */
 }
