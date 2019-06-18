@@ -17,14 +17,39 @@ import '../css/appointments.css'
 
 export default class Appointments extends PureComponent {
   state = {
-    date: new Date(),
+    date: this.setStartDate(),
     session: '20'
   }
 
+  /* For TimePicker */
   handleDateChange = (date) => {
-    this.setState({date: new Date(date)})
+    this.verifyDate(date);
+    var current = new Date(date);
+    this.setState({date: current});
   }
 
+  verifyDate(date){
+    var now = new Date(date);
+    var hours = now.getHours();
+    if(hours > 11 && hours < 17){
+      return true;
+    }
+    return false;
+  }
+
+  setStartDate(){
+    var fullDate = new Date();
+    if(fullDate.getHours() < 12){
+      fullDate.setHours(12);
+      fullDate.setMinutes(0);
+    } else if (fullDate.getHours() > 16){
+      var day = fullDate.getDay();
+      fullDate.setDate(day+1);
+    }
+    this.setState({date: fullDate});
+  }
+
+  /* For Radio Group */
   handleSessionChange = (event) => {
     this.setState({session: event.target.value})
   }
@@ -50,6 +75,7 @@ export default class Appointments extends PureComponent {
                 label="Select START time"
                 value={this.state.date}
                 onChange={this.handleDateChange}
+                minutesStep="5"
               />
             </MuiPickersUtilsProvider>
             <h4> Hours of Operation: 12pm-5pm</h4>

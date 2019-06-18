@@ -28,7 +28,8 @@ export default class Home extends PureComponent {
         </Grid>
         <Grid container justify="center"
           style={{
-            backgroundImage:"url(https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt)",
+            // backgroundImage:"url(https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt)",
+            background: 'linear-gradient(to bottom right, navy, rgb(20,20,40))',
             height: '100%',
             backgroundAttachment: 'fixed',
             backgroundSize: 'cover'
