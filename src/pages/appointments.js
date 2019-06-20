@@ -66,18 +66,16 @@ export default class Appointments extends PureComponent {
 
   /* For TimePicker */
   handleDateChange = (date) => {
-    this.verifyDate(date);
-    var current = new Date(date);
-    this.setState({date: current});
+    date = new Date(date);
+    alert(date);
+    date = this.verifyDate(date);
+    this.setState({date: date});
   }
 
   verifyDate(date){
-    var now = new Date(date);
-    var hours = now.getHours();
-    if(hours > 11 && hours < 17){
-      return true;
-    }
-    return false;
+    if(date.getHours() < 12 || date.getHours() > 16)
+      date.setHours(12);
+    return date;
   }
 
   setStartDate(){
@@ -114,6 +112,7 @@ export default class Appointments extends PureComponent {
             <Calendar
               className="calendar-root"
               value={this.state.date}
+              onChange={this.handleDateChange}
             />
           </Grid>
           <Grid item xs={12} md={4} className="appoint-col">
