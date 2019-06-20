@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react'
 import Container from '@material-ui/core/Container'
 import Calendar from 'react-calendar'
 import Grid from '@material-ui/core/Grid'
+import Button from '@material-ui/core/Button'
 
 import {TimePicker} from '@material-ui/pickers'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -13,12 +14,54 @@ import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
 import FormLabel from '@material-ui/core/FormLabel'
 
+/* Firebase */
+import {srl_db} from '../components/firebase.js';
+
 import '../css/appointments.css'
 
 export default class Appointments extends PureComponent {
   state = {
-    date: this.setStartDate(),
-    session: '20'
+    date: new Date(),
+    session: '20',
+    appData: []
+  }
+
+  /* add to Firebase */
+  handleSubmit = () => {
+    var key = new Date();
+    key = key.toDateString() + " - " + key.toLocaleTimeString();
+    const date = this.state.date;
+    const session = parseInt(this.state.session, 10);
+
+    var session_date = date.toDateString();
+    var session_time = date.toLocaleTimeString();
+
+    srl_db.collection("appointments")
+    .doc(key)
+    .set({
+      parseableDate: date.toString(),
+      date: session_date,
+      start: session_time,
+      session: session,
+      name: "Jezze"
+    })
+    .then(function() {
+      alert("Appointment Submitted!");
+    })
+    .catch(function(error) {
+      alert("Uhh... Something happened. Blame it on this error: ", error);
+    });
+  }
+
+  /* get from Firebase */
+  getAppointments(){
+    srl_db.collection("appointments")
+      .get()
+      .then(query => {
+        const data = query.docs.map(doc => doc.data());
+        this.setState({appData: data[0]});
+        alert(JSON.stringify(this.state.appData));
+      })
   }
 
   /* For TimePicker */
@@ -41,17 +84,24 @@ export default class Appointments extends PureComponent {
     var fullDate = new Date();
     if(fullDate.getHours() < 12){
       fullDate.setHours(12);
-      fullDate.setMinutes(0);
     } else if (fullDate.getHours() > 16){
       var day = fullDate.getDay();
       fullDate.setDate(day+1);
     }
+    fullDate.setHours(fullDate.getHours()+1);
+    fullDate.setMinutes(0);
+    fullDate.setSeconds(0);
     this.setState({date: fullDate});
   }
 
   /* For Radio Group */
   handleSessionChange = (event) => {
     this.setState({session: event.target.value})
+  }
+
+  componentDidMount(){
+    this.setStartDate();
+    this.getAppointments();
   }
 
   render(){
@@ -75,7 +125,7 @@ export default class Appointments extends PureComponent {
                 label="Select START time"
                 value={this.state.date}
                 onChange={this.handleDateChange}
-                minutesStep="5"
+                minutesStep={5}
               />
             </MuiPickersUtilsProvider>
             <h4> Hours of Operation: 12pm-5pm</h4>
@@ -100,6 +150,9 @@ export default class Appointments extends PureComponent {
             </FormControl>
           </Grid>
         </Grid>
+        <Button variant="contained" onClick={()=>this.handleSubmit()}>Submit</Button>
+        <p>Date Selected: {this.state.date.toString()} </p>
+        <p>Session Selected: {this.state.session} </p>
       </Container>
     );
   }

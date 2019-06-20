@@ -3,6 +3,12 @@
   margin: 48px 0;
 }
 
+#benefits-text{
+  width: 80%;
+  text-align: left;
+  padding: 30px;
+}
+
 /* CSS for Mobile */
 
 @media screen and (min-width: 480px) {
