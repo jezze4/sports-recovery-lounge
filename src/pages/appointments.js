@@ -60,14 +60,12 @@ export default class Appointments extends PureComponent {
       .then(query => {
         const data = query.docs.map(doc => doc.data());
         this.setState({appData: data[0]});
-        alert(JSON.stringify(this.state.appData));
       })
   }
 
   /* For TimePicker */
   handleDateChange = (date) => {
     date = new Date(date);
-    alert(date);
     date = this.verifyDate(date);
     this.setState({date: date});
   }

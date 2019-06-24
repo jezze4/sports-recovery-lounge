@@ -7,6 +7,7 @@ import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
 import Appointments from '../pages/appointments';
 import Home from '../pages/home';
+import About from '../pages/about';
 
 import '../css/navbar.css';
 
@@ -71,7 +72,7 @@ export default class NavBar extends PureComponent {
 
               <Switch>
                 <Route path="/pricing" render={() => <Appointments />} />
-                <Route path="/about" render={() => <div>Tab 3</div>} />
+                <Route path="/about" render={() => <About/>} />
                 <Route path="/" render={() => <Home />} />
               </Switch>
             </div>
