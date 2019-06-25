@@ -2,16 +2,19 @@ import React, {PureComponent} from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import Banner from '../components/banner';
+import Logo from '../imgs/logo.png';
 
 import '../css/about.css';
 
 export default class About extends PureComponent{
 
+  /* Description about the company */
   renderDesc(){
     return(
       <Grid container direction="row" justify="center" alignItems="center" id="about-desc">
-        <Grid item className="desc-section">
-          <Typography variant="h4" gutterBottom className="desc-title">-RECOVER LIKE THE PROS-</Typography>
+        <Grid item className="desc-section"
+          style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
+          <Typography variant="h4" gutterBottom className="desc-title">- RECOVER LIKE THE PROS -</Typography>
           <Typography variant="p" className="desc-p">
             Sport's Recovery Lounge is a facility for athletes of all levels and
             sports where they can come and recover faster from any strenuous
@@ -25,10 +28,12 @@ export default class About extends PureComponent{
     );
   }
 
+  /* Description about the owner/operator */
   renderRick(){
     return(
       <Grid container id="about-rick" justify="center" alignItems="center">
-        <Grid container className="rick-section" direction="row">
+        <Grid container className="rick-section" direction="row"
+          style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
           <Grid item xs="12" sm="3" id="pic-container">
             <img
               src="https://drive.google.com/uc?export=view&id=1-Vwb3U22a3G5jmSfjg9dDBm_VbrBv9Aw"
@@ -37,7 +42,10 @@ export default class About extends PureComponent{
             />
           </Grid>
           <Grid item xs="12" sm="9" id="rick-text">
-            <Typography variant="h4" gutterBottom className="rick-title">-RICARDO FERDIN-</Typography>
+            <Typography variant="h4" className="rick-title">- RICARDO FERDIN -</Typography>
+            <Typography variant="h6" gutterBottom className="rick-p" style={{color: '#FFCC66'}}>
+              <i>Title information maybe</i>
+            </Typography>
             <Typography variant="p" className="rick-p">
               Sport's Recovery Lounge is a facility for athletes of all levels and
               sports where they can come and recover faster from any strenuous
