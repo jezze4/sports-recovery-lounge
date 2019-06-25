@@ -7,9 +7,20 @@
   box-shadow: none !important;
 }
 
+#appbar-logo{
+  /* background: radial-gradient(rgba(0,0,0,.2), rgba(0,0,0,0)); */
+  /* background: radial-gradient(rgba(0,0,0,.6), rgba(0,0,0,.3), rgba(0,0,0,.1),rgba(0,0,0,0), rgba(0,0,0,0)); */
+  position: absolute;
+  max-height: 150%;
+  filter: brightness(130%) saturate(120%);
+  padding: 10px;
+  left: 20px;
+  background: rgba(0, 0, 0, .1);
+  box-shadow: 0 0 20px 20px rgba(0, 0, 0, .1);
+}
+
 .tabs-root{
   z-index: 100;
-  /* position: absolute; */
   margin-right: 0;
   margin-left: auto;
 }
@@ -22,7 +33,6 @@
 .tab-root{
   font-size: 1.2em !important;
   color: white !important;
-  /* text-shadow: 0 1px 3px gray; */
   transition: .3s;
 }
 
@@ -33,7 +43,4 @@
 .tab-selected{
   font-size: 1.3em !important;
   color: #FFC44D !important;
-  /* text-shadow: 0 1px 1px gold; */
-  /* text-shadow: none; */
-  /* font-weight: bold !important; */
 }

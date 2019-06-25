@@ -9,19 +9,8 @@ import Appointments from '../pages/appointments';
 import Home from '../pages/home';
 import About from '../pages/about';
 
+import Logo from '../imgs/logo.png';
 import '../css/navbar.css';
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={event => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
 
 export default class NavBar extends PureComponent {
   state={
@@ -40,6 +29,9 @@ export default class NavBar extends PureComponent {
           render={({location}) =>(
             <div>
               <AppBar position="static" classes={{root: 'appbar-root'}}>
+                <Link to="/">
+                  <img src={Logo} alt="" id="appbar-logo"/>
+                </Link>
                 <Tabs
                   classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
                   value={location.pathname}
