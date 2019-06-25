@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
-import Banner from '../components/banner';
 import Logo from '../imgs/logo.png';
 
 import '../css/about.css';
