@@ -28,7 +28,7 @@
 
 .desc-title, .rick-title{
   text-align: center;
-  color: gold;
+  color: rgb(255,210,110);
   /* text-shadow: 2px 2px 3px gray; */
 }
 
@@ -58,7 +58,7 @@
 #about-rick{
   padding: 20px;
   min-height: 100vh;
-  
+
 }
 
 #rick-text{

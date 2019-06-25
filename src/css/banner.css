@@ -7,23 +7,20 @@
 
 .banner-text{
   color: white;
-  border-radius: 10px;
 }
 
 .banner-bt-root{
-  /* background-color: rgba(0, 0, 0, .8) !important; */
-  background-color: goldenrod !important;
-  border-color: goldenrod !important;
-  /* border-width: 2px !important; */
+  background-color: #FFC44D !important;
+  border-color: #FFC44D !important;
   font-size: .7em !important;
   color: white !important;
-  opacity: .9;
   border-radius: 50px !important;
   transition: .3s !important;
+  opacity: .8;
 }
 
 .banner-bt-root:hover{
-  filter: brightness(92%);
+  filter: brightness(94%);
 }
 
 #banner-desc{
@@ -33,9 +30,8 @@
 }
 
 #banner-title{
-  color: gold;
+  color: #FFCC66;
   font-size: .8em;
-  opacity: .8;
 }
 
 #banner-subtitle{

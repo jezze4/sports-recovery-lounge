@@ -22,20 +22,18 @@
 .tab-root{
   font-size: 1.2em !important;
   color: white !important;
-  text-shadow: 0 1px 3px gray;
+  /* text-shadow: 0 1px 3px gray; */
   transition: .3s;
 }
 
 .tab-root:hover{
-  color: gold !important;
-  text-shadow: none;
+  color: #FFD580 !important;
 }
 
 .tab-selected{
-  filter: brightness(110%);
   font-size: 1.3em !important;
-  color: gold !important;
-  text-shadow: 0 1px 2px darkgray;
+  color: #FFC44D !important;
+  /* text-shadow: 0 1px 1px gold; */
   /* text-shadow: none; */
   /* font-weight: bold !important; */
 }
