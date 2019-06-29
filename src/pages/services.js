@@ -19,38 +19,47 @@ export default class Services extends PureComponent{
   /* Services */
 
   serviceDetails={
+    normatec: {
+      image: iHypervolt,
+      title: <span id="normatec-title">NORMATEC</span>,
+      details: <span>
+                This is text regarding information about the hypervolt.
+                This is text regarding information about the hypervolt.
+                This is text regarding information about the hypervolt.
+              </span>
+    },
     hypervolt: {
       image: iHypervolt,
       title: "Hypervolt",
-      details:  <Typography>
+      details:  <span>
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
-                </Typography>},
+                </span>},
     vyper: {
       image: iVyper,
       title: "Vyper 2.0",
-      details:  <Typography>
+      details:  <span>
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
-                </Typography>},
+                </span>},
     myostorm: {
       image: iMyostorm,
       title: "Myostorm Meteor",
-      details:  <Typography>
+      details:  <span>
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
-                </Typography>},
+                </span>},
     roller: {
       image: iR8roller,
       title: "R8 Roller",
-      details:  <Typography>
+      details:  <span>
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
                   This is text regarding information about the hypervolt.
-                </Typography>},
+                </span>},
   }
 
   renderCompression(){
@@ -60,16 +69,7 @@ export default class Services extends PureComponent{
           <Typography variant="h3" className="services-title">Compression Therapy</Typography>
           <div className="underbar"></div>
         </Grid>
-
-        <Grid item container direction="row" justify="space-around" alignItems="space-around">
-          {this.renderService(this.serviceDetails['hypervolt'])}
-          {this.renderService(this.serviceDetails["vyper"])}
-        </Grid>
-
-        <Grid item container direction="row" justify="space-around" alignItems="space-around">
-          {this.renderService(this.serviceDetails["myostorm"])}
-          {this.renderService(this.serviceDetails["roller"])}
-        </Grid>
+        {this.renderService(this.serviceDetails['normatec'])}
       </Grid>
     );
   }
@@ -82,12 +82,12 @@ export default class Services extends PureComponent{
           <div className="underbar"></div>
         </Grid>
 
-        <Grid item container direction="row" justify="space-around" alignItems="space-around">
+        <Grid item container direction="row" justify="space-between" alignItems="stretch">
           {this.renderService(this.serviceDetails['hypervolt'])}
           {this.renderService(this.serviceDetails["vyper"])}
         </Grid>
 
-        <Grid item container direction="row" justify="space-around" alignItems="space-around">
+        <Grid item container direction="row" justify="space-between" alignItems="stretch">
           {this.renderService(this.serviceDetails["myostorm"])}
           {this.renderService(this.serviceDetails["roller"])}
         </Grid>
