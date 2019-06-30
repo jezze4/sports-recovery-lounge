@@ -11,7 +11,7 @@
 .services-section{
   padding: 16px;
 }
-.services-title{
+.services-title, .pricing-title{
   color: #FFCC66;
   text-shadow: 0 2px 4px #FFCC66;
   text-align: left;
@@ -50,4 +50,16 @@
 
 #normatec-title{
   color: white;
+}
+
+/* Pricing CSS */
+#pricing-container{
+  padding: 80px;
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(0,0,0,.9), black);
+  width: inherit;
+  box-shadow: -10px 0 15px black;
+}
+
+.pricing-title{
 }

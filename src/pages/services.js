@@ -112,16 +112,100 @@ export default class Services extends PureComponent{
   }
 
   /* Pricing */
-  renderPricing(){
 
+  pricingData = {
+    single : {
+      min20 : {
+        title: "20 minutes",
+        price: 20
+      },
+      min30 : {
+        title: "30 minutes",
+        price: 25
+      },
+      min60 : {
+        title: "60 minutes",
+        price: 35
+      },
+      fullBody : {
+        title: "Full Body 60 minutes",
+        price: 45,
+        note: "*By appointment only"
+      },
+    },
+
+    massage : {
+      min10 : {
+        title: "10 minutes",
+        price: 5
+      },
+      min30 : {
+        title: "30 minutes",
+        price: 10
+      },
+      min60 : {
+        title: "60 minutes",
+        price: 15
+      }
+    },
+
+    session30 : {
+      x3 : {
+        title: "3 Times",
+        price: 60
+      },
+      x5 : {
+        title: "5 Times",
+        price: 75
+      },
+      x10 : {
+        title: "10 Times",
+        price: 125
+      },
+      monthPass : {
+        title: "Monthly Pass",
+        price: 175
+      }
+    },
+
+    session60 : {
+      x3 : {
+        title: "3 Times",
+        price: 80
+      },
+      x5 : {
+        title: "5 Times",
+        price: 105
+      },
+      x10 : {
+        title: "10 Times",
+        price: 175
+      },
+      monthPass : {
+        title: "Monthly Pass",
+        price: 225
+      }
+    },
+  }
+
+  renderPricing(){
+    return(
+      <Grid container direction="column" id="pricing-container">
+        <Typography variant="h3" className="pricing-title">Pricing</Typography>
+        <div className="underbar" />
+      </Grid>
+    );
   }
 
   render(){
     return(
-      <Grid container direction="column" id="services-container" >
-        {this.renderCompression()}
-        {this.renderMassage()}
-      </Grid>
+      <div>
+        <Grid container direction="column" id="services-container" >
+          {this.renderCompression()}
+          {this.renderMassage()}
+        </Grid>
+          {this.renderPricing()}
+      </div>
     );
   }
 }
