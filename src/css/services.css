@@ -57,9 +57,23 @@
   padding: 80px;
   min-height: 100vh;
   background: linear-gradient(to bottom right, rgba(0,0,0,1), rgba(0,0,0,.9), black);
+  background-attachment: fixed;
   width: inherit;
   box-shadow: -10px 0 15px black;
 }
 
 .pricing-title{
+}
+
+.pricing-section-title, .pricing-section{
+  color: whitesmoke;
+  text-align: left;
+}
+
+.pricing-section-title{
+  text-decoration: underline;
+}
+
+#price-section1, #price-section2{
+  margin: 40px;
 }

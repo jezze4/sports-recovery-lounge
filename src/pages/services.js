@@ -115,77 +115,65 @@ export default class Services extends PureComponent{
 
   pricingData = {
     single : {
-      min20 : {
-        title: "20 minutes",
-        price: 20
-      },
-      min30 : {
-        title: "30 minutes",
-        price: 25
-      },
-      min60 : {
-        title: "60 minutes",
-        price: 35
-      },
-      fullBody : {
-        title: "Full Body 60 minutes",
-        price: 45,
-        note: "*By appointment only"
-      },
-    },
+      title: "Single Sessions",
+      data: [
+        {
+          title: "20 minutes", price: 20
+        },
+        {
+          title: "30 minutes", price: 25
+        },
+        {
+          title: "60 minutes", price: 35
+        },
+        {
+          title: "Full Body 60 minutes*", price: 45, note: "* By appointment only"
+        }]},
 
     massage : {
-      min10 : {
-        title: "10 minutes",
-        price: 5
-      },
-      min30 : {
-        title: "30 minutes",
-        price: 10
-      },
-      min60 : {
-        title: "60 minutes",
-        price: 15
-      }
-    },
+      title: "Self-Massage Devices",
+      data:[
+        {
+          title: "10 minutes", price: 5
+        },
+        {
+          title: "30 minutes", price: 10
+        },
+        {
+          title: "60 minutes", price: 15
+        }]},
 
     session30 : {
-      x3 : {
-        title: "3 Times",
-        price: 60
-      },
-      x5 : {
-        title: "5 Times",
-        price: 75
-      },
-      x10 : {
-        title: "10 Times",
-        price: 125
-      },
-      monthPass : {
-        title: "Monthly Pass",
-        price: 175
-      }
-    },
+      title: "30-Minute Sessions",
+      data: [
+        {
+          title: "3 Times", price: 60
+        },
+        {
+          title: "5 Times", price: 75
+        },
+        {
+          title: "10 Times", price: 125
+        },
+        {
+          title: "Monthly Pass", price: 175
+        }]},
 
     session60 : {
-      x3 : {
-        title: "3 Times",
-        price: 80
-      },
-      x5 : {
-        title: "5 Times",
-        price: 105
-      },
-      x10 : {
-        title: "10 Times",
-        price: 175
-      },
-      monthPass : {
-        title: "Monthly Pass",
-        price: 225
-      }
-    },
+      title: "60-Minute Sessions",
+      data: [
+        {
+          title: "3 Times", price: 80
+        },
+        {
+          title: "5 Times", price: 105
+        },
+        {
+          title: "10 Times", price: 175
+        },
+        {
+          title: "Monthly Pass", price: 225
+        }]}
   }
 
   renderPricing(){
@@ -193,6 +181,39 @@ export default class Services extends PureComponent{
       <Grid container direction="column" id="pricing-container">
         <Typography variant="h3" className="pricing-title">Pricing</Typography>
         <div className="underbar" />
+        <Grid item container direction="row" id="price-section1">
+          {this.renderPriceSection(this.pricingData.single)}
+        </Grid>
+        <Grid item container direction="row" justify="space-evenly" alignItems="center" id="price-section2">
+          {this.renderPriceSection(this.pricingData.massage)}
+          {this.renderPriceSection(this.pricingData.session30)}
+          {this.renderPriceSection(this.pricingData.session60)}
+        </Grid>
+
+        <Typography style={{color: 'gray'}}>
+          ** Complimentary 15 minutes Self-Massage Device Session with ANY Normatec Single Session purchase
+        </Typography>
+      </Grid>
+    );
+  }
+
+  renderPriceSection(data){
+    return(
+      <Grid item container direction="column" className="pricing-section" sm={4}>
+        <Typography className="pricing-section-title" variant="h5" gutterBottom>{data.title}:</Typography>
+
+        {data.data.map((item, i) =>
+          <Grid key={data.title+item.title} item container direction="row" justify="flex-start">
+            <Grid item sm={6}>
+              <Typography>{item.title}: </Typography>
+            </Grid>
+            <Grid item sm={6}>
+              <Typography>${item.price}.00</Typography>
+            </Grid>
+            <Typography style={{marginLeft: '20px'}}>{item.note}</Typography>
+          </Grid>
+        )}
+
       </Grid>
     );
   }
