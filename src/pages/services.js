@@ -23,42 +23,42 @@ export default class Services extends PureComponent{
       image: iHypervolt,
       title: <span id="normatec-title">NORMATEC</span>,
       details: <span>
-                This is text regarding information about the hypervolt.
-                This is text regarding information about the hypervolt.
-                This is text regarding information about the hypervolt.
+                Normatec's patented compression technology has revolutionized
+                athlete recovery. Reduce pain and soreness, rejuvenate muslces,
+                boost circulation, and recover faster in between training.
               </span>
     },
     hypervolt: {
       image: iHypervolt,
       title: "Hypervolt",
       details:  <span>
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
+                  State-of-the-art percussion massage device that helps relax
+                  sore and stiff muscles to improve mobility.
                 </span>},
     vyper: {
       image: iVyper,
       title: "Vyper 2.0",
       details:  <span>
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
+                  Vibrating fitness roller allows you to warm up, activate, and
+                  recover faster and more effectively. Optimal self myofascial
+                  release tool to increase flexibility, circulation, and reduce
+                  soreness. Increase range of motion by up to 40%.
                 </span>},
     myostorm: {
       image: iMyostorm,
       title: "Myostorm Meteor",
       details:  <span>
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
+                  New and revolutionary muscular recovery device designed to
+                  help relieve muscular pain, improve blood circulation, increase
+                  flexibility and muscle pliability, speed up the recovery process,
+                  and increase performance.
                 </span>},
     roller: {
       image: iR8roller,
-      title: "R8 Roller",
+      title: "R8 DTM Roller",
       details:  <span>
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
-                  This is text regarding information about the hypervolt.
+                  The R8 Deep Tissue Massage Roller is an FDA-registered medical device designed to reduce inflammation,
+                  break up muscle adhesions, and stimulate blood circulation.
                 </span>},
   }
 
