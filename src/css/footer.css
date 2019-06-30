@@ -1,0 +1,11 @@
+#footer-container{
+  padding: 20px 10%;
+  background: black;
+  color: whitesmoke;
+}
+
+#hours-container{
+  text-align: left;
+  line-height: 1.5em;
+  font-size: .85em;
+}
