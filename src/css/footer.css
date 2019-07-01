@@ -1,7 +1,25 @@
+.footer-title{
+  color: gainsboro;
+  font-weight: 500 !important;
+}
+
+.fa-icon{
+  color: #FFCC66;
+}
+
+.fa-icon:hover{
+  filter: drop-shadow(0 0 4px gold);
+  cursor: pointer;
+}
+
+.contact-text{
+  padding-top: 8px;
+}
+
 #footer-container{
   padding: 20px 10%;
   background: black;
-  color: whitesmoke;
+  color: darkgray;
 }
 
 #hours-container{
