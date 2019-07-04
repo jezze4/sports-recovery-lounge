@@ -1,12 +1,35 @@
+#summary-container{
+  background: linear-gradient(to bottom right, black, rgba(0,0,0,.85), black);
+  background-attachment: fixed;
+}
+
 #section-summary{
   width: 90%;
-  margin: 48px 0;
+  padding: 48px 0;
 }
 
 #benefits-text{
-  width: 80%;
+  width: 75%;
   text-align: left;
   padding: 30px;
+}
+
+.benefit-bullets{
+  line-height: 2em;
+  font-size: 1.5em;
+  display: block;
+  margin-left: 30px !important;
+}
+
+.gold-bullet{
+  height: 20px;
+  width: 20px;
+  margin-left: -30px;
+  margin-top: 20px;
+  margin-right: 10px;
+  background: radial-gradient(white, white, #FFCC66, #FFCC66, black);
+  display: inline-flex;
+  border-radius: 50%;
 }
 
 /* CSS for Desktop */
@@ -14,6 +37,6 @@
 @media screen and (min-width: 480px) {
   #section-summary{
     width: 70%;
-    margin: 60px 0;
+    padding: 60px 0;
   }
 }

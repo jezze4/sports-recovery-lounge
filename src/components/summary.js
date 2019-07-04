@@ -17,27 +17,25 @@ import '../css/summary.css'
 export default class Summary extends PureComponent {
   render(){
     return(
-
       <Card className="summary-card" elevation={0}>
         {/* <CardActionArea> */}
           <CardMedia
             classes={{media: 'summary-media'}}
             component="img"
-            alt="Contemplative Reptile"
-            src="https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt"
-            title="Contemplative Reptile"
+            alt={this.props.title}
+            src={this.props.img}
+            title={this.props.title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h3" component="h2">
-              Summary
+            <Typography gutterBottom variant="h3" component="h2" className="summary-title">
+              {this.props.title}
             </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+            <Typography color="textSecondary" component="p" className="summary-info">
+              {this.props.info}
             </Typography>
           </CardContent>
           <Button variant="outlined" size="large" classes={{root: 'summary-bt-root'}}>
-            <Typography>Make an Appointment</Typography>
+            <Typography>{this.props.button}</Typography>
           </Button>
 
         {/* </CardActionArea> */}
