@@ -13,9 +13,7 @@ export default class Footer extends PureComponent {
 
   hoursData = [
     {day: "Monday & Tuesday",     time: " 8:00 AM - 7:00 PM"},
-    // {day: "Tueday",     time: " 8:00 AM - 7:00 PM"},
     {day: "Wednesday & Thursday",  time: "10:00 AM - 7:00 PM"},
-    // {day: "Thursday",   time: "10:00 AM - 7:00 PM"},
     {day: "Friday",     time: " 8:00 AM - 7:00 PM"},
     {day: "Saturday",   time: " 9:00 AM - 2:00 PM"},
     {day: "Sunday",     time: "CLOSED"},
@@ -40,8 +38,8 @@ export default class Footer extends PureComponent {
       <Grid item sm={2} container direction="column" id="social-container">
         <Typography variant="h5" className="footer-title" gutterBottom>Follow Us!</Typography>
         <Grid item container direction="row">
-          <Grid item sm={6}><FontAwesomeIcon icon={faFacebookSquare} size="3x" className="fa-icon" /></Grid>
-          <Grid item sm={6}><FontAwesomeIcon icon={faInstagram} size="3x" className="fa-icon" /></Grid>
+          <Grid item sm={6}><FontAwesomeIcon icon={faFacebookSquare} size="3x" className="fa-icon-social" /></Grid>
+          <Grid item sm={6}><FontAwesomeIcon icon={faInstagram} size="3x" className="fa-icon-social" /></Grid>
         </Grid>
       </Grid>
     );

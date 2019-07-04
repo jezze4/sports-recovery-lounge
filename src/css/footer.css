@@ -3,11 +3,12 @@
   font-weight: 500 !important;
 }
 
-.fa-icon{
+.fa-icon, .fa-icon-social{
   color: #FFCC66;
+  margin-bottom: 5px;
 }
 
-.fa-icon:hover{
+.fa-icon-social:hover{
   filter: drop-shadow(0 0 4px gold);
   cursor: pointer;
 }
