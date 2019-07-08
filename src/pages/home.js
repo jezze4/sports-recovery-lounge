@@ -19,7 +19,7 @@ export default class Home extends PureComponent {
         style={{
           // backgroundImage:"url(https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt)",
           background: 'linear-gradient(to bottom right, rgba(250,210,0,0), rgba(0,0,0,.5)), url('+BenefitsImage+')',
-          height: '100vh',
+          minHeight: '100vh',
           backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
           color: 'white'

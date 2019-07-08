@@ -3,6 +3,7 @@ import Container from '@material-ui/core/Container'
 import Calendar from 'react-calendar'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
+import Typography from '@material-ui/core/Typography'
 
 import {TimePicker} from '@material-ui/pickers'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -100,10 +101,53 @@ export default class Appointments extends PureComponent {
     this.getAppointments();
   }
 
+  /* Custom Calendar Parts */
+  customNav(e){
+    return(
+      <Typography className="calendar-nav">{e.label}</Typography>
+    );
+  }
+
+  renderDateSelect(){
+    return(
+      <Container>
+        <Calendar
+          className="calendar-root"
+          tileClassName="calendar-tile"
+          value={this.state.date}
+          onChange={this.handleDateChange}
+          navigationLabel={(e)=>this.customNav(e)}
+          nextLabel=<div className="calendar-slownav">›</div>
+          // next2Label=<div className="calendar-fastnav">»</div>
+          next2Label={false}
+          prevLabel=<div className="calendar-slownav">‹</div>
+          // prev2Label=<div className="calendar-fastnav">«</div>
+        />
+      </Container>
+    );
+  }
+
+  renderTimeSelect(){
+
+  }
+
+  renderSessionSelect(){
+
+  }
+
   render(){
     return(
       <Container id="appointment-container">
-        <h1>Make an appointment</h1>
+        <Typography variant="h2" gutterBottom>Make an Appointment</Typography>
+        <Grid container direction="row">
+          <Grid item sm={6}>
+            {this.renderDateSelect()}
+          </Grid>
+          <Grid item sm={6}>
+
+          </Grid>
+        </Grid>
+        {/* <h1>Make an appointment</h1>
         <Grid container direction="row" justify="center">
           <Grid item xs={12} md={4} className="appoint-col">
             <h2>Choose your date</h2>
@@ -149,7 +193,7 @@ export default class Appointments extends PureComponent {
         </Grid>
         <Button variant="contained" onClick={()=>this.handleSubmit()}>Submit</Button>
         <p>Date Selected: {this.state.date.toString()} </p>
-        <p>Session Selected: {this.state.session} </p>
+        <p>Session Selected: {this.state.session} </p> */}
       </Container>
     );
   }
