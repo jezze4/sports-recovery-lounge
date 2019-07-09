@@ -1,5 +1,6 @@
 import React, {PureComponent} from 'react';
 import { Scheduler, DayView, Appointments } from '@devexpress/dx-react-scheduler-material-ui';
+import { ViewState } from '@devexpress/dx-react-scheduler';
 
 
 const SchedulerRoot = ({...props}) => {
@@ -46,6 +47,9 @@ export default class MyScheduler extends PureComponent {
   render(){
     return(
       <Scheduler height={420} rootComponent={SchedulerRoot}>
+        <ViewState
+          currentDate={this.props.date}
+        />
         <DayView
           startDayHour={8}
           endDayHour={19}

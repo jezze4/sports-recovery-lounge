@@ -89,11 +89,12 @@
 .day-scale-layout{
   margin-left: -10% !important;
   width: 110% !important;
-  overflow: hidden !important;
+  color: red !important;
 }
 
 .day-scale-cell{
   background: black;
+  color: red !important;
 }
 
 .day-scale-cell-empty{

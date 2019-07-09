@@ -131,7 +131,9 @@ export default class Appointment extends PureComponent {
     return(
       <Grid id="time-container" item container direction="row">
         <Grid item sm={6} xs={12}>
-          <MyScheduler />
+          <MyScheduler
+            date={this.state.date}
+          />
         </Grid>
         <Grid item></Grid>
       </Grid>
