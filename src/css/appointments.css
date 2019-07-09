@@ -1,6 +1,8 @@
+/**************** calendar styling ****************/
+
 .calendar-root{
   border-width: 0;
-  box-shadow: 0 0 10px gainsboro;
+  box-shadow: 0 0 5px gold;
   width: 100%;
   background: black;
   border-radius: 10px;
@@ -9,21 +11,47 @@
 
 .calendar-tile{
   filter: invert(100%);
+  min-height: 5em;
+  transition: .2s;
+  border-radius: 5px;
+}
+
+.calendar-tile:hover{
+  filter: invert(100%) brightness(150%);
 }
 
 .calendar-nav{
   color: gold;
 }
 
+.react-calendar__navigation__label{
+  background: black !important;
+}
+
 .calendar-slownav{
   color: goldenrod;
 }
 
+/**************************************************/
+
+/******* react-calendar internal components *******/
+
+.react-calendar__navigation__arrow {
+  transition: .2s;
+}
 .react-calendar__navigation__arrow:hover{
   border-radius: 50%;
   background: rgba(255, 210, 110, .3) !important;
 }
 
+.react-calendar__navigation__arrow:focus{
+  border-radius: 50%;
+  background: rgba(255, 210, 110, .5) !important;
+}
+
+.react-calendar__navigation__label{
+  transition: .2s;
+}
 .react-calendar__navigation__label:hover{
   border-radius: 5px;
   background: rgba(255, 210, 110, .3) !important;
@@ -34,10 +62,53 @@
   display: none;
 }
 
-.calendar-fastnav{
-  display: none;
-  width: 0 !important;
+/****************************************************/
+
+/***************** Scheduler Styling*****************/
+
+.scheduler-root{
+  border-radius: 10px;
+  box-shadow: 0 0 5px gold;
 }
+
+.day-view-layout{
+  border-radius: 10px;
+}
+
+.time-scale-cell{
+  text-align: right !important;
+  background: black;
+  color: white !important;
+}
+
+.time-scale-layout{
+  background: black;
+  width: 300% !important;
+}
+
+.day-scale-layout{
+  margin-left: -10% !important;
+  width: 110% !important;
+  overflow: hidden !important;
+}
+
+.day-scale-cell{
+  background: black;
+}
+
+.day-scale-cell-empty{
+  background: black;
+}
+
+.time-table-layout{
+  margin-left: 30% !important;
+  width: 70% !important;
+}
+
+.time-table-cell{
+  background: red;
+}
+/****************************************************/
 
 .radio-checked{
   color: gold !important;
@@ -57,4 +128,9 @@
   background: black;
   min-height: 100vh;
   color: whitesmoke;
+}
+
+#time-container{
+  max-height: 100vh;
+  min-width: 100%;
 }

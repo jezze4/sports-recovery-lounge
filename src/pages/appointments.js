@@ -18,9 +18,11 @@ import FormLabel from '@material-ui/core/FormLabel'
 /* Firebase */
 import {srl_db} from '../components/firebase.js';
 
+import MyScheduler from '../components/myScheduler';
+
 import '../css/appointments.css'
 
-export default class Appointments extends PureComponent {
+export default class Appointment extends PureComponent {
   state = {
     date: new Date(),
     session: '20',
@@ -110,7 +112,7 @@ export default class Appointments extends PureComponent {
 
   renderDateSelect(){
     return(
-      <Container>
+      <Container id="calendar-container">
         <Calendar
           className="calendar-root"
           tileClassName="calendar-tile"
@@ -118,17 +120,22 @@ export default class Appointments extends PureComponent {
           onChange={this.handleDateChange}
           navigationLabel={(e)=>this.customNav(e)}
           nextLabel=<div className="calendar-slownav">›</div>
-          // next2Label=<div className="calendar-fastnav">»</div>
-          next2Label={false}
           prevLabel=<div className="calendar-slownav">‹</div>
-          // prev2Label=<div className="calendar-fastnav">«</div>
+          minDetail="month"
         />
       </Container>
     );
   }
 
   renderTimeSelect(){
-
+    return(
+      <Grid id="time-container" item container direction="row">
+        <Grid item sm={6} xs={12}>
+          <MyScheduler />
+        </Grid>
+        <Grid item></Grid>
+      </Grid>
+    );
   }
 
   renderSessionSelect(){
@@ -139,12 +146,12 @@ export default class Appointments extends PureComponent {
     return(
       <Container id="appointment-container">
         <Typography variant="h2" gutterBottom>Make an Appointment</Typography>
-        <Grid container direction="row">
+        <Grid container direction="row" alignItems="center" justify="center">
           <Grid item sm={6}>
             {this.renderDateSelect()}
           </Grid>
           <Grid item sm={6}>
-
+            {this.renderTimeSelect()}
           </Grid>
         </Grid>
         {/* <h1>Make an appointment</h1>
