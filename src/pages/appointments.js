@@ -142,7 +142,7 @@ export default class Appointment extends PureComponent {
           <Paper id="appointment-summary">
             <Typography variant="h4">Summary</Typography>
             <br />
-            <Typography variant="h5">{this.state.date.toString()}</Typography>
+            <Typography variant="h5">Start time: {this.state.date.toString()}</Typography>
             <br />
             <Typography variant="h5">Type: {this.state.sessionType.toUpperCase()}</Typography>
             <br />

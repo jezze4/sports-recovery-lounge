@@ -120,10 +120,11 @@
   width: 90%;
   margin: 10px !important;
   padding: 15px !important;
-  border-width: 2px !important;
+  /* border-width: 1px !important; */
   border-color: #FFCC66 !important;
-  border-style: solid !important;
+  border-style: inset!important;
   color: #FFCC66 !important;
+  box-shadow: 0 0 3px #FFCC66 inset;
 }
 
 .selection-session{
@@ -167,6 +168,15 @@
 }
 
 #time-container{
-  max-height: 100vh;
   min-width: 100%;
+}
+
+#appointment-summary{
+  text-align: left;
+  margin: 0 10px;
+  padding: 8px;
+  background: black;
+  color: lightgray;
+  box-shadow: 0 0 5px #FFCC66;
+  border-radius: 10px;
 }
