@@ -4,6 +4,7 @@ import Calendar from 'react-calendar'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import Paper from '@material-ui/core/Paper'
 
 import {TimePicker} from '@material-ui/pickers'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers'
@@ -26,7 +27,9 @@ export default class Appointment extends PureComponent {
   state = {
     date: new Date(),
     session: '20',
-    appData: []
+    appData: [],
+    sessionType: 'legs',
+    sessionDur: '20',
   }
 
   /* add to Firebase */
@@ -135,20 +138,85 @@ export default class Appointment extends PureComponent {
             date={this.state.date}
           />
         </Grid>
-        <Grid item></Grid>
+        <Grid item sm={6}>
+          <Paper id="appointment-summary">
+            <Typography variant="h4">Summary</Typography>
+            <br />
+            <Typography variant="h5">{this.state.date.toString()}</Typography>
+            <br />
+            <Typography variant="h5">Type: {this.state.sessionType.toUpperCase()}</Typography>
+            <br />
+            <Typography variant="h5">Duration: {this.state.sessionDur} Minutes</Typography>
+          </Paper>
+        </Grid>
       </Grid>
     );
   }
 
+  /* Legs, Arms, Hips, Full-Body */
   renderSessionSelect(){
+    return(
+      <Grid container direction="row" id="sessionSelect-container">
+        <Grid item sm={12}>
+          <Typography variant="h5" className="app-section-title">Session Type</Typography>
+        </Grid>
+        <Grid item sm={3}>
+          {this.addSelection("session", "Legs")}
+        </Grid>
+        <Grid item sm={3}>
+          {this.addSelection("session", "Arms")}
+        </Grid>
+        <Grid item sm={3}>
+          {this.addSelection("session", "Hips")}
+        </Grid>
+        <Grid item sm={3}>
+          {this.addSelection("session", "Full-Body")}
+        </Grid>
+      </Grid>
+    );
+  }
 
+  /* 20, 30, 60 minute durations */
+  renderDurationSelect(){
+    return(
+      <Grid container direction="row" id="durationSelect-container">
+        <Grid item sm={12}>
+          <Typography variant="h5" className="app-section-title">Session Duration</Typography>
+        </Grid>
+        <Grid item sm={4}>
+          {this.addSelection("duration", "20 Minutes")}
+        </Grid>
+        <Grid item sm={4}>
+          {this.addSelection("duration", "30 Minutes")}
+        </Grid>
+        <Grid item sm={4}>
+          {this.addSelection("duration", "60 Minutes")}
+        </Grid>
+      </Grid>
+    );
+  }
+
+  addSelection(classType, title, description){
+    return(
+      <Button classes={{root: 'selection-'+classType}}>
+        <Typography className="selection-button-title">{title}</Typography>
+        <Typography className="selection-button-desc">{description}</Typography>
+      </Button>
+    );
   }
 
   render(){
     return(
       <Container id="appointment-container">
         <Typography variant="h2" gutterBottom>Make an Appointment</Typography>
+        {this.renderSessionSelect()}
+        {this.renderDurationSelect()}
         <Grid container direction="row" alignItems="center" justify="center">
+          <Grid item sm={12}>
+            <Typography variant="h5" className="app-section-title" gutterBottom>
+              Select Date and Start Time
+            </Typography>
+          </Grid>
           <Grid item sm={6}>
             {this.renderDateSelect()}
           </Grid>
@@ -156,7 +224,8 @@ export default class Appointment extends PureComponent {
             {this.renderTimeSelect()}
           </Grid>
         </Grid>
-        {/* <h1>Make an appointment</h1>
+        {/*
+        <h1>Make an appointment</h1>
         <Grid container direction="row" justify="center">
           <Grid item xs={12} md={4} className="appoint-col">
             <h2>Choose your date</h2>
@@ -202,7 +271,8 @@ export default class Appointment extends PureComponent {
         </Grid>
         <Button variant="contained" onClick={()=>this.handleSubmit()}>Submit</Button>
         <p>Date Selected: {this.state.date.toString()} </p>
-        <p>Session Selected: {this.state.session} </p> */}
+        <p>Session Selected: {this.state.session} </p>
+        */}
       </Container>
     );
   }

@@ -21,7 +21,7 @@
 }
 
 .calendar-nav{
-  color: gold;
+  color: #FFCC66;
 }
 
 .react-calendar__navigation__label{
@@ -89,12 +89,11 @@
 .day-scale-layout{
   margin-left: -10% !important;
   width: 110% !important;
-  color: red !important;
 }
 
 .day-scale-cell{
   background: black;
-  color: red !important;
+  color: #FFCC66 !important;
 }
 
 .day-scale-cell-empty{
@@ -109,6 +108,42 @@
 .time-table-cell{
   background: red;
 }
+/****************************************************/
+
+/************* Selection Button Styling *************/
+
+#sessionSelect-container, #durationSelect-container{
+}
+
+.selection-session, .selection-duration{
+  background: linear-gradient(to bottom right, black, black, rgba(255, 210, 110, .2)) !important;
+  width: 90%;
+  margin: 10px !important;
+  padding: 15px !important;
+  border-width: 2px !important;
+  border-color: #FFCC66 !important;
+  border-style: solid !important;
+  color: #FFCC66 !important;
+}
+
+.selection-session{
+  margin-bottom: 20px !important;
+}
+
+.selection-duration{
+  margin-bottom: 40px !important;
+}
+
+.selection-button-title{
+  font-size: 1.2em !important;
+}
+
+.app-section-title{
+  color: gainsboro;
+  text-align: left;
+  margin-left: 25px !important;
+}
+
 /****************************************************/
 
 .radio-checked{
