@@ -77,13 +77,15 @@
 
 .time-scale-cell{
   text-align: right !important;
-  background: black;
+  background: black !important;
   color: white !important;
+  padding-right: 50% !important;
+
 }
 
 .time-scale-layout{
   background: black;
-  width: 300% !important;
+  width: 600% !important;
 }
 
 .day-scale-layout{
@@ -106,8 +108,24 @@
 }
 
 .time-table-cell{
-  background: red;
+  background: gray !important;
+  transition: .2s;
+  width: 100%;
+  text-align: center !important;
 }
+
+.time-table-cell:hover{
+  background: rgba(255,210,110,.4) !important;
+}
+
+.time-table-cell:active {
+  background: gold !important;
+}
+
+.cell-active{
+  background: gold !important;
+}
+
 /****************************************************/
 
 /************* Selection Button Styling *************/
@@ -162,9 +180,11 @@
 #appointment-container{
   padding: 24px 80px;
   min-width: 100%;
-  background: black;
+  background: linear-gradient(to bottom right, black, black, black, rgba(255, 210, 110, .8));
+  background-attachment: fixed;
   min-height: 100vh;
   color: whitesmoke;
+  padding-bottom: 120px;
 }
 
 #time-container{
@@ -173,10 +193,11 @@
 
 #appointment-summary{
   text-align: left;
-  margin: 0 10px;
-  padding: 8px;
+  margin: 0 30px;
+  padding: 16px 24px;
   background: black;
   color: lightgray;
   box-shadow: 0 0 5px #FFCC66;
   border-radius: 10px;
+  min-height: 90%;
 }

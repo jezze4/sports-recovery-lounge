@@ -72,7 +72,7 @@ export default class Appointment extends PureComponent {
   /* For TimePicker */
   handleDateChange = (date) => {
     date = new Date(date);
-    date = this.verifyDate(date);
+    // date = this.verifyDate(date);
     this.setState({date: date});
   }
 
@@ -136,13 +136,18 @@ export default class Appointment extends PureComponent {
         <Grid item sm={6} xs={12}>
           <MyScheduler
             date={this.state.date}
+            onSelectTime={this.handleDateChange}
           />
         </Grid>
         <Grid item sm={6}>
           <Paper id="appointment-summary">
-            <Typography variant="h4">Summary</Typography>
+            <Typography variant="h4">Summary<div className="underbar"></div></Typography>
             <br />
-            <Typography variant="h5">Start time: {this.state.date.toString()}</Typography>
+            <Typography variant="h5">
+              Date: {this.formatDay()}
+              <br/>
+              Time: {this.formatTime()}
+            </Typography>
             <br />
             <Typography variant="h5">Type: {this.state.sessionType.toUpperCase()}</Typography>
             <br />
@@ -151,6 +156,23 @@ export default class Appointment extends PureComponent {
         </Grid>
       </Grid>
     );
+  }
+
+  formatDay(){
+    const months=["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    var day = this.state.date.getDate();
+    var month = months[this.state.date.getMonth()];
+    return month + ' ' + day + ', ' + (this.state.date.getYear()+1900);
+
+  }
+
+  formatTime(){
+    var hours = this.state.date.getHours();
+    const suffix = (hours>11) ? 'PM' : 'AM';
+    hours = (hours > 12) ? hours-12 : hours;
+    var min = this.state.date.getMinutes();
+    min = (min===0) ? '00' : min;
+    return hours + ':' + min + ' ' + suffix;
   }
 
   /* Legs, Arms, Hips, Full-Body */

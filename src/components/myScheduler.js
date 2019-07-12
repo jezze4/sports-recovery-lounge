@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import { Scheduler, DayView, Appointments } from '@devexpress/dx-react-scheduler-material-ui';
 import { ViewState } from '@devexpress/dx-react-scheduler';
+import Button from '@material-ui/core/Button';
 
 
 const SchedulerRoot = ({...props}) => {
@@ -12,11 +13,26 @@ const DayViewLayout = ({...props}) => {
 }
 
 const TimeScaleLayout = ({...props}) => {
-  return <DayView.TimeScaleLayout {...props} className="time-scale-layout" />
+  return (
+    <DayView.TimeScaleLayout {...props} className="time-scale-layout">
+    </DayView.TimeScaleLayout>);
 }
 
 const TimeScaleCell = ({...props}) => {
-  return <DayView.TimeScaleCell {...props} className="time-scale-cell" />
+  const{startDate} = props;
+  const date = new Date(startDate);
+  return(
+    // <div {...props} className="time-scale-cell">
+    //   <div>{(date.getHours()===12) ? '12' : date.getHours()%12}:00</div>
+    //   <br/>
+    //   <div>{(date.getHours()===12) ? '12' : date.getHours()%12}:30</div>
+    //   <br />
+    // </div>
+    // <div>
+      <DayView.TimeScaleCell {...props} className="time-scale-cell"/>
+    //  <DayView.TimeScaleCell {...props} className="time-scale-cell" />
+    // </div>
+  );
 }
 
 const DayScaleLayout = ({...props}) => {
@@ -35,11 +51,21 @@ const TimeTableLayout = ({...props}) => {
   return <DayView.TimeTableLayout {...props} className="time-table-layout" />
 }
 
-const TimeTableCell = ({...props}) => {
+const TimeTableCell = (onSelectTime, {...props}) => {
   const {startDate} = props;
   const date = new Date(startDate);
-  return <DayView.TimeTableCell {...props} className="time-table-cell"/>
+  // return <DayView.TimeTableCell {...props} className="time-table-cell"/>
+  return(
+    <DayView.TimeTableCell {...props} className="time-table-cell" onClick={()=>updateTime(date)}>
+        {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
+        {(date.getMinutes()===0) ? '00' : date.getMinutes()}
+        {(date.getHours() < 12) ? ' AM' : ' PM'}
+    </DayView.TimeTableCell>
+  );
 
+  function updateTime(date){
+    onSelectTime(new Date(date));
+  }
 }
 
 export default class MyScheduler extends PureComponent {
@@ -61,7 +87,7 @@ export default class MyScheduler extends PureComponent {
           dayScaleCellComponent={DayScaleCell}
           dayScaleEmptyCellComponent={DayScaleEmptyCell}
           timeTableLayoutComponent={TimeTableLayout}
-          timeTableCellComponent={TimeTableCell}
+          timeTableCellComponent={(...props)=>TimeTableCell(this.props.onSelectTime, ...props)}
         />
         <Appointments />
       </Scheduler>
