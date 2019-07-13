@@ -72,7 +72,6 @@ export default class Appointment extends PureComponent {
   /* For TimePicker */
   handleDateChange = (date) => {
     date = new Date(date);
-    // date = this.verifyDate(date);
     this.setState({date: date});
   }
 

@@ -109,7 +109,7 @@
 
 .time-table-cell{
   background: gray !important;
-  transition: .2s;
+  transition: .2s !important;
   width: 100%;
   text-align: center !important;
 }
@@ -118,12 +118,9 @@
   background: rgba(255,210,110,.4) !important;
 }
 
-.time-table-cell:active {
+#cell-active{
   background: gold !important;
-}
-
-.cell-active{
-  background: gold !important;
+  transition: .2s !important;
 }
 
 /****************************************************/
