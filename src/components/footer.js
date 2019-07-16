@@ -38,8 +38,16 @@ export default class Footer extends PureComponent {
       <Grid item sm={2} container direction="column" id="social-container">
         <Typography variant="h5" className="footer-title" gutterBottom>Follow Us!</Typography>
         <Grid item container direction="row">
-          <Grid item sm={6}><FontAwesomeIcon icon={faFacebookSquare} size="3x" className="fa-icon-social" /></Grid>
-          <Grid item sm={6}><FontAwesomeIcon icon={faInstagram} size="3x" className="fa-icon-social" /></Grid>
+          <Grid item sm={6}>
+            <a href="https://www.facebook.com/sportsrecoveryloungeldo/" target="+_blank">
+              <FontAwesomeIcon icon={faFacebookSquare} size="3x" className="fa-icon-social" />
+            </a>
+          </Grid>
+          <Grid item sm={6}>
+            <a href="https://www.instagram.com/sportsrecoverylounge/" target="_blank">
+              <FontAwesomeIcon icon={faInstagram} size="3x" className="fa-icon-social" />
+            </a>
+          </Grid>
         </Grid>
       </Grid>
     );
@@ -58,7 +66,9 @@ export default class Footer extends PureComponent {
         <Grid item sm={6} container direction="column" id="contact-container">
           <Typography variant="h5" className="footer-title" gutterBottom>Visit Us!</Typography>
           <Grid item>
-            <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" className="fa-icon" />
+            <a href="https://goo.gl/maps/odshgapd7ZkJNKyA8" target="_blank">
+              <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" className="fa-icon-social" />
+            </a>
             <Typography className="contact-text">
               416 SHILOH RD. STE. 2B
               LAREDO, TEXAS 78045
