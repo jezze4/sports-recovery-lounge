@@ -70,12 +70,13 @@
   overflow-x: hidden !important;
   box-shadow: 0 0 5px gold;
   background: black;
+  border-radius: 10px;
 }
 
 .day-view-layout{
   overflow-x: hidden !important;
   border-radius: 10px;
-  width: 100% !important;
+  width: 108% !important;
 }
 
 .time-scale-cell{
@@ -150,11 +151,23 @@
   width: 90%;
   margin: 10px !important;
   padding: 15px !important;
-  /* border-width: 1px !important; */
   border-color: #FFCC66 !important;
   border-style: inset!important;
   color: #FFCC66 !important;
   box-shadow: 0 0 3px #FFCC66 inset;
+  transition: .2s !important;
+}
+
+.selection-session:hover, .selection-duration:hover{
+  /* background: linear-gradient(to bottom right, black, rgba(255, 210, 110, .2), rgba(255, 210, 110, .6)) !important; */
+  filter: brightness(200%) saturate(150%);
+  color: white !important;
+}
+
+.selection-active{
+  background: goldenrod !important;
+  color: white !important;
+  filter: none !important;
 }
 
 .selection-session{

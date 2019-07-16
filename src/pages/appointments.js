@@ -26,7 +26,6 @@ import '../css/appointments.css'
 export default class Appointment extends PureComponent {
   state = {
     date: new Date(),
-    session: '20',
     appData: [],
     sessionType: 'legs',
     sessionDur: '20',
@@ -136,6 +135,7 @@ export default class Appointment extends PureComponent {
           <MyScheduler
             date={this.state.date}
             onSelectTime={this.handleDateChange}
+            duration={this.state.sessionDur}
           />
         </Grid>
         <Grid container item sm={7} direction="column" justify="space-between" id="appointment-summary">
@@ -189,16 +189,16 @@ export default class Appointment extends PureComponent {
           <Typography variant="h5" className="app-section-title">Session Type</Typography>
         </Grid>
         <Grid item sm={3}>
-          {this.addSelection("session", "Legs")}
+          {this.addSelection("session", "Legs", "legs")}
         </Grid>
         <Grid item sm={3}>
-          {this.addSelection("session", "Arms")}
+          {this.addSelection("session", "Arms", "arms")}
         </Grid>
         <Grid item sm={3}>
-          {this.addSelection("session", "Hips")}
+          {this.addSelection("session", "Hips", "hips")}
         </Grid>
         <Grid item sm={3}>
-          {this.addSelection("session", "Full-Body")}
+          {this.addSelection("session", "Full-Body", "body")}
         </Grid>
       </Grid>
     );
@@ -212,26 +212,41 @@ export default class Appointment extends PureComponent {
           <Typography variant="h5" className="app-section-title">Session Duration</Typography>
         </Grid>
         <Grid item sm={4}>
-          {this.addSelection("duration", "20 Minutes")}
+          {this.addSelection("duration", "20 Minutes", "20")}
         </Grid>
         <Grid item sm={4}>
-          {this.addSelection("duration", "30 Minutes")}
+          {this.addSelection("duration", "30 Minutes", "30")}
         </Grid>
         <Grid item sm={4}>
-          {this.addSelection("duration", "60 Minutes")}
+          {this.addSelection("duration", "60 Minutes", "60")}
         </Grid>
       </Grid>
     );
   }
 
-  addSelection(classType, title, description){
+  addSelection(classType, title, activeID){
     return(
-      <Button classes={{root: 'selection-'+classType}}>
+      <Button
+        classes={
+          {root:((activeID===this.state.sessionType || activeID===this.state.sessionDur) ? 'selection-active ' : ' ')
+           + 'selection-'+ classType
+          }}
+        onClick={()=>this.onChangeSelection(classType, activeID)}
+        >
         <Typography className="selection-button-title">{title}</Typography>
-        <Typography className="selection-button-desc">{description}</Typography>
+        {/* <Typography className="selection-button-desc">{description}</Typography> */}
       </Button>
     );
   }
+
+  onChangeSelection(classType, activeID){
+    if(classType==='session'){
+      this.setState({sessionType: activeID});
+    } else{
+      this.setState({sessionDur: activeID});
+    }
+  }
+
 
   render(){
     return(

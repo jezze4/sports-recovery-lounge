@@ -82,7 +82,7 @@ export default class MyScheduler extends PureComponent {
         <DayView
           startDayHour={8}
           endDayHour={19}
-          cellDuration={30}
+          cellDuration={this.props.duration}
           layoutComponent={DayViewLayout}
           timeScaleLayoutComponent={TimeScaleLayout}
           timeScaleCellComponent={TimeScaleCell}
