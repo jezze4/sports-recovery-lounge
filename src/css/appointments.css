@@ -67,30 +67,33 @@
 /***************** Scheduler Styling*****************/
 
 .scheduler-root{
-  border-radius: 10px;
+  overflow-x: hidden !important;
   box-shadow: 0 0 5px gold;
+  background: black;
 }
 
 .day-view-layout{
+  overflow-x: hidden !important;
   border-radius: 10px;
+  width: 100% !important;
 }
 
 .time-scale-cell{
   text-align: right !important;
   background: black !important;
   color: white !important;
-  padding-right: 50% !important;
 
 }
 
 .time-scale-layout{
+  display: none !important;
   background: black;
-  width: 600% !important;
+  width: 400% !important;
 }
 
 .day-scale-layout{
   margin-left: -10% !important;
-  width: 110% !important;
+  width: 111% !important;
 }
 
 .day-scale-cell{
@@ -103,24 +106,36 @@
 }
 
 .time-table-layout{
-  margin-left: 30% !important;
-  width: 70% !important;
+  margin-left: -10% !important;
+  width: 111% !important;
 }
 
 .time-table-cell{
-  background: gray !important;
+  background: rgb(30,30,30) !important;
   transition: .2s !important;
   width: 100%;
   text-align: center !important;
+  color: gold !important;
 }
 
 .time-table-cell:hover{
-  background: rgba(255,210,110,.4) !important;
+  background: rgba(255,210,110,.6) !important;
 }
 
 #cell-active{
   background: gold !important;
   transition: .2s !important;
+  color: black !important;
+}
+
+.scheduled-appointment{
+  background: rgba(80,80,80,.9);
+  min-height: 3em;
+  width: 111% !important;
+  margin-left: -10%;
+  padding-bottom: 3%;
+  margin-top: -1%;
+  box-shadow: 0 0 5px black inset;
 }
 
 /****************************************************/
@@ -177,7 +192,7 @@
 #appointment-container{
   padding: 24px 80px;
   min-width: 100%;
-  background: linear-gradient(to bottom right, black, black, black, rgba(255, 210, 110, .8));
+  background: linear-gradient(to bottom right, black, rgba(10,10,10,.9),black);
   background-attachment: fixed;
   min-height: 100vh;
   color: whitesmoke;
@@ -185,16 +200,21 @@
 }
 
 #time-container{
-  min-width: 100%;
+  width: 100%;
 }
 
 #appointment-summary{
   text-align: left;
-  margin: 0 30px;
   padding: 16px 24px;
   background: black;
   color: lightgray;
   box-shadow: 0 0 5px #FFCC66;
   border-radius: 10px;
   min-height: 90%;
+}
+
+.submit-app-btn{
+  color: white !important;
+  width: 100%;
+  background: goldenrod !important;
 }

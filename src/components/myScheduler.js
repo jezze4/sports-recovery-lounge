@@ -22,13 +22,7 @@ const TimeScaleCell = ({...props}) => {
   const{startDate} = props;
   const date = new Date(startDate);
   return(
-    // <div {...props} className="time-scale-cell">
-    //   <div>{(date.getHours()===12) ? '12' : date.getHours()%12}:00</div>
-    //   <br/>
-    //   <div>{(date.getHours()===12) ? '12' : date.getHours()%12}:30</div>
-    //   <br />
-    // </div>
-      <DayView.TimeScaleCell {...props} className="time-scale-cell"/>
+    <DayView.TimeScaleCell {...props} className="time-scale-cell"/>
   );
 }
 
@@ -56,7 +50,8 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   const active = ''+aDate.getHours()+aDate.getMinutes();
 
   return(
-    <DayView.TimeTableCell {...props} className="time-table-cell"
+    <DayView.TimeTableCell {...props}
+      className="time-table-cell"
       id={(idNum===active) ? 'cell-active' : ''}
       onClick={(e)=>onSelectTime(date)}
       >
@@ -65,17 +60,22 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
         {(date.getHours() < 12) ? ' AM' : ' PM'}
     </DayView.TimeTableCell>
   );
+}
 
-  // function updateTime(date, e) {
-  //   onSelectTime(new Date(date));
-  // }
+const ScheduledAppointment = ({...props}) => {
+  return <Appointments.Container {...props} className="scheduled-appointment"/>
 }
 
 export default class MyScheduler extends PureComponent {
 
+  schedulerData = [
+    {startDate: '2019-07-07T10:00', endDate: '2019-07-07T11:00', title: 'Appointment #1234'},
+    {startDate: '2019-07-07T12:00', endDate: '2019-07-07T12:20', title: 'Appointment #5678'},
+  ]
+
   render(){
     return(
-      <Scheduler height={420} rootComponent={SchedulerRoot}>
+      <Scheduler height={420} rootComponent={SchedulerRoot} data={this.schedulerData}>
         <ViewState
           currentDate={this.props.date}
         />
@@ -93,7 +93,9 @@ export default class MyScheduler extends PureComponent {
           timeTableCellComponent={({...props})=>
             TimeTableCell(this.props.onSelectTime, this.props.date, {...props})}
         />
-        <Appointments />
+        <Appointments
+          containerComponent={ScheduledAppointment}
+        />
       </Scheduler>
     );
   }

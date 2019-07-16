@@ -131,27 +131,34 @@ export default class Appointment extends PureComponent {
 
   renderTimeSelect(){
     return(
-      <Grid id="time-container" item container direction="row">
-        <Grid item sm={6} xs={12}>
+      <Grid id="time-container" item container direction="row" justify="space-between">
+        <Grid item sm={4} xs={12}>
           <MyScheduler
             date={this.state.date}
             onSelectTime={this.handleDateChange}
           />
         </Grid>
-        <Grid item sm={6}>
-          <Paper id="appointment-summary">
-            <Typography variant="h4">Summary<div className="underbar"></div></Typography>
-            <br />
-            <Typography variant="h5">
-              Date: {this.formatDay()}
-              <br/>
-              Time: {this.formatTime()}
-            </Typography>
-            <br />
-            <Typography variant="h5">Type: {this.state.sessionType.toUpperCase()}</Typography>
-            <br />
-            <Typography variant="h5">Duration: {this.state.sessionDur} Minutes</Typography>
-          </Paper>
+        <Grid container item sm={7} direction="column" justify="space-between" id="appointment-summary">
+            <Grid item>
+              <Typography variant="h4">Summary<div className="underbar"></div></Typography>
+            </Grid>
+            <Grid container item sm={7} direction="column" justify="space-around" style={{minWidth: '100%'}}>
+              <Grid item>
+                <Typography variant="h5">Date: {this.formatDay()} </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h5">Time: {this.formatTime()} </Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h5">Type: {this.state.sessionType.toUpperCase()}</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="h5">Duration: {this.state.sessionDur} Minutes</Typography>
+              </Grid>
+            </Grid>
+            <Grid item>
+              <Button variant="contained" classes={{root: 'submit-app-btn'}}>Submit</Button>
+            </Grid>
         </Grid>
       </Grid>
     );
