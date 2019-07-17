@@ -18,6 +18,16 @@
   height: 12px !important;
 }
 
+.banner-isactive{
+  opacity: 1;
+  transition: .4s;
+}
+
+.banner-inactive{
+  opacity: 0;
+  filter: brightness(0%);
+}
+
 .carouselControl{
   color: whitesmoke;
   opacity: .5;

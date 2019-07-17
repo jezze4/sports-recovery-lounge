@@ -4,51 +4,46 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import SwipeableViews from "react-swipeable-views";
-import { autoPlay } from 'react-swipeable-views-utils';
+import { autoPlay, virtualize } from 'react-swipeable-views-utils';
+import { mod } from 'react-swipeable-views-core';
 
 
-import '../css/carousel.css'
+import DefaultImage from '../imgs/runner-girl.jpg'
 
+import '../css/carousel.css';
+
+
+const InfiniteSwipe = autoPlay(virtualize(SwipeableViews));
+
+const carouselItems=[
+  {
+    img: DefaultImage,
+    title: "BANNER TITLE 1",
+    subtitle: "Banner Description of a certain length",
+    buttonText: "button"
+  },
+  {
+    img: DefaultImage,
+    title: "BANNER TITLE 2",
+    subtitle: "Banner Description of a certain length",
+    buttonText: "button"
+  },
+  {
+    img: DefaultImage,
+    title: "BANNER TITLE 3",
+    subtitle: "Banner Description of a certain length",
+  },
+];
 
 export default class Carousel extends PureComponent {
-
-  carouselItems=[
-    {
-      img: "https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3",
-      title: "BANNER TITLE",
-      subtitle: "Banner Description of a certain length",
-      buttonText: "button"
-    },
-    {
-      img: "https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3",
-      title: "BANNER TITLE 2",
-      subtitle: "Banner Description of a certain length",
-      buttonText: "button"
-    },
-    {
-      img: "https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3",
-      title: "BANNER TITLE 3",
-      subtitle: "Banner Description of a certain length",
-    },
-  ];
 
   state = {
     index: 0
   }
 
-  test(){
-    console.log("length: " + this.carouselItems.length);
-    this.carouselItems.map(item => (
-      console.log(item.title),
-      console.log(item.subtitle)
-    ));
-  }
-
-  handleClick(index){
-    alert("clicked " + index);
-  }
-
   handleChangeIndex(index){
+    // alert("updating...");
+    // this.setState({index: mod(index, carouselItems.length)});
     this.setState({index});
   }
 
@@ -57,13 +52,13 @@ export default class Carousel extends PureComponent {
       <div style={{position: 'absolute', top: '50%', zIndex: '100', width: '100%'}}>
         <i className="material-icons carouselControl"
           style={{position: 'absolute', left: '5%'}}
-          onClick={()=>this.handleChangeIndex((this.state.index+(this.carouselItems.length-1))%(this.carouselItems.length))}
+          onClick={()=>this.handleChangeIndex(this.state.index-1)}
           >
           arrow_back_ios
         </i>
         <i className="material-icons carouselControl"
           style={{position: 'absolute', right: '5%'}}
-          onClick={()=>this.handleChangeIndex((this.state.index+1)%this.carouselItems.length)}
+          onClick={()=>this.handleChangeIndex(this.state.index+1)}
           >
           arrow_forward_ios
         </i>
@@ -76,10 +71,10 @@ export default class Carousel extends PureComponent {
       <div>
         {this.renderArrows()}
         <div style={{ position: 'absolute', height: 'inherit', width: '100%', top: '90vh'}}>
-          {this.carouselItems.map((item, i) => (
+          {carouselItems.map((item, i) => (
             <Paper
               classes={{root: 'carousel-bt-root'}}
-              className={this.state.index===i ? 'active' : ''}
+              className={mod(this.state.index, carouselItems.length)===i ? 'active' : ''}
               onClick={()=>this.handleChangeIndex(i)}
             />
           ))}
@@ -98,7 +93,7 @@ export default class Carousel extends PureComponent {
         onChangeIndex={(i)=>this.handleChangeIndex(i)}
         springConfig={this.carouselConfig}
         >
-        {this.carouselItems.map((item, i) =>(
+        {carouselItems.map((item, i) =>(
           <Banner
             index={i}
             img={item.img}
@@ -111,23 +106,40 @@ export default class Carousel extends PureComponent {
     );
   }
 
+  slideRenderer(params){
+    const { index, key } = params;
+    const item = carouselItems[mod(index, carouselItems.length)];
+    return(
+      <Banner
+        key={key}
+        img={item.img}
+        title={item.title}
+        subtitle={item.subtitle}
+        buttonText={item.buttonText}
+      />
+    );
+
+  }
+
   render(){
     return(
       <div style={{height: '100vh'}}>
-        {/* <Banner
-          img="https://drive.google.com/uc?export=view&id=1rv9PipbkqwNU1CnxH1uZfUOQWqL8uyj3"
-          title="BANNER TITLE"
-          subtitle="BANNER TITLE"
-          buttonText="button"
-        /> */}
-        {this.renderCarousel()}
+        {/* {this.renderCarousel()} */}
+        <InfiniteSwipe
+          springConfig={this.carouselConfig}
+          index={this.state.index}
+          // onChangeIndex={this.handleChangeIndex(this.state.index)}
+          slideRenderer={this.slideRenderer}
+          disabled={true}
+          disableLazyLoading={true}
+        />
         {this.renderControls()}
       </div>
     );
   }
 
   carouselConfig={
-    duration: '.5s',
+    duration: '.8s',
     easeFunction: 'ease',
     delay: '0s'
   }
