@@ -9,6 +9,7 @@ import { mod } from 'react-swipeable-views-core';
 
 
 import DefaultImage from '../imgs/runner-girl.jpg'
+import SunsetGirl from '../imgs/sunrise-girl.jpg';
 
 import '../css/carousel.css';
 
@@ -18,21 +19,31 @@ const InfiniteSwipe = autoPlay(virtualize(SwipeableViews));
 const carouselItems=[
   {
     img: DefaultImage,
-    title: "BANNER TITLE 1",
-    subtitle: "Banner Description of a certain length",
-    buttonText: "button"
+    title: "July Specials!",
+    subtitle: "Come in July for some great specials!",
+    buttonText: "Details",
+    buttonType: "modal",
+    modalInfo: [
+      "Get 50% off your first session of NormaTec Recovery!",
+      "Get $5 off any subsequent NormaTec session in July!",
+      "Get 20% off any NormaTec Recovery multi-session package or monthly pass!"
+    ],
+    align: 'right'
   },
   {
-    img: DefaultImage,
-    title: "BANNER TITLE 2",
-    subtitle: "Banner Description of a certain length",
-    buttonText: "button"
+    img: SunsetGirl,
+    title: "Recover Like a Pro",
+    subtitle: "Schedule appointment today, Work out again tomorrow",
+    buttonText: "Let's Do It",
+    buttonType: "link",
+    buttonLink: "#appointment-container",
+    align: "center",
   },
-  {
-    img: DefaultImage,
-    title: "BANNER TITLE 3",
-    subtitle: "Banner Description of a certain length",
-  },
+  // {
+  //   img: DefaultImage,
+  //   title: "BANNER TITLE 3",
+  //   subtitle: "Banner Description of a certain length",
+  // },
 ];
 
 export default class Carousel extends PureComponent {
@@ -117,6 +128,9 @@ export default class Carousel extends PureComponent {
         title={item.title}
         subtitle={item.subtitle}
         buttonText={item.buttonText}
+        align={item.align}
+        buttonType={item.buttonType}
+        buttonLink={item.buttonLink}
       />
     );
 
@@ -125,12 +139,12 @@ export default class Carousel extends PureComponent {
 
   resetInterval(){
     clearInterval(this.state.autoplay);
-    var reset = setInterval(()=>this.handleChangeIndex(this.state.index+1), 4000);
+    var reset = setInterval(()=>this.handleChangeIndex(this.state.index+1), 6000);
     this.setState({autoplay: reset});
   }
 
   componentDidMount(){
-    var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 4000);
+    var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 6000);
 
     this.setState({autoplay: autoplay});
   }
@@ -152,7 +166,7 @@ export default class Carousel extends PureComponent {
           disabled={true}
           disableLazyLoading={true}
         />
-        {this.renderControls()}
+        {(carouselItems.length > 1) ? this.renderControls() : ''}
       </div>
     );
   }

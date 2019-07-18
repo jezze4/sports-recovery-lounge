@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import Logo from '../imgs/logo.png';
 
+import Runner from '../imgs/runner-girl.jpg';
+
 import '../css/about.css';
 
 export default class About extends PureComponent{
@@ -10,7 +12,9 @@ export default class About extends PureComponent{
   /* Description about the company */
   renderDesc(){
     return(
-      <Grid container direction="row" justify="center" alignItems="center" id="about-desc">
+      <Grid container direction="row" justify="center" alignItems="center" id="about-desc"
+        style={{background: 'linear-gradient(to bottom right, rgba(255, 210, 110, .3),rgba(0, 0, 0, .6),rgba(0, 0, 0, 1)),url('+Runner+')'}}
+      >
         <Grid item className="desc-section"
           style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
           <Typography variant="h4" gutterBottom className="desc-title">- RECOVER LIKE THE PROS -</Typography>

@@ -1,11 +1,27 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, useRef} from 'react';
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import '../css/banner.css'
 
+const useScroll = () => {
+  const ref = useRef(null);
+  const executeScroll = () => {
+    window.scrollTo(0, ref.current.offsetTop);
+  }
+  const htmlElementAtrributes = {ref}
+
+  return [executeScroll, htmlElementAtrributes];
+}
+
 export default class Banner extends PureComponent {
+
+  /* Button Functions */
+
+  /* Modal */
+  buttonModal() {
+  }
 
   textAlignment(align){
     if(align === 'left')
@@ -32,23 +48,26 @@ export default class Banner extends PureComponent {
     if(title !== undefined){
       return(
         <Grid item>
-          <Button variant="contained" size="large" classes={{root: 'banner-bt-root'}}>
-            {this.renderIcon(icon)}
-            {title}
-          </Button>
+          <a href={this.props.buttonLink} style={{textDecoration: 'none'}}>
+            <Button variant="contained" size="large" classes={{root: 'banner-bt-root'}}>
+              {this.renderIcon(icon)}
+              {title}
+            </Button>
+          </a>
         </Grid>
       );
     }
   }
 
   render(){
+
     return(
       <div className="banner-container"
         style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.0)), url('+this.props.img+')'}}>
         <Grid container
           direction="column"
           justify='center'
-          alignItems={this.textAlignment('right')}
+          alignItems={this.textAlignment(this.props.align)}
           style={{height: 'inherit', padding: '0 5%'}}>
 
           <Grid container direction="column" justify='center' alignItems="flex-start"  id="banner-desc">
