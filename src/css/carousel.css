@@ -18,13 +18,14 @@
   height: 12px !important;
 }
 
-.banner-isactive{
+.banner-fadeIn{
   opacity: 1;
-  transition: .4s;
+  transition: .2s;
 }
 
-.banner-inactive{
-  opacity: 0;
+.banner-fadeOut{
+  /* opacity: 0; */
+  transition: .2s;
   filter: brightness(0%);
 }
 

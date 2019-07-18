@@ -38,13 +38,12 @@ const carouselItems=[
 export default class Carousel extends PureComponent {
 
   state = {
-    index: 0
+    index: 0,
   }
 
   handleChangeIndex(index){
-    // alert("updating...");
-    // this.setState({index: mod(index, carouselItems.length)});
-    this.setState({index});
+    this.setState({index: mod(index, carouselItems.length)});
+    this.resetInterval();
   }
 
   renderArrows(){
@@ -83,6 +82,7 @@ export default class Carousel extends PureComponent {
     );
   }
 
+/* regular carousel */
   renderCarousel(){
     const { index } = this.state;
     return(
@@ -106,6 +106,7 @@ export default class Carousel extends PureComponent {
     );
   }
 
+/* Infinite Carousel */
   slideRenderer(params){
     const { index, key } = params;
     const item = carouselItems[mod(index, carouselItems.length)];
@@ -120,6 +121,24 @@ export default class Carousel extends PureComponent {
     );
 
   }
+
+
+  resetInterval(){
+    clearInterval(this.state.autoplay);
+    var reset = setInterval(()=>this.handleChangeIndex(this.state.index+1), 4000);
+    this.setState({autoplay: reset});
+  }
+
+  componentDidMount(){
+    var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 4000);
+
+    this.setState({autoplay: autoplay});
+  }
+
+  componentWilUnmount(){
+    clearInterval(this.state.autoplay);
+  }
+
 
   render(){
     return(
