@@ -16,7 +16,7 @@
   color: white !important;
   border-radius: 50px !important;
   transition: .3s !important;
-  opacity: .8;
+  opacity: .9;
 }
 
 .banner-bt-root:hover{
@@ -47,6 +47,23 @@
   filter: brightness(75%);
   object-fit: cover;
   z-index: -1;
+}
+
+.banner-modal-root{
+  background: linear-gradient(to bottom right, rgb(80,80,80),rgb(0,0,0),rgb(80,80,80)) !important;
+  border-style: inset;
+  border-width: 5px;
+  border-color: #FFCC66;
+  border-radius: 10px !important;
+  color: #FFCC66 !important;
+}
+
+#banner-modal-title{
+  text-align: center;
+}
+
+#banner-modal-description{
+  color: gainsboro;
 }
 
 .material-icons.md-24 { font-size: 24px; padding-right: 8px;}

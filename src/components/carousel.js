@@ -8,8 +8,8 @@ import { autoPlay, virtualize } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
 
 
-import DefaultImage from '../imgs/runner-girl.jpg'
-import SunsetGirl from '../imgs/sunrise-girl.jpg';
+import JulySpecialImage from '../imgs/runner-girl.jpg'
+import DefaultBanner from '../imgs/football-players.jpg';
 
 import '../css/carousel.css';
 
@@ -18,26 +18,26 @@ const InfiniteSwipe = autoPlay(virtualize(SwipeableViews));
 
 const carouselItems=[
   {
-    img: DefaultImage,
+    img: JulySpecialImage,
     title: "July Specials!",
     subtitle: "Come in July for some great specials!",
     buttonText: "Details",
     buttonType: "modal",
-    modalInfo: [
-      "Get 50% off your first session of NormaTec Recovery!",
-      "Get $5 off any subsequent NormaTec session in July!",
-      "Get 20% off any NormaTec Recovery multi-session package or monthly pass!"
-    ],
+    modalInfo: <span>
+      Get 50% off your first session of NormaTec Recovery!<br/><br/>
+      Get $5 off any subsequent NormaTec session in July!<br /><br/>
+      Get 20% off any NormaTec Recovery multi-session package or monthly pass!
+    </span>,
     align: 'right'
   },
   {
-    img: SunsetGirl,
+    img: DefaultBanner,
     title: "Recover Like a Pro",
-    subtitle: "Schedule appointment today, Work out again tomorrow",
+    subtitle: "Book appointment today, Work out again tomorrow",
     buttonText: "Let's Do It",
     buttonType: "link",
     buttonLink: "#appointment-container",
-    align: "center",
+    align: "right",
   },
   // {
   //   img: DefaultImage,
@@ -83,6 +83,7 @@ export default class Carousel extends PureComponent {
         <div style={{ position: 'absolute', height: 'inherit', width: '100%', top: '90vh'}}>
           {carouselItems.map((item, i) => (
             <Paper
+              key={"carousel-bt-"+i}
               classes={{root: 'carousel-bt-root'}}
               className={mod(this.state.index, carouselItems.length)===i ? 'active' : ''}
               onClick={()=>this.handleChangeIndex(i)}
@@ -131,6 +132,7 @@ export default class Carousel extends PureComponent {
         align={item.align}
         buttonType={item.buttonType}
         buttonLink={item.buttonLink}
+        modalInfo={item.modalInfo}
       />
     );
 

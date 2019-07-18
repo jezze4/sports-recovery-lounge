@@ -32,22 +32,22 @@ export default class Home extends PureComponent {
               <div className="underbar"/>
             </Typography>
             <br/><br/>
-            <Typography variant="p" className="benefit-bullets">
-              <div className="gold-bullet"/>
+            <Typography variant="h5" className="benefit-bullets">
+              <span className="gold-bullet"/>
               Any athlete who uses his/her legs: Runners, Swimmers, Cyclists, Crossfitters, etc.
               <br/>
-              <div className="gold-bullet"/>
+              <span className="gold-bullet"/>
               Athletes of all sports including football, basketball, baseball, soccer, volleyball, etc.
               <br/>
-              <div className="gold-bullet"/>
+              <span className="gold-bullet"/>
               Anyone who works on his/her feet all day, because gravity causes poor circulation in your legs
               when you are standing all day. Nurses, doctors, construction, and numerous professions benefit.
               <br/>
-              <div className="gold-bullet"/>
+              <span className="gold-bullet"/>
               Anyone who battles poor circulation would benefit: diabetes, varicose, peripheral artery disease,
               and just about any circulation disease with the exception of deep vein thrombosis.
               <br/>
-              <div className="gold-bullet"/>
+              <span className="gold-bullet"/>
               Finally, anyone who enjoys a relaxing massage!
             </Typography>
           </Grid>
@@ -81,9 +81,9 @@ export default class Home extends PureComponent {
               <Summary
                 title="Us"
                 img={AboutImage}
-                info=<div>
+                info=<span>
                   Everyone has a story. We are not in this for ourselves, but to augment YOU. We are not noobs at this.
-                  <br/>Trust us. We know what we're doing. :)</div>
+                  <br/>Trust us. We know what we're doing. :)</span>
                 button="Read More"
               />
             </Grid>

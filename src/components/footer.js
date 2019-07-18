@@ -23,12 +23,12 @@ export default class Footer extends PureComponent {
     return(
       <Grid item sm={4} container direction="column" id="hours-container">
         <Typography variant="h5" className="footer-title" gutterBottom>Hours of Operation</Typography>
-        {this.hoursData.map((day) =>
-          <Grid item container direction="row">
+        {this.hoursData.map((day) => (
+          <Grid key={day.day} item container direction="row">
             <Grid item sm={5}>{day.day}</Grid>
             <Grid item sm={4} style={{textAlign: 'right'}}>{day.time}</Grid>
           </Grid>
-        )}
+          ))}
       </Grid>
     );
   }
