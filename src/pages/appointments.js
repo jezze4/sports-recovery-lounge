@@ -251,7 +251,7 @@ export default class Appointment extends PureComponent {
   render(){
     return(
       <Container id="appointment-container">
-        <Typography variant="h2" gutterBottom>Make an Appointment</Typography>
+        {/* <Typography variant="h2" gutterBottom>Make an Appointment</Typography> */}
         {this.renderSessionSelect()}
         {this.renderDurationSelect()}
         <Grid container direction="row" alignItems="center" justify="center">

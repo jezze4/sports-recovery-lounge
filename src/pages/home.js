@@ -66,7 +66,7 @@ export default class Home extends PureComponent {
                 img={AboutImage}
                 info="Recover like the pros! Set up an appointment and find why this technology is becoming so popular!"
                 button="Reserve a Spot"
-                link="#appointment-container"
+                link="/appointments"
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -92,8 +92,6 @@ export default class Home extends PureComponent {
           </Grid>
         </Grid>
         {this.renderBenefits()}
-
-        <Appointments />
       </div>
     );
   }
