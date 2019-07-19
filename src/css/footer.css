@@ -18,6 +18,7 @@
 }
 
 #footer-container{
+  display: none;
   padding: 20px 10%;
   background: black;
   color: darkgray;
@@ -27,4 +28,12 @@
   text-align: left;
   line-height: 1.5em;
   font-size: .85em;
+}
+
+/* CSS for Desktop */
+
+@media screen and (min-width: 480px) {
+  #footer-container{
+    display: inline-flex;
+  }
 }

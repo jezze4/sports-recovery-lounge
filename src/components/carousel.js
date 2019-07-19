@@ -62,7 +62,7 @@ export default class Carousel extends PureComponent {
 
   renderArrows(){
     return(
-      <div style={{position: 'absolute', top: '50%', zIndex: '100', width: '100%'}}>
+      <div id="carousel-arrows" style={{position: 'absolute', top: '50%', zIndex: '100', width: '100%'}}>
         <i className="material-icons carouselControl"
           style={{position: 'absolute', left: '5%'}}
           onClick={()=>this.handleChangeIndexBt(this.state.index-1)}
@@ -83,7 +83,7 @@ export default class Carousel extends PureComponent {
     return(
       <div>
         {this.renderArrows()}
-        <div style={{ position: 'absolute', height: 'inherit', width: '100%', top: '90vh'}}>
+        <div id="carousel-position">
           {carouselItems.map((item, i) => (
             <Paper
               key={"carousel-bt-"+i}
@@ -162,7 +162,7 @@ export default class Carousel extends PureComponent {
 
   render(){
     return(
-      <div style={{height: '100vh'}}>
+      <div className="carousel-container">
         {/* {this.renderCarousel()} */}
         <InfiniteSwipe
           springConfig={this.carouselConfig}

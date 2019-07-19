@@ -1,5 +1,5 @@
 .banner-container{
-  height: 100vh;
+  height: 90vh;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -24,8 +24,8 @@
 }
 
 #banner-desc{
+  margin-top: 60vh;
   height: inherit;
-  width: 50%;
   text-shadow: 0 1px 5px gray;
 }
 
@@ -73,11 +73,17 @@
 /* CSS for Desktop */
 
 @media screen and (min-width: 480px) {
+
+  .banner-container{
+    height: 100vh;
+  }
+
   .banner-bt-root{
     font-size: 1.2em !important;
   }
 
   #banner-desc{
+    margin-top: auto;
     width: 40%;
   }
   #banner-title{

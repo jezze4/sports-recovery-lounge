@@ -1,3 +1,14 @@
+#carousel-position{
+  position: absolute;
+  height: inherit;
+  width: 100%;
+  top: 85vh;
+}
+
+#carousel-arrows{
+  display: none;
+}
+
 .carousel-bt-root{
   border-radius: 50% !important;
   margin: 0 10px !important;
@@ -51,4 +62,23 @@
 
 .carouselControl:active{
   filter: brightness(80%);
+}
+
+/* CSS for Desktop */
+
+@media screen and (min-width: 480px) {
+  .carousel-container{
+    height: 100vh;
+  }
+
+  #carousel-position{
+    position: absolute;
+    height: inherit;
+    width: 100%;
+    top: 90vh;
+  }
+
+  #carousel-arrows{
+    display: block;
+  }
 }
