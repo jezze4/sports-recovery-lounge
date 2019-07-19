@@ -17,7 +17,6 @@ export default class Home extends PureComponent {
     return(
       <Grid container id="section-benefits" justify="flex-start" alignItems="center"
         style={{
-          // backgroundImage:"url(https://drive.google.com/uc?export=view&id=1-KSKvU8P1CveoELHrR1qzc1kt40z8Avt)",
           background: 'linear-gradient(to bottom right, rgba(250,210,0,0), rgba(0,0,0,.5)), url('+BenefitsImage+')',
           minHeight: '100vh',
           backgroundAttachment: 'fixed',
@@ -67,6 +66,7 @@ export default class Home extends PureComponent {
                 img={AboutImage}
                 info="Recover like the pros! Set up an appointment and find why this technology is becoming so popular!"
                 button="Reserve a Spot"
+                link="#appointment-container"
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -75,6 +75,7 @@ export default class Home extends PureComponent {
                 img={BenefitsImage}
                 info="We offer a great variety of equipment to relax those muscles and make you feel amazingly refreshed to continue pushing yourself to be the best version of yourself."
                 button="Read More"
+                link="/services"
               />
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -82,9 +83,10 @@ export default class Home extends PureComponent {
                 title="Us"
                 img={AboutImage}
                 info=<span>
-                  Everyone has a story. We are not in this for ourselves, but to augment YOU. We are not noobs at this.
+                  Everyone has a story. We are here to help YOU. We are not noobs at this.
                   <br/>Trust us. We know what we're doing. :)</span>
                 button="Read More"
+                link="/about"
               />
             </Grid>
           </Grid>

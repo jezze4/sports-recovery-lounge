@@ -54,7 +54,11 @@ export default class Carousel extends PureComponent {
 
   handleChangeIndex(index){
     this.setState({index: mod(index, carouselItems.length)});
+  }
+
+  handleChangeIndexBt(index){
     this.resetInterval();
+    this.setState({index: mod(index, carouselItems.length)});
   }
 
   renderArrows(){
@@ -62,13 +66,13 @@ export default class Carousel extends PureComponent {
       <div style={{position: 'absolute', top: '50%', zIndex: '100', width: '100%'}}>
         <i className="material-icons carouselControl"
           style={{position: 'absolute', left: '5%'}}
-          onClick={()=>this.handleChangeIndex(this.state.index-1)}
+          onClick={()=>this.handleChangeIndexBt(this.state.index-1)}
           >
           arrow_back_ios
         </i>
         <i className="material-icons carouselControl"
           style={{position: 'absolute', right: '5%'}}
-          onClick={()=>this.handleChangeIndex(this.state.index+1)}
+          onClick={()=>this.handleChangeIndexBt(this.state.index+1)}
           >
           arrow_forward_ios
         </i>
@@ -147,7 +151,6 @@ export default class Carousel extends PureComponent {
 
   componentDidMount(){
     var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 6000);
-
     this.setState({autoplay: autoplay});
   }
 
@@ -163,7 +166,6 @@ export default class Carousel extends PureComponent {
         <InfiniteSwipe
           springConfig={this.carouselConfig}
           index={this.state.index}
-          // onChangeIndex={this.handleChangeIndex(this.state.index)}
           slideRenderer={this.slideRenderer}
           disabled={true}
           disableLazyLoading={true}

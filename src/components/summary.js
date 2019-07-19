@@ -18,7 +18,6 @@ export default class Summary extends PureComponent {
   render(){
     return(
       <Card className="summary-card" elevation={0}>
-        {/* <CardActionArea> */}
           <CardMedia
             classes={{media: 'summary-media'}}
             component="img"
@@ -34,11 +33,9 @@ export default class Summary extends PureComponent {
               {this.props.info}
             </Typography>
           </CardContent>
-          <Button variant="outlined" size="large" classes={{root: 'summary-bt-root'}}>
+          <Button variant="outlined" size="large" classes={{root: 'summary-bt-root'}} href={this.props.link}>
             <Typography>{this.props.button}</Typography>
           </Button>
-
-        {/* </CardActionArea> */}
       </Card>
     );
   }
