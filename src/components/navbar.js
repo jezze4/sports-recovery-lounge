@@ -21,6 +21,107 @@ export default class NavBar extends PureComponent {
     this.setState({value});
   }
 
+  renderDesktopNav(location){
+    return(
+      <AppBar position="static" classes={{root: 'appbar-root appbar-desktop'}}>
+        <Link to="/">
+          <img src={Logo} alt="" id="appbar-logo"/>
+        </Link>
+        <Tabs
+          classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
+          value={location.pathname}
+          onChange={this.handleChange}
+          >
+          <Tab
+            classes={{root: 'tab-root', selected: 'tab-selected'}}
+            label="Home"
+            component={Link}
+            to="/"
+            value="/"
+          />
+          <Tab
+            classes={{root: 'tab-root', selected: 'tab-selected'}}
+            label="Book Appointment"
+            component={Link}
+            to="/appointments"
+            value="/appointments"
+          />
+          <Tab
+            classes={{root: 'tab-root', selected: 'tab-selected'}}
+            label="Services & Pricing"
+            component={Link}
+            to="/services"
+            value="/services"
+          />
+          <Tab
+            classes={{root: 'tab-root', selected: 'tab-selected'}}
+            label="About"
+            component={Link}
+            to="/about"
+            value="/about"
+          />
+        </Tabs>
+      </AppBar>
+    );
+  }
+
+  renderMobileNav(location){
+    return(
+      <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
+        <Tabs
+          classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
+          value={location.pathname}
+          onChange={this.handleChange}
+          >
+          <Tab
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            label=
+              <div>
+                <i className="material-icons md-24" style={{color: 'white'}}>home</i>
+                <div>Home</div>
+              </div>
+            component={Link}
+            to="/"
+            value="/"
+          />
+          <Tab
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            label=
+              <div>
+                <i className="material-icons md-24" style={{color: 'white'}}>today</i>
+                <div>Schedule</div>
+              </div>
+            component={Link}
+            to="/appointments"
+            value="/appointments"
+          />
+          <Tab
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            label=
+            <div>
+              <i className="material-icons md-24" style={{color: 'white'}}>fitness_center</i>
+              <div>Services</div>
+            </div>
+            component={Link}
+            to="/services"
+            value="/services"
+          />
+          <Tab
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            label=
+            <div>
+              <i className="material-icons md-24" style={{color: 'white'}}>people</i>
+              <div>About</div>
+            </div>
+            component={Link}
+            to="/about"
+            value="/about"
+          />
+        </Tabs>
+      </AppBar>
+    );
+  }
+
   render(){
     return(
       <BrowserRouter>
@@ -28,45 +129,9 @@ export default class NavBar extends PureComponent {
           path="/"
           render={({location}) =>(
             <div>
-              <AppBar position="static" classes={{root: 'appbar-root'}}>
-                <Link to="/">
-                  <img src={Logo} alt="" id="appbar-logo"/>
-                </Link>
-                <Tabs
-                  classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
-                  value={location.pathname}
-                  onChange={this.handleChange}
-                  >
-                  <Tab
-                    classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Home"
-                    component={Link}
-                    to="/"
-                    value="/"
-                  />
-                  <Tab
-                    classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Book Appointment"
-                    component={Link}
-                    to="/appointments"
-                    value="/appointments"
-                  />
-                  <Tab
-                    classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="Services & Pricing"
-                    component={Link}
-                    to="/services"
-                    value="/services"
-                  />
-                  <Tab
-                    classes={{root: 'tab-root', selected: 'tab-selected'}}
-                    label="About"
-                    component={Link}
-                    to="/about"
-                    value="/about"
-                  />
-                </Tabs>
-              </AppBar>
+
+              {this.renderDesktopNav(location)}
+              {this.renderMobileNav(location)}
 
               <Switch>
                 <Route path="/appointments" render={() => <Appointments />} />

@@ -1,5 +1,5 @@
 .appbar-root{
-  background: linear-gradient(to bottom, rgb(80,80,80),rgb(20,20,20)) !important;
+  background: linear-gradient(to bottom, rgb(60,60,60),rgb(0,0,0)) !important;
   position: fixed !important;
   bottom: 0;
   left: 0;
@@ -7,6 +7,10 @@
   z-index: 1000 !important;
   height: 10vh;
   /* box-shadow: none !important; */
+}
+
+.appbar-desktop{
+  display: none !important;
 }
 
 #appbar-logo{
@@ -39,10 +43,25 @@
   color: #FFC44D !important;
 }
 
+.tab-mobile{
+  align-items: center !important;
+  height: 10vh !important;
+  width: calc(100vw/4);
+  font-size: .6em !important;
+}
+
 
 /* For Desktop */
 
 @media screen and (min-width: 480px) {
+
+  .appbar-desktop{
+    display: flex !important;
+  }
+
+  .appbar-mobile{
+    display: none !important;
+  }
 
   .appbar-root{
     background: rgba(0, 0, 0, 0) !important;
