@@ -34,7 +34,7 @@ const carouselItems=[
     subtitle: "Book appointment today, Work out again tomorrow",
     buttonText: "Let's Do It",
     buttonType: "link",
-    buttonLink: "#appointment-container",
+    buttonLink: "/appointments",
     align: "right",
   },
   // {
