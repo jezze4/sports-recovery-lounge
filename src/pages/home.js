@@ -22,7 +22,6 @@ export default class Home extends PureComponent {
           backgroundAttachment: 'fixed',
           backgroundSize: 'cover',
           color: 'white'
-
         }}
         >
           <Grid item id="benefits-text">
