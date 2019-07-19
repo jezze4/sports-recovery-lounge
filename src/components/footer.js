@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
@@ -39,12 +38,18 @@ export default class Footer extends PureComponent {
         <Typography variant="h5" className="footer-title" gutterBottom>Follow Us!</Typography>
         <Grid item container direction="row">
           <Grid item sm={6}>
-            <a href="https://www.facebook.com/sportsrecoveryloungeldo/" target="+_blank">
+            <a href="https://www.facebook.com/sportsrecoveryloungeldo/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faFacebookSquare} size="3x" className="fa-icon-social" />
             </a>
           </Grid>
           <Grid item sm={6}>
-            <a href="https://www.instagram.com/sportsrecoverylounge/" target="_blank">
+            <a href="https://www.instagram.com/sportsrecoverylounge/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faInstagram} size="3x" className="fa-icon-social" />
             </a>
           </Grid>
@@ -66,7 +71,10 @@ export default class Footer extends PureComponent {
         <Grid item sm={6} container direction="column" id="contact-container">
           <Typography variant="h5" className="footer-title" gutterBottom>Visit Us!</Typography>
           <Grid item>
-            <a href="https://goo.gl/maps/odshgapd7ZkJNKyA8" target="_blank">
+            <a href="https://goo.gl/maps/odshgapd7ZkJNKyA8"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={faMapMarkerAlt} size="2x" className="fa-icon-social" />
             </a>
             <Typography className="contact-text">

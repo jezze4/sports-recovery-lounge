@@ -1,8 +1,6 @@
 import React, {PureComponent} from 'react';
 import Banner from './banner';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay, virtualize } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
@@ -50,6 +48,7 @@ export default class Carousel extends PureComponent {
 
   state = {
     index: 0,
+    autoplay: null,
   }
 
   handleChangeIndex(index){
@@ -151,10 +150,12 @@ export default class Carousel extends PureComponent {
 
   componentDidMount(){
     var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 6000);
-    this.setState({autoplay: autoplay});
+    this.setState({
+      autoplay: autoplay,
+    });
   }
 
-  componentWilUnmount(){
+  componentWillUnmount(){
     clearInterval(this.state.autoplay);
   }
 

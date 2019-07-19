@@ -1,8 +1,6 @@
-import React, {PureComponent, useState} from 'react';
+import React, {PureComponent} from 'react';
 import { Scheduler, DayView, Appointments } from '@devexpress/dx-react-scheduler-material-ui';
 import { ViewState } from '@devexpress/dx-react-scheduler';
-import Button from '@material-ui/core/Button';
-
 
 const SchedulerRoot = ({...props}) => {
   return <Scheduler.Root	{...props} className="scheduler-root" />
@@ -19,8 +17,8 @@ const TimeScaleLayout = ({...props}) => {
 }
 
 const TimeScaleCell = ({...props}) => {
-  const{startDate} = props;
-  const date = new Date(startDate);
+  // const{startDate} = props;
+  // const date = new Date(startDate);
   return(
     <DayView.TimeScaleCell {...props} className="time-scale-cell"/>
   );

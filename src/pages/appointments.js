@@ -4,17 +4,6 @@ import Calendar from 'react-calendar'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import Paper from '@material-ui/core/Paper'
-
-import {TimePicker} from '@material-ui/pickers'
-import { MuiPickersUtilsProvider } from '@material-ui/pickers'
-import MomentUtils from '@date-io/moment'
-
-import Radio from '@material-ui/core/Radio'
-import RadioGroup from '@material-ui/core/RadioGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
 
 /* Firebase */
 import {srl_db} from '../components/firebase.js';

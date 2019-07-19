@@ -2,8 +2,7 @@ import React, {PureComponent} from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import GoldIcon from '../components/goldIcon';
-import Banner from '../components/banner';
-import TempImg from '../imgs/logo.png';
+// import TempImg from '../imgs/logo.png';
 
 /*images for icons*/
 import iHypervolt from '../imgs/icons/icon-hypervolt.jpg';
@@ -97,7 +96,7 @@ export default class Services extends PureComponent{
 
   renderService(service){
     return(
-      <Grid container item sm={5} container direction="row" className="massage-section" justify="center" alignItems="center">
+      <Grid container item sm={5} direction="row" className="massage-section" justify="center" alignItems="center">
         <Grid item sm={3}>
           <GoldIcon img={service.image} />
         </Grid>
