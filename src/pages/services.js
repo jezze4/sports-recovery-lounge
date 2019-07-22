@@ -81,12 +81,12 @@ export default class Services extends PureComponent{
           <div className="underbar"></div>
         </Grid>
 
-        <Grid item container direction="row" justify="space-between" alignItems="stretch">
+        <Grid item container direction="row" className="services-details" justify="space-between" alignItems="stretch">
           {this.renderService(this.serviceDetails['hypervolt'])}
           {this.renderService(this.serviceDetails["vyper"])}
-        </Grid>
+        {/* </Grid> */}
 
-        <Grid item container direction="row" justify="space-between" alignItems="stretch">
+        {/* <Grid item container direction="row" justify="space-between" alignItems="stretch"> */}
           {this.renderService(this.serviceDetails["myostorm"])}
           {this.renderService(this.serviceDetails["roller"])}
         </Grid>
@@ -96,7 +96,7 @@ export default class Services extends PureComponent{
 
   renderService(service){
     return(
-      <Grid container item sm={5} direction="row" className="massage-section" justify="center" alignItems="center">
+      <Grid container item xs={11} sm={5} direction="row" className="massage-section" justify="center" alignItems="flex-start">
         <Grid item sm={3}>
           <GoldIcon img={service.image} />
         </Grid>
@@ -183,10 +183,10 @@ export default class Services extends PureComponent{
         <Grid item container direction="row" id="price-section1">
           {this.renderPriceSection(this.pricingData.single)}
         </Grid>
-        <Grid item container direction="row" justify="space-evenly" alignItems="center" id="price-section2">
-          {this.renderPriceSection(this.pricingData.massage)}
-          {this.renderPriceSection(this.pricingData.session30)}
-          {this.renderPriceSection(this.pricingData.session60)}
+        <Grid item container direction="row" justify="space-around" alignItems="center" id="price-section2">
+            {this.renderPriceSection(this.pricingData.massage)}
+            {this.renderPriceSection(this.pricingData.session30)}
+            {this.renderPriceSection(this.pricingData.session60)}
         </Grid>
 
         <Typography style={{color: 'gray'}}>
@@ -198,11 +198,11 @@ export default class Services extends PureComponent{
 
   renderPriceSection(data){
     return(
-      <Grid item container direction="column" className="pricing-section" sm={4}>
-        <Typography className="pricing-section-title" variant="h5" gutterBottom>{data.title}:</Typography>
+      <Grid item container direction="column" className="pricing-section" xs={12} sm={4}>
+        <Typography className="pricing-section-title" gutterBottom>{data.title}:</Typography>
 
         {data.data.map((item, i) =>
-          <Grid key={data.title+item.title} item container direction="row" justify="flex-start">
+          <Grid key={data.title+item.title} item container direction="row" justify="flex-start" className="pricing-details">
             <Grid item sm={6}>
               <Typography>{item.title}: </Typography>
             </Grid>

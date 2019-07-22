@@ -9,8 +9,8 @@
 }
 
 .services-section{
-  padding: 16px;
 }
+
 .services-title, .pricing-title{
   color: #FFCC66;
   text-shadow: 0 2px 4px #FFCC66;
@@ -25,6 +25,7 @@
   border-width: 2px;
   border-style: solid;
   border-color: #FFCC66;
+  flex: 0 0 auto !important;
 }
 
 .device-name{
@@ -70,10 +71,54 @@
   text-align: left;
 }
 
+.pricing-section{
+  margin-top: 20px !important;
+}
+
 .pricing-section-title{
   text-decoration: underline;
+  font-size: 1.3em !important;
 }
 
 #price-section1, #price-section2{
-  margin: 40px;
+  margin: 40px 0px;
+}
+
+
+/* Desktop */
+@media screen and (min-width: 480px) {
+
+  .services-section{
+    padding: 16px;
+  }
+
+  #price-section1, #price-section2{
+    margin: 40px;
+  }
+
+  .pricing-section-title{
+    font-size: 1.6em !important;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 480px) {
+
+  .services-details{
+    padding: 0 5% !important;
+    margin-left: -5% !important;
+    margin-right: -5% !important;
+    width: 100vw !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+  }
+
+  .services-title, .pricing-title{
+    font-size: 2em !important;
+  }
+
+  .device-name{
+    font-size: 1.5em !important;
+  }
 }
