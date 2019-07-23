@@ -190,6 +190,45 @@
 
 /****************************************************/
 
+/****************** Mobile Stepper ******************/
+.mobile-stepper-root{
+  background: linear-gradient(to top, rgb(60,60,60), rgb(20,20,20)) !important;
+  flex-grow: 1 !important;
+  width: 100vw;
+  margin-bottom: 10vh;
+  z-index: 0 !important;
+}
+
+.mobile-stepper-button{
+  transition: .4s !important;
+  color: #FFCC66 !important;
+  text-shadow: 0 0 1px #FFCC66 !important;
+}
+
+.mobile-stepper-button:disabled{
+  color: rgba(255,210,110, .3) !important;
+  text-shadow: none !important;
+}
+
+.mobile-stepper-dot{
+  transition: .4s !important;
+  margin: 0 5px !important;
+  padding: 1px;
+  background-color: rgba(255,210,110, .3) !important;
+}
+
+.mobile-stepper-dot-active{
+  background-color: gold !important;
+}
+
+.mobile-stepper-progress{
+  color: gold !important;
+}
+
+
+/****************************************************/
+
+
 .radio-checked{
   color: gold !important;
 }
@@ -202,7 +241,7 @@
   /* box-shadow: 0 0 10px lightgray; */
 }
 
-#appointment-container{
+#appointment-container, #appointment-container-mobile{
   padding: 120px 80px 24px 80px;
   min-width: 100%;
   background: linear-gradient(to bottom right, black, rgba(10,10,10,.9),black);
@@ -210,6 +249,11 @@
   min-height: 100vh;
   color: whitesmoke;
   padding-bottom: 120px;
+}
+
+#appointment-container-mobile{
+  min-height: 90vh;
+  padding: 80px 0 0 0;
 }
 
 #time-container{
@@ -230,4 +274,19 @@
   color: white !important;
   width: 100%;
   background: goldenrod !important;
+}
+
+@media screen and (max-width: 480px) {
+  #appointment-summary{
+    min-height: 70vh;
+    background: rgba(0,0,0,0);
+    box-shadow: none;
+  }
+
+  .app-section-title{
+    margin-bottom: 40px !important;
+    font-size: 2em !important;
+    text-align: center;
+    margin-left: 0 !important;
+  }
 }
