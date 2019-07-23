@@ -39,14 +39,14 @@ export default class About extends PureComponent{
       <Grid container id="about-rick" justify="center" alignItems="center">
         <Grid container className="rick-section" direction="row"
           style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
-          <Grid item xs={12} sm={3} id="pic-container">
+          <Grid item xs={3} sm={3} id="pic-container">
             <img
               src={RickPic}
               alt=""
               id="rick-pic"
             />
           </Grid>
-          <Grid item xs={12} sm={9} id="rick-text">
+          <Grid item xs={9} sm={9} id="rick-text">
             <Typography variant="h4" className="rick-title">- RICARDO FERDIN -</Typography>
             <Typography variant="h6" gutterBottom className="rick-p" style={{color: '#FFCC66'}}>
               <i>Title information maybe</i>
@@ -56,8 +56,6 @@ export default class About extends PureComponent{
               sports where they can come and recover faster from any strenuous
               physical activity in our lounge-type setting using mutliple self-
               massage devices and compression therapy with our main focus on
-              sessions utilizing the cutting-edge compression therapy of the
-              Normatec Recovery System.
             </Typography>
           </Grid>
         </Grid>
