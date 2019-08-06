@@ -5,10 +5,12 @@ import GoldIcon from '../components/goldIcon';
 // import TempImg from '../imgs/logo.png';
 
 /*images for icons*/
-import iHypervolt from '../imgs/icons/icon-hypervolt.jpg';
-import iMyostorm from '../imgs/icons/icon-myostormmeteor.jpg';
-import iR8roller from '../imgs/icons/icon-r8roller.jpg';
-import iVyper from '../imgs/icons/icon-vyper.jpg';
+import NormatecText from '../imgs/icons/normatec-white.png';
+import IconNormatec from '../imgs/icons/icon-normatec.jpg';
+import IconHypervolt from '../imgs/icons/icon-hypervolt.jpg';
+import IconMyostorm from '../imgs/icons/icon-myostormmeteor.jpg';
+import IconR8roller from '../imgs/icons/icon-r8roller.jpg';
+import IconVyper from '../imgs/icons/icon-vyper.jpg';
 
 import '../css/services.css';
 
@@ -19,8 +21,8 @@ export default class Services extends PureComponent{
 
   serviceDetails={
     normatec: {
-      image: iHypervolt,
-      title: <span id="normatec-title">NORMATEC</span>,
+      image: IconNormatec,
+      title: <img id="normatec-title" src={NormatecText} alt="NORMATEC"></img>,
       details: <span>
                 Normatec's patented compression technology has revolutionized
                 athlete recovery. Reduce pain and soreness, rejuvenate muslces,
@@ -28,14 +30,14 @@ export default class Services extends PureComponent{
               </span>
     },
     hypervolt: {
-      image: iHypervolt,
+      image: IconHypervolt,
       title: "Hypervolt",
       details:  <span>
                   State-of-the-art percussion massage device that helps relax
                   sore and stiff muscles to improve mobility.
                 </span>},
     vyper: {
-      image: iVyper,
+      image: IconVyper,
       title: "Vyper 2.0",
       details:  <span>
                   Vibrating fitness roller allows you to warm up, activate, and
@@ -44,7 +46,7 @@ export default class Services extends PureComponent{
                   soreness. Increase range of motion by up to 40%.
                 </span>},
     myostorm: {
-      image: iMyostorm,
+      image: IconMyostorm,
       title: "Myostorm Meteor",
       details:  <span>
                   New and revolutionary muscular recovery device designed to
@@ -53,7 +55,7 @@ export default class Services extends PureComponent{
                   and increase performance.
                 </span>},
     roller: {
-      image: iR8roller,
+      image: IconR8roller,
       title: "R8 DTM Roller",
       details:  <span>
                   The R8 Deep Tissue Massage Roller is an FDA-registered medical device designed to reduce inflammation,
