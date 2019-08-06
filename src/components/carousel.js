@@ -7,7 +7,7 @@ import { mod } from 'react-swipeable-views-core';
 
 
 import JulySpecialImage from '../imgs/runner-girl.jpg'
-import DefaultBanner from '../imgs/football-players.jpg';
+import DefaultBanner from '../imgs/runner-girl2.jpg';
 
 import '../css/carousel.css';
 

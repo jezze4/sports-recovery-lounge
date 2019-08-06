@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import Logo from '../imgs/logo.png';
 
-import Runner from '../imgs/runner-girl.jpg';
+import AboutBG from '../imgs/runner-girl.jpg';
 import RickPic from '../imgs/rick-spartan.jpg';
 import RickBG from '../imgs/recovery.png';
 
@@ -15,7 +15,7 @@ export default class About extends PureComponent{
   renderDesc(){
     return(
       <Grid container direction="row" justify="center" alignItems="center" id="about-desc"
-        style={{background: 'linear-gradient(to bottom right, rgba(255, 210, 110, .3),rgba(0, 0, 0, .6),rgba(0, 0, 0, 1)),url('+Runner+')'}}
+        style={{background: 'linear-gradient(to bottom right, rgba(255, 210, 110, .3),rgba(0, 0, 0, .6),rgba(0, 0, 0, 1)),url('+AboutBG+')'}}
       >
         <Grid item className="desc-section"
           style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
