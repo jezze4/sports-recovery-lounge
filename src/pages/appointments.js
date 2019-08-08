@@ -111,7 +111,7 @@ export default class Appointment extends PureComponent {
           nextLabel=<div className="calendar-slownav">›</div>
           prevLabel=<div className="calendar-slownav">‹</div>
           minDetail="month"
-          minDate={this.state.date}
+          minDate={new Date()}
         />
       </Container>
     );
