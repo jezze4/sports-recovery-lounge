@@ -29,7 +29,8 @@ const DayScaleLayout = ({...props}) => {
 }
 
 const DayScaleCell = ({...props}) => {
-  return <DayView.DayScaleCell {...props} className="day-scale-cell" />
+  // return <span {...props} className="day-scale-cell" />
+  return null;
 }
 
 const DayScaleEmptyCell = ({...props}) => {

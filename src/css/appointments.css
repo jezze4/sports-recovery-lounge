@@ -12,8 +12,13 @@
 .calendar-tile{
   filter: invert(100%);
   min-height: 5em;
-  transition: .2s;
+  transition: .1s;
   border-radius: 5px;
+}
+
+.calendar-tile:disabled{
+  color: rgba(0,0,0,.15);
+  background: none;
 }
 
 .calendar-tile:hover{
@@ -129,6 +134,7 @@
 }
 
 .invalid-time{
+  display: none !important;
   pointer-events: none;
   color: gray !important;
 }
