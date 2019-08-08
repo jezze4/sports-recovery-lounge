@@ -128,6 +128,15 @@
   background: rgba(255,210,110,.6) !important;
 }
 
+.invalid-time{
+  pointer-events: none;
+  color: gray !important;
+}
+
+.invalid-time:hover{
+  background: rgba(30,30,30) !important;
+}
+
 #cell-active{
   background: gold !important;
   transition: .2s !important;

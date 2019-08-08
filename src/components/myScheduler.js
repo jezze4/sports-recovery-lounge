@@ -46,10 +46,11 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   const aDate = new Date(activeDate);
   const idNum = ''+date.getHours()+date.getMinutes();
   const active = ''+aDate.getHours()+aDate.getMinutes();
+  const isValid = validTime(date);
 
   return(
     <DayView.TimeTableCell {...props}
-      className="time-table-cell"
+      className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
       id={(idNum===active) ? 'cell-active' : ''}
       onClick={(e)=>onSelectTime(date)}
       >
@@ -58,6 +59,13 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
         {(date.getHours() < 12) ? ' AM' : ' PM'}
     </DayView.TimeTableCell>
   );
+}
+
+function validTime(cellDate){
+  const today = new Date();
+  if(today.getTime() >= cellDate.getTime())
+    return false
+  return true;
 }
 
 const ScheduledAppointment = ({...props}) => {
