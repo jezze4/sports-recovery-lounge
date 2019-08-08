@@ -49,6 +49,11 @@
   background: rgba(255, 210, 110, .5) !important;
 }
 
+.react-calendar__navigation__arrow:disabled{
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 1) !important;
+}
+
 .react-calendar__navigation__label{
   transition: .2s;
 }
