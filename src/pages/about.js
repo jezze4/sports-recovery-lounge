@@ -49,13 +49,13 @@ export default class About extends PureComponent{
           <Grid item xs={9} sm={9} id="rick-text">
             <Typography variant="h4" className="rick-title">- RICARDO FERDIN -</Typography>
             <Typography variant="h6" gutterBottom className="rick-p" style={{color: '#FFCC66'}}>
-              <i>Title information maybe</i>
+              <i>Owner/Operator</i>
             </Typography>
-            <Typography variant="inherit" className="rick-p">
-              Sport's Recovery Lounge is a facility for athletes of all levels and
-              sports where they can come and recover faster from any strenuous
-              physical activity in our lounge-type setting using mutliple self-
-              massage devices and compression therapy with our main focus on
+            <Typography variant="h5" className="rick-p">
+              <Typography variant="inherit">Phone: ###-###-####</Typography>
+              <br />
+              <br />
+              <Typography variant="inherit">Email: TBA</Typography>
             </Typography>
           </Grid>
         </Grid>
@@ -71,7 +71,7 @@ export default class About extends PureComponent{
         >
         </div>
         {this.renderDesc()}
-        {this.renderRick()}
+        {/* {this.renderRick()} */}
       </div>
     );
   }
