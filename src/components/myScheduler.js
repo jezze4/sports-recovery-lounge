@@ -75,9 +75,19 @@ const ScheduledAppointment = ({...props}) => {
 
 export default class MyScheduler extends PureComponent {
 
+  state = {
+    day1 : new Date(),
+    day2 : new Date()
+  }
+
+
+  componentDidMount = () =>{
+    // alert(JSON.stringify(this.props.AppData));
+  }
+
   schedulerData = [
-    {startDate: '2019-07-07T10:00', endDate: '2019-07-07T11:00', title: 'Appointment #1234'},
-    {startDate: '2019-07-07T12:00', endDate: '2019-07-07T12:20', title: 'Appointment #5678'},
+    {startDate: this.state.day1.toISOString(), endDate: '2019-08-21T17:00', title: 'Appointment #1234'},
+    {startDate: this.state.day2.toISOString(), endDate: '2019-08-21T12:30', title: 'Appointment #5678'},
   ]
 
   render(){

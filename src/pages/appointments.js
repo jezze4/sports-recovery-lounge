@@ -21,7 +21,7 @@ import '../css/appointments.css'
 export default class Appointment extends PureComponent {
   state = {
     date: new Date(),
-    appData: [],
+    appData: {},
     sessionType: 'legs',
     sessionDur: '20',
 
@@ -34,7 +34,8 @@ export default class Appointment extends PureComponent {
     var key = new Date();
     key = key.toDateString() + " - " + key.toLocaleTimeString();
     const date = this.state.date;
-    const session = parseInt(this.state.session, 10);
+    const session_length = parseInt(this.state.sessionDur, 10);
+    const session_type = this.state.sessionType;
 
     var session_date = date.toDateString();
     var session_time = date.toLocaleTimeString();
@@ -44,8 +45,9 @@ export default class Appointment extends PureComponent {
     .set({
       parseableDate: date.toString(),
       date: session_date,
+      type: session_type,
       start: session_time,
-      session: session,
+      length: session_length,
       name: "Jezze"
     })
     .then(function() {
@@ -60,10 +62,9 @@ export default class Appointment extends PureComponent {
   getAppointments(){
     srl_db.collection("appointments")
       .get()
-      .then(query => {
-        const data = query.docs.map(doc => doc.data());
-        this.setState({appData: data[0]});
-      })
+      .then(query => query.docs.map(doc => doc.data()))
+      .then(docs => this.setState({appData: docs}))
+      .then(res => alert(JSON.stringify(this.state.appData)));
   }
 
   /* For TimePicker */
@@ -141,7 +142,9 @@ export default class Appointment extends PureComponent {
             </Grid>
           </Grid>
           <Grid item>
-            <Button variant="contained" classes={{root: 'submit-app-btn'}}>Submit</Button>
+            <Button variant="contained" classes={{root: 'submit-app-btn'}} onClick={this.handleSubmit}>
+              Submit
+            </Button>
           </Grid>
       </Grid>
     );
@@ -156,6 +159,7 @@ export default class Appointment extends PureComponent {
             date={this.state.date}
             onSelectTime={this.handleDateChange}
             duration={this.state.sessionDur}
+            AppData={this.state.appData}
           />
         </Grid>
         {(!this.mobilecheck())?this.renderSummary():''}
