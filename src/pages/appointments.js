@@ -24,6 +24,7 @@ export default class Appointment extends PureComponent {
     appData: {},
     sessionType: 'legs',
     sessionDur: '20',
+    sessionPrice: '20',
     dataFetched: false,
 
     //mobile
@@ -129,7 +130,7 @@ export default class Appointment extends PureComponent {
           <Grid item>
             <Typography variant="h4">Summary<div className="underbar"></div></Typography>
           </Grid>
-          <Grid container item xs={8} sm={7} direction="column" justify="space-around" style={{minWidth: '100%'}}>
+          <Grid container item xs={8} sm={7} direction="column" justify="space-between" style={{minWidth: '100%'}}>
             <Grid item>
               <Typography variant="h5">Date: {this.formatDay()} </Typography>
               <br />
@@ -144,6 +145,10 @@ export default class Appointment extends PureComponent {
             </Grid>
             <Grid item>
               <Typography variant="h5">Duration: {this.state.sessionDur} Minutes</Typography>
+              <br />
+            </Grid>
+            <Grid item>
+              <Typography variant="h5">Estimated Price: ${this.state.sessionPrice}</Typography>
             </Grid>
           </Grid>
           <Grid item>
@@ -253,10 +258,25 @@ export default class Appointment extends PureComponent {
     if(classType==='session'){
       this.setState({sessionType: activeID});
       if(activeID==='body'){
-        this.setState({sessionDur: "60"})
+        this.setState({
+          sessionDur: "60",
+          sessionPrice: "45"
+        });
+      }
+      else if(this.state.sessionDur==='60'){
+        this.setState({sessionPrice: '35'})
       }
     } else{
       this.setState({sessionDur: activeID});
+      if(activeID==='20'){
+        this.setState({sessionPrice: '20'})
+      }
+      else if(activeID==='30'){
+        this.setState({sessionPrice: '25'})
+      }
+      else {
+        this.setState({sessionPrice: '35'})
+      }
     }
   }
 
