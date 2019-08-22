@@ -76,23 +76,20 @@ const ScheduledAppointment = ({...props}) => {
 export default class MyScheduler extends PureComponent {
 
   state = {
-    day1 : new Date(),
-    day2 : new Date()
+    appointments: [],
   }
 
-
-  componentDidMount = () =>{
-    // alert(JSON.stringify(this.props.AppData));
+  fetchAppData(appData){
+    if(appData.length > 0){
+      this.setState({appointments: appData});
+    }
   }
-
-  schedulerData = [
-    {startDate: this.state.day1.toISOString(), endDate: '2019-08-21T17:00', title: 'Appointment #1234'},
-    {startDate: this.state.day2.toISOString(), endDate: '2019-08-21T12:30', title: 'Appointment #5678'},
-  ]
 
   render(){
     return(
-      <Scheduler height={420} rootComponent={SchedulerRoot} data={this.schedulerData}>
+      <Scheduler height={420} rootComponent={SchedulerRoot} data={this.state.appointments}>
+        {/* Update the schedulerData */}
+        {this.fetchAppData(this.props.AppData)}
         <ViewState
           currentDate={this.props.date}
         />

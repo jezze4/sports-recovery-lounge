@@ -24,6 +24,7 @@ export default class Appointment extends PureComponent {
     appData: {},
     sessionType: 'legs',
     sessionDur: '20',
+    dataFetched: false,
 
     //mobile
     activeStep: 0,
@@ -37,14 +38,18 @@ export default class Appointment extends PureComponent {
     const session_length = parseInt(this.state.sessionDur, 10);
     const session_type = this.state.sessionType;
 
+    var endDate = new Date(date);
+    endDate.setMinutes(date.getMinutes()+session_length);
+
     var session_date = date.toDateString();
     var session_time = date.toLocaleTimeString();
 
     srl_db.collection("appointments")
     .doc(key)
     .set({
-      parseableDate: date.toString(),
+      startDate: date.toISOString(),
       date: session_date,
+      endDate: endDate.toISOString(),
       type: session_type,
       start: session_time,
       length: session_length,
@@ -64,7 +69,7 @@ export default class Appointment extends PureComponent {
       .get()
       .then(query => query.docs.map(doc => doc.data()))
       .then(docs => this.setState({appData: docs}))
-      .then(res => alert(JSON.stringify(this.state.appData)));
+      .then(res => this.setState({dataFetched: true}));
   }
 
   /* For TimePicker */
@@ -151,20 +156,22 @@ export default class Appointment extends PureComponent {
   }
 
   renderTimeSelect(){
-    return(
-      <Grid id="time-container" item container direction="row" justify={(!this.mobilecheck())?'space-between':'center'}>
-        {(this.mobilecheck())?<Typography className="app-section-title">Time</Typography> : ''}
-        <Grid item sm={4} xs={10}>
-          <MyScheduler
-            date={this.state.date}
-            onSelectTime={this.handleDateChange}
-            duration={this.state.sessionDur}
-            AppData={this.state.appData}
-          />
+    if(true){
+      return(
+        <Grid id="time-container" item container direction="row" justify={(!this.mobilecheck())?'space-between':'center'}>
+          {(this.mobilecheck())?<Typography className="app-section-title">Time</Typography> : ''}
+          <Grid item sm={4} xs={10}>
+            <MyScheduler
+              date={this.state.date}
+              onSelectTime={this.handleDateChange}
+              duration={this.state.sessionDur}
+              AppData={this.state.appData}
+            />
+          </Grid>
+          {(!this.mobilecheck())?this.renderSummary():''}
         </Grid>
-        {(!this.mobilecheck())?this.renderSummary():''}
-      </Grid>
-    );
+      );
+    }
   }
 
   formatDay(){
