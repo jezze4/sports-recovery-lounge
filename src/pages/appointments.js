@@ -239,7 +239,8 @@ export default class Appointment extends PureComponent {
       <Button
         classes={
           {root:((activeID===this.state.sessionType || activeID===this.state.sessionDur) ? 'selection-active ' : ' ')
-           + 'selection-'+ classType
+           + 'selection-' + classType +
+           ((classType==='duration' && activeID!=="60" && this.state.sessionType==="body") ? ' selection-disabled' : '')
           }}
         onClick={()=>this.onChangeSelection(classType, activeID)}
         >
@@ -251,6 +252,9 @@ export default class Appointment extends PureComponent {
   onChangeSelection(classType, activeID){
     if(classType==='session'){
       this.setState({sessionType: activeID});
+      if(activeID==='body'){
+        this.setState({sessionDur: "60"})
+      }
     } else{
       this.setState({sessionDur: activeID});
     }

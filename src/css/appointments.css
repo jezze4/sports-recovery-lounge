@@ -190,6 +190,14 @@
   filter: none !important;
 }
 
+.selection-disabled{
+  background: black !important;
+  color: gray !important;
+  /* box-shadow: none !important; */
+  opacity: .4;
+  pointer-events: none;
+}
+
 .selection-session{
   margin-bottom: 20px !important;
 }

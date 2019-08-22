@@ -85,11 +85,14 @@ export default class MyScheduler extends PureComponent {
     }
   }
 
+  componentDidUpdate(){
+    this.fetchAppData(this.props.AppData);
+  }
+
   render(){
     return(
       <Scheduler height={420} rootComponent={SchedulerRoot} data={this.state.appointments}>
         {/* Update the schedulerData */}
-        {this.fetchAppData(this.props.AppData)}
         <ViewState
           currentDate={this.props.date}
         />
