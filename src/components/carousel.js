@@ -15,23 +15,23 @@ import '../css/carousel.css';
 const InfiniteSwipe = autoPlay(virtualize(SwipeableViews));
 
 const carouselItems=[
-  {
-    img: JulySpecialImage,
-    title: "July Specials!",
-    subtitle: "Come in July for some great specials!",
-    buttonText: "Details",
-    buttonType: "modal",
-    modalInfo: <span>
-      Get 50% off your first session of NormaTec Recovery!<br/><br/>
-      Get $5 off any subsequent NormaTec session in July!<br /><br/>
-      Get 20% off any NormaTec Recovery multi-session package or monthly pass!
-    </span>,
-    align: 'right'
-  },
+  // {
+  //   img: JulySpecialImage,
+  //   title: "July Specials!",
+  //   subtitle: "Come in July for some great specials!",
+  //   buttonText: "Details",
+  //   buttonType: "modal",
+  //   modalInfo: <span>
+  //     Get 50% off your first session of NormaTec Recovery!<br/><br/>
+  //     Get $5 off any subsequent NormaTec session in July!<br /><br/>
+  //     Get 20% off any NormaTec Recovery multi-session package or monthly pass!
+  //   </span>,
+  //   align: 'right'
+  // },
   {
     img: DefaultBanner,
-    title: "Recover Like a Pro",
-    subtitle: "Book appointment today, Work out again tomorrow",
+    title: "NormaTec Recovery System",
+    subtitle:<span>Recover Even Faster,<br />Like a Pro</span>,
     buttonText: "Let's Do It",
     buttonType: "link",
     buttonLink: "/appointments",

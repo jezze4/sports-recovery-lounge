@@ -148,7 +148,7 @@ export default class Appointment extends PureComponent {
               <br />
             </Grid>
             <Grid item>
-              <Typography variant="h5">Estimated Price: ${this.state.sessionPrice}</Typography>
+              <Typography variant="h5">Estimated Price: ${this.state.sessionPrice}.00</Typography>
             </Grid>
           </Grid>
           <Grid item>
