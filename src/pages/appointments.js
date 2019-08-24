@@ -114,11 +114,14 @@ export default class Appointment extends PureComponent {
           tileClassName="calendar-tile"
           value={this.state.date}
           onChange={this.handleDateChange}
-          navigationLabel={(e)=>this.customNav(e)}
+          navigationLabel={(props)=>{return(
+            <Typography className="calendar-nav">{props.label}</Typography>
+          )}}
           nextLabel=<div className="calendar-slownav">›</div>
           prevLabel=<div className="calendar-slownav">‹</div>
           minDetail="month"
           minDate={new Date()}
+          tileDisabled={(props)=>{return(props.date.getDay()===0)?true:false}}
         />
       </Container>
     );

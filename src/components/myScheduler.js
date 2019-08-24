@@ -77,6 +77,8 @@ export default class MyScheduler extends PureComponent {
 
   state = {
     appointments: [],
+    startHour: 8,
+    endHour: 19,
   }
 
   fetchAppData(appData){
@@ -85,8 +87,55 @@ export default class MyScheduler extends PureComponent {
     }
   }
 
+  /* 0 = Sunday, ...  */
+  fetchHours(date){
+    var day = date.getDay();
+
+    switch (day) {
+      case 0: {
+        this.setState({
+          startHour: -1,
+          endHour: 0
+        });
+        break;
+      }
+      case 1:
+      case 2:
+      case 5: {
+        this.setState({
+          startHour: 8,
+          endHour: 19
+        });
+        break;
+      }
+      case 3:
+      case 4: {
+        this.setState({
+          startHour: 10,
+          endHour: 19
+        });
+        break;
+      }
+      case 6: {
+        this.setState({
+          startHour: 9,
+          endHour: 14
+        });
+        break;
+      }
+
+      default: {
+        this.setState({
+          startHour: 0,
+          endHour: 0
+        })
+      }
+    }
+  }
+
   componentDidUpdate(){
     this.fetchAppData(this.props.AppData);
+    this.fetchHours(this.props.date);
   }
 
   render(){
@@ -97,8 +146,8 @@ export default class MyScheduler extends PureComponent {
           currentDate={this.props.date}
         />
         <DayView
-          startDayHour={8}
-          endDayHour={19}
+          startDayHour={this.state.startHour}
+          endDayHour={this.state.endHour}
           cellDuration={this.props.duration}
           layoutComponent={DayViewLayout}
           timeScaleLayoutComponent={TimeScaleLayout}
