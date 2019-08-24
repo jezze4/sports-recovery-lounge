@@ -1,0 +1,18 @@
+.schedule-container{
+  overflow-y: hidden;
+}
+
+.admin-schedule-root{
+  background: white;
+  position: absolute;
+  z-index: 999999;
+  height: calc(100vh - 65px) !important;
+}
+
+.admin-appointment{
+  padding: 0 2px;
+  margin: 0 2px;
+  background: #42A5F5;
+  border-radius: 5px;
+  box-shadow: 0 -3px 5px #1E88E5 inset;
+}

@@ -31,7 +31,7 @@ const carouselItems=[
   {
     img: DefaultBanner,
     title: "NormaTec Recovery System",
-    subtitle:<span>Recover Even Faster,<br />Like a Pro</span>,
+    subtitle:<span>Train. Recover. Repeat.</span>,
     buttonText: "Let's Do It",
     buttonType: "link",
     buttonLink: "/appointments",
