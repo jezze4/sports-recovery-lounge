@@ -92,13 +92,6 @@ export default class MyScheduler extends PureComponent {
     var day = date.getDay();
 
     switch (day) {
-      case 0: {
-        this.setState({
-          startHour: -1,
-          endHour: 0
-        });
-        break;
-      }
       case 1:
       case 2:
       case 5: {

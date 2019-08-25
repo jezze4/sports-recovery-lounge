@@ -27,7 +27,7 @@ export default class Home extends PureComponent {
             <Summary
               title="Want In?"
               img={FirstSummary}
-              info="Recover like the pros! Set up an appointment and find why this technology is becoming so popular!"
+              info="Recover like the pros! Set up an appointment today and resume training tomorrow!"
               button="Reserve a Spot"
               link="/appointments"
             />
@@ -36,7 +36,7 @@ export default class Home extends PureComponent {
             <Summary
               title="Services"
               img={BenefitsImage}
-              info="We offer a great variety of equipment to relax those muscles and make you feel amazingly refreshed to continue pushing yourself to be the best version of yourself."
+              info="We offer a great variety of equipment to relax those muscles and make you feel amazingly rejuvinated."
               button="Read More"
               link="/services"
             />
@@ -46,8 +46,8 @@ export default class Home extends PureComponent {
               title="Us"
               img={AboutImage}
               info=<span>
-                Everyone has a story. We are here to help YOU. We are not noobs at this.
-                <br/>Trust us. We know what we're doing. :)</span>
+                Find out more about our service. More information coming later.
+                </span>
               button="Read More"
               link="/about"
             />

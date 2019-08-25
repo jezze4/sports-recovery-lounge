@@ -76,18 +76,60 @@ export default class Appointment extends PureComponent {
   /* For TimePicker */
   handleDateChange = (date) => {
     date = new Date(date);
+
+    /* Set Hours to first hours of day */
+    // switch(date.getDay()){
+    //   case 1:
+    //   case 2:
+    //   case 5: {
+    //     date.setHours(8);
+    //     break;
+    //   }
+    //   case 3:
+    //   case 4: {
+    //     date.setHours(10);
+    //     break;
+    //   }
+    //   case 6: {
+    //     date.setHours(9);
+    //     break;
+    //   }
+    //   default: date.setHours(0);
+    // }
+
+
     this.setState({date: date});
+    return date;
   }
 
   setStartDate(){
     var fullDate = new Date();
-    if(fullDate.getHours() < 12){
-      fullDate.setHours(12);
-    } else if (fullDate.getHours() > 16){
-      var day = fullDate.getDay();
-      fullDate.setDate(day+1);
+
+    const hours = fullDate.getHours();
+    const weekday = fullDate.getDay();
+
+    /* move to next day if current time is past closing time */
+    switch(weekday){
+      case 6: {
+        if (hours > 13)
+          fullDate.setDate(fullDate.getDate()+1);
+          fullDate = this.handleDateChange(fullDate);
+        break;
+      }
+      default: {
+        if (hours > 18)
+          fullDate.setDate(fullDate.getDate()+1);
+          fullDate = this.handleDateChange(fullDate);
+        break;
+      }
     }
-    fullDate.setHours(fullDate.getHours()+1);
+
+    /* skip Sunday */
+    if(fullDate.getDay()===0){
+      fullDate.setDate(fullDate.getDate()+1);
+      fullDate = this.handleDateChange(fullDate);
+    }
+
     fullDate.setMinutes(0);
     fullDate.setSeconds(0);
     this.setState({date: fullDate});
@@ -99,10 +141,17 @@ export default class Appointment extends PureComponent {
   }
 
   /* Custom Calendar Parts */
-  customNav(e){
-    return(
-      <Typography className="calendar-nav">{e.label}</Typography>
-    );
+  checkDisabled(props){
+    const day = props.date.getDay();
+    const today = new Date();
+    const hours = today.getHours();
+
+    if(day === 0) return true;
+    if(props.date.getDate()===today.getDate() && props.date.getMonth()===today.getMonth()){
+      if(day === 6 && hours > 13) return true;
+      else if(hours > 18) return true;
+    }
+    return false;
   }
 
   renderDateSelect(){
@@ -121,7 +170,7 @@ export default class Appointment extends PureComponent {
           prevLabel=<div className="calendar-slownav">‹</div>
           minDetail="month"
           minDate={new Date()}
-          tileDisabled={(props)=>{return(props.date.getDay()===0)?true:false}}
+          tileDisabled={(props)=>this.checkDisabled(props)}
         />
       </Container>
     );
