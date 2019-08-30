@@ -18,25 +18,23 @@ export default class Login extends PureComponent{
           <Grid item container direction="column" justify="center">
             <Grid item><Typography variant="h5">Train. Recover. Repeat.</Typography></Grid>
           </Grid>
-          <Grid item container direction="column" justify="space-between" alignItems="stretch">
+          <Grid className="login-input" item container direction="column" justify="space-between" alignItems="stretch">
             <Grid item><Typography variant="h3">Login</Typography></Grid>
             <Grid item container direction="column">
               <TextField
-                label="Email"
+                label=<span className="input-label">Email</span>
                 type="email"
                 name="email"
                 autoComplete="email"
                 helperText="We'll keep it confidential!"
                 variant="outlined"
-                classes={{root: 'login-textfield'}}
               />
               <br />
               <TextField
-                label="Password"
+                label=<span className="input-label">Password</span>
                 type="password"
                 autoComplete="current-password"
                 variant="outlined"
-                style={this.styles.textField}
               />
             </Grid>
             <Grid item container direction="row" alignItems="center" justify="space-around">
@@ -63,7 +61,7 @@ export default class Login extends PureComponent{
     },
 
     loginBox : {
-      background: 'rgb(245,245,245)',
+      background: 'rgb(35,35,35)',
       height: '100%',
       width: '50%',
       padding: '10% 15%',
@@ -81,24 +79,5 @@ export default class Login extends PureComponent{
       color: 'white',
       boxShadow: '0 0 5px black inset'
     },
-    textField : {
-      '& label.Mui-focused': {
-        color: 'red',
-      },
-      '& .MuiInput-underline:after': {
-        borderBottomColor: 'green',
-      },
-      '& .MuiOutlinedInput-root': {
-        '& fieldset': {
-          borderColor: 'red',
-        },
-        '&:hover fieldset': {
-          borderColor: 'yellow',
-        },
-        '&.Mui-focused fieldset': {
-          borderColor: 'green',
-        },
-      },
-    }
   }
 }
