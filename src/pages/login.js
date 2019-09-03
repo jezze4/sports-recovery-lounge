@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -11,73 +12,97 @@ import '../css/login.css';
 const picQuote = "Insert a short description or something";
 
 export default class Login extends PureComponent{
-  render(){
+
+
+
+
+  renderSignIn(){
     return(
-      <Grid container style={this.styles.container} alignItems="center" justify="center">
-        <Grid item container style={this.styles.loginBox}>
-          <Grid item container direction="column" justify="center">
-            <Grid item><Typography variant="h5">Train. Recover. Repeat.</Typography></Grid>
+      <Paper className="signin-container">
+        <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
+          <Grid item><Typography variant="h3" className="login-title">Sign In</Typography></Grid>
+          <br/>
+          <Grid item>
+            <TextField
+              label=<span className="input-label">Email</span>
+              type="email"
+              name="email"
+              autoComplete="email"
+              variant="outlined"
+              fullWidth
+            />
           </Grid>
-          <Grid className="login-input" item container direction="column" justify="space-between" alignItems="stretch">
-            <Grid item><Typography variant="h3">Login</Typography></Grid>
-            <Grid item container direction="column">
-              <TextField
-                label=<span className="input-label">Email</span>
-                type="email"
-                name="email"
-                autoComplete="email"
-                helperText="We'll keep it confidential!"
-                variant="outlined"
-              />
-              <br />
-              <TextField
-                label=<span className="input-label">Password</span>
-                type="password"
-                autoComplete="current-password"
-                variant="outlined"
-              />
-            </Grid>
-            <Grid item container direction="row" alignItems="center" justify="space-around">
-              <Button variant="outlined" style={{width: '40%', borderRadius: '20px'}}>Login</Button>
-              <Button variant="outlined" style={{width: '40%', borderRadius: '20px'}}>Register</Button>
-            </Grid>
+          <br/>
+          <Grid item>
+            <TextField
+              label=<span className="input-label">Password</span>
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              helperText=<a href="">Forgot Password?</a>
+              fullWidth
+            />
+          </Grid>
+          <br/>
+          <Grid item>
+            <Button classes={{root: 'login-button'}}>Sign In</Button>
           </Grid>
         </Grid>
-        <Grid item container style={this.styles.pictureBox}>
-          <Typography>{picQuote}</Typography>
-        </Grid>
-      </Grid>
+      </Paper>
     );
   }
 
-  /* Styles for Login page */
-  styles = {
-    container : {
-      height: '100vh',
-      maxWidth: '100vw',
-      zIndex: '999999',
-      position: 'absolute',
-      background: 'white'
-    },
+  renderSignUp(){
+    return(
+      <Paper className="signin-container">
+        <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
+          <Grid item><Typography variant="h3" className="login-title">Create Account</Typography></Grid>
+          <br/>
+          <Grid item>
+            <TextField
+              label=<span className="input-label">Name</span>
+              name="name"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <br/>
+          <Grid item>
+            <TextField
+              label=<span className="input-label">Email</span>
+              type="email"
+              name="email"
+              autoComplete="email"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <br/>
+          <Grid item>
+            <TextField
+              label=<span className="input-label">Password</span>
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              helperText=<a href="">Forgot Password?</a>
+              fullWidth
+            />
+          </Grid>
+          <br/>
+          <Grid item>
+            <Button classes={{root: 'login-button'}}>Sign Up</Button>
+          </Grid>
+        </Grid>
+      </Paper>
+    );
+  }
 
-    loginBox : {
-      background: 'rgb(35,35,35)',
-      height: '100%',
-      width: '50%',
-      padding: '10% 15%',
-      color: 'goldenrod',
-    },
-
-    pictureBox : {
-      // background: 'linear-gradient(black, rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0)), url('+LoginBG+')',
-      background: 'url('+LoginBG+')',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      height: '100%',
-      width: '50%',
-      padding: '20px',
-      color: 'white',
-      boxShadow: '0 0 5px black inset'
-    },
+  render(){
+    return(
+      <Paper className="login-container">
+        {this.renderSignIn()}
+        {/* {this.renderSignUp()} */}
+      </Paper>
+    );
   }
 }
