@@ -5,6 +5,31 @@
   position: absolute;
 }
 
+.login-banner{
+  position: absolute;
+  background: #FFCC66;
+  height: 100vh;
+  width: 40% !important;
+  z-index: 1001;
+  color: white !important;
+  transition: transform .6s ease-in-out;
+  -webkit-transition: -webkit-transform .6s ease-in-out;
+  -moz-transition: -moz-transform .6s ease-in-out;
+  right: 0;
+}
+
+.lb-left{
+  transform: translateX(-150%);
+    -webkit-transform: translateX(-150%);
+    -moz-transform: translateX(-150%);
+}
+
+.lb-right{
+  transform: none;
+    -webkit-transform: none;
+    -moz-transform: none;
+}
+
 .signin-container{
   height: 100%;
   padding: 0 15%;
@@ -18,6 +43,7 @@
 .login-title{
   color: #FFCC66;
   font-weight: 450 !important;
+  margin: 20px 0 !important;
   /* text-shadow: 0 0 2px gray !important; */
 }
 
@@ -27,6 +53,15 @@
   background: #FFCC66 !important;
   width: 50% !important;
   padding: 10px !important;
+  border-radius: 50px !important;
+}
+
+.login-banner-button{
+  color: white !important;
+  font-size: 1.1em !important;
+  width: 25% !important;
+  border-color: white !important;
+  border-width: 2px !important;
   border-radius: 50px !important;
 }
 
@@ -79,9 +114,18 @@
 .MuiOutlinedInput-root.Mui-focused{
   color: rgb(100,100,100) !important;
   background: rgb(245,245,245) !important;
+  box-shadow: 0 0 5px lightgray inset;
 }
 
 .input-label{
   /* color: #FFCC66; */
   color: gray;
+}
+
+.MuiFormLabel-root{
+  color: gray !important;
+}
+
+.MuiFormLabel-root.Mui-focused{
+  box-shadow: 0 0 10px 10px white inset, 0 0 5px 2px white;
 }

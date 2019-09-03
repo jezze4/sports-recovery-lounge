@@ -13,18 +13,50 @@ const picQuote = "Insert a short description or something";
 
 export default class Login extends PureComponent{
 
+  state={
+    bannerPos: "lb-right"
+  }
 
+  moveBanner = () => {
+    if(this.state.bannerPos==="lb-right")
+      this.setState({bannerPos: 'lb-left'});
+    else
+    this.setState({bannerPos: 'lb-right'});
+  }
 
+  renderBanner(){
+    return(
+      <Grid container direction="column" justify="center" className={"login-banner " + this.state.bannerPos}>
+        <Grid item>
+          <Typography variant="h3">Banner Title</Typography>
+        </Grid>
+        <Grid item style={{margin: '40px 0'}}>
+          <Typography variant="h5">
+            Banner description text that changes,too
+          </Typography>
+        </Grid>
+        <Grid>
+          <Button
+            variant="outlined"
+            classes={{outlined: 'login-banner-button'}}
+            onClick={this.moveBanner}
+            >
+              Sign Up
+          </Button>
+        </Grid>
+      </Grid>
+    );
+  }
 
   renderSignIn(){
     return(
       <Paper className="signin-container">
         <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
           <Grid item><Typography variant="h3" className="login-title">Sign In</Typography></Grid>
-          <br/>
-          <Grid item>
+          <Grid item style={{marginBottom: '20px'}}>
             <TextField
-              label=<span className="input-label">Email</span>
+              // label=<span className="input-label">Email</span>
+              label="Email"
               type="email"
               name="email"
               autoComplete="email"
@@ -32,10 +64,10 @@ export default class Login extends PureComponent{
               fullWidth
             />
           </Grid>
-          <br/>
-          <Grid item>
+          <Grid item style={{marginBottom: '20px'}}>
             <TextField
-              label=<span className="input-label">Password</span>
+              // label=<span className="input-label">Password</span>
+              label="Password"
               type="password"
               autoComplete="current-password"
               variant="outlined"
@@ -43,7 +75,6 @@ export default class Login extends PureComponent{
               fullWidth
             />
           </Grid>
-          <br/>
           <Grid item>
             <Button classes={{root: 'login-button'}}>Sign In</Button>
           </Grid>
@@ -57,8 +88,7 @@ export default class Login extends PureComponent{
       <Paper className="signin-container">
         <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
           <Grid item><Typography variant="h3" className="login-title">Create Account</Typography></Grid>
-          <br/>
-          <Grid item>
+          <Grid item style={{marginBottom: '20px'}}>
             <TextField
               label=<span className="input-label">Name</span>
               name="name"
@@ -66,8 +96,7 @@ export default class Login extends PureComponent{
               fullWidth
             />
           </Grid>
-          <br/>
-          <Grid item>
+          <Grid item style={{marginBottom: '20px'}}>
             <TextField
               label=<span className="input-label">Email</span>
               type="email"
@@ -77,8 +106,7 @@ export default class Login extends PureComponent{
               fullWidth
             />
           </Grid>
-          <br/>
-          <Grid item>
+          <Grid item style={{marginBottom: '20px'}}>
             <TextField
               label=<span className="input-label">Password</span>
               type="password"
@@ -88,7 +116,6 @@ export default class Login extends PureComponent{
               fullWidth
             />
           </Grid>
-          <br/>
           <Grid item>
             <Button classes={{root: 'login-button'}}>Sign Up</Button>
           </Grid>
@@ -100,8 +127,9 @@ export default class Login extends PureComponent{
   render(){
     return(
       <Paper className="login-container">
-        {this.renderSignIn()}
-        {/* {this.renderSignUp()} */}
+        {this.renderBanner()}
+        {/* {this.renderSignIn()} */}
+        {this.renderSignUp()}
       </Paper>
     );
   }
