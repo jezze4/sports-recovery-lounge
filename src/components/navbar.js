@@ -4,9 +4,6 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-
 import Login from '../pages/login';
 import Schedule from '../pages/schedule';
 import Appointments from '../pages/appointments';
@@ -67,13 +64,6 @@ export default class NavBar extends PureComponent {
             to="/about"
             value="/about"
           />
-          <Tab
-            classes={{root: 'tab-root', selected: 'tab-selected'}}
-            label="Me"
-            component={Link}
-            to="/login"
-            value="/login"
-          />
         </Tabs>
       </AppBar>
     );
@@ -82,13 +72,6 @@ export default class NavBar extends PureComponent {
   renderMobileNav(location){
     if(location.pathname!=="/schedule")
     return(
-      /*<BottomNavigation value={location.pathname} onChange={this.handleChange} classes={{root: 'appbar-root appbar-mobile'}}>
-        <BottomNavigationAction label="Home" value="/" to="/" icon=<i className="material-icons md-24" style={{color: 'white'}}>home</i>/>
-        <BottomNavigationAction label="Schedule" value="/appointments" to="/appointments" icon=<i className="material-icons md-24" style={{color: 'white'}}>today</i>/>
-        <BottomNavigationAction label="Home" value="/" to="/" icon=<i className="material-icons md-24" style={{color: 'white'}}>home</i>/>
-        <BottomNavigationAction label="Home" value="/" to="/" icon=<i className="material-icons md-24" style={{color: 'white'}}>home</i>/>
-        <BottomNavigationAction label="Home" value="/" to="/" icon=<i className="material-icons md-24" style={{color: 'white'}}>home</i>/>
-      </BottomNavigation>*/
       <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
         <Tabs
           classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
@@ -96,48 +79,60 @@ export default class NavBar extends PureComponent {
           onChange={this.handleChange}
           >
           <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
             label=
               <div>
                 <i className="material-icons md-24" style={{color: 'white'}}>home</i>
-                <div>Home</div>
+                {(location.pathname==="/") ? <div>Home</div> : ''}
               </div>
             component={Link}
             to="/"
             value="/"
           />
           <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
             label=
               <div>
                 <i className="material-icons md-24" style={{color: 'white'}}>today</i>
-                <div>Schedule</div>
+                {(location.pathname==="/appointments") ? <div>Schedule</div> : ''}
               </div>
             component={Link}
             to="/appointments"
             value="/appointments"
           />
           <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
             label=
             <div>
               <i className="material-icons md-24" style={{color: 'white'}}>fitness_center</i>
-              <div>Services</div>
+              {(location.pathname==="/services") ? <div>Services</div> : ''}
             </div>
             component={Link}
             to="/services"
             value="/services"
           />
           <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected'}}
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
             label=
             <div>
               <i className="material-icons md-24" style={{color: 'white'}}>people</i>
-              <div>About</div>
+              {(location.pathname==="/about") ? <div>About</div> : ''}
             </div>
             component={Link}
             to="/about"
             value="/about"
+          />
+          />
+          <Tab
+            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
+            label=
+            <div>
+              <i className="material-icons md-24" style={{color: 'white'}}>people</i>
+              {(location.pathname==="/login") ? <div>Me</div> : ''}
+            </div>
+            component={Link}
+            to="/login"
+            value="/login"
           />
         </Tabs>
       </AppBar>

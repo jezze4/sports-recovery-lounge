@@ -5,6 +5,11 @@
   position: absolute;
 }
 
+.mobile-login-container{
+  height: 90vh;
+  box-shadow: none !important;
+}
+
 .login-banner{
   position: absolute;
   background: #FFCC66;
@@ -110,6 +115,33 @@
 
 .MuiFormLabel-root.Mui-focused{
   box-shadow: 0 0 10px 10px white inset, 0 0 5px 2px white;
+}
+
+.mobile-signin-container{
+  height: calc(90vh - 48px);
+  box-shadow: none !important;
+  padding: 0 40px;
+  /* background: black !important; */
+}
+
+.m-signin-root{
+  position: absolute;
+  top: calc(90vh - 48px);
+  left: 0;
+  width: 100%;
+  /* color: white; */
+  transition: .3s !important;
+}
+
+.m-tab-inactive{
+  transition: .4s !important;
+  color: gray !important;
+  box-shadow: 0 0 50px black inset;
+}
+
+.m-signin-indicator{
+  height: 0vh !important;
+  background: rgba(255, 210, 100, .3) !important;
 }
 
 @keyframes fadeIn {

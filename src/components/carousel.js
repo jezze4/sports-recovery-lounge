@@ -6,7 +6,7 @@ import { autoPlay, virtualize } from 'react-swipeable-views-utils';
 import { mod } from 'react-swipeable-views-core';
 
 
-import JulySpecialImage from '../imgs/runner-girl.jpg'
+// import JulySpecialImage from '../imgs/runner-girl.jpg'
 import DefaultBanner from '../imgs/runner-girl2.jpg';
 
 import '../css/carousel.css';
@@ -149,10 +149,12 @@ export default class Carousel extends PureComponent {
   }
 
   componentDidMount(){
-    var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 6000);
-    this.setState({
-      autoplay: autoplay,
-    });
+    if(carouselItems.length > 1){
+      var autoplay = setInterval(()=>this.handleChangeIndex(this.state.index+1), 6000);
+      this.setState({
+        autoplay: autoplay,
+      });
+    }
   }
 
   componentWillUnmount(){

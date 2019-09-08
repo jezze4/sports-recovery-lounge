@@ -4,8 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Logo from '../imgs/logo.png';
-import LoginBG from '../imgs/normatec_in_orange.jpg';
+// import Logo from '../imgs/logo.png';
+// import LoginBG from '../imgs/normatec_in_orange.jpg';
 
 import SwipeableViews from "react-swipeable-views";
 import Tabs from '@material-ui/core/Tabs';
@@ -13,7 +13,7 @@ import Tab from '@material-ui/core/Tab';
 
 import '../css/login.css';
 
-const picQuote = "Insert a short description or something";
+// const picQuote = "Insert a short description or something";
 
 export default class Login extends PureComponent{
 
@@ -161,12 +161,12 @@ export default class Login extends PureComponent{
   /******************************* Mobile Login *******************************/
 
   handleChangeIndex(index){
-    this.setState({index});
+    this.setState({mobileIndex:index});
   }
 
   renderMobileLogin(){
     return(
-      <Paper>
+      <div>
         <SwipeableViews
           enableMouseEvents
           resistance
@@ -178,31 +178,89 @@ export default class Login extends PureComponent{
             {this.renderMobileSignup()}
           </SwipeableViews>
           <Tabs
+            classes={{root: 'm-signin-root', indicator: 'm-signin-indicator'}}
             value={this.state.mobileIndex}
-            indicatorColor="primary"
-            textColor="primary"
             variant="fullWidth"
             onChange={(event, value)=>this.handleChangeIndex(value)}
           >
-            <Tab label="Sign In" />
-            <Tab label="Create Account" />
+            <Tab classes={{root: (this.state.mobileIndex===1)?'m-tab-inactive':''}} label="Sign In" />
+            <Tab classes={{root: (this.state.mobileIndex===0)?'m-tab-inactive':''}} label="Create Account" />
           </Tabs>
-        </Paper>
+        </div>
     );
   }
 
   renderMobileSignin(){
     return(
-      <Paper>
-
+      <Paper className="mobile-signin-container">
+        <Grid container direction="column" alignItems="stretch" justify="center" style={{height: '100%'}}>
+          <Grid item><Typography variant="h4" className="login-title">Sign In</Typography></Grid>
+          <Grid item style={{width: '100%', marginBottom: '20px'}}>
+            <TextField
+              // label=<span className="input-label">Email</span>
+              label="Email"
+              type="email"
+              name="email"
+              autoComplete="email"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item style={{width: '100%', marginBottom: '20px'}}>
+            <TextField
+              // label=<span className="input-label">Password</span>
+              label="Password"
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              helperText=<a href="">Forgot Password?</a>
+              fullWidth
+            />
+          </Grid>
+          <Grid item>
+            <Button classes={{root: 'login-button'}}>Sign In</Button>
+          </Grid>
+        </Grid>
       </Paper>
     );
   }
 
   renderMobileSignup(){
     return(
-      <Paper>
-
+      <Paper className="mobile-signin-container">
+        <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
+          <Grid item><Typography variant="h4" className="login-title">Create Account</Typography></Grid>
+          <Grid item style={{width: '100%', marginBottom: '20px'}}>
+            <TextField
+              label=<span className="input-label">Name</span>
+              name="name"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item style={{width: '100%', marginBottom: '20px'}}>
+            <TextField
+              label=<span className="input-label">Email</span>
+              type="email"
+              name="email"
+              autoComplete="email"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item style={{width: '100%', marginBottom: '20px'}}>
+            <TextField
+              label=<span className="input-label">Password</span>
+              type="password"
+              autoComplete="current-password"
+              variant="outlined"
+              fullWidth
+            />
+          </Grid>
+          <Grid item>
+            <Button classes={{root: 'login-button'}}>Sign Up</Button>
+          </Grid>
+        </Grid>
       </Paper>
     );
   }
