@@ -1,6 +1,6 @@
 .login-container {
   height: 100vh;
-  min-width: 100vw;
+  width: 100vw;
   z-index: 1000;
   position: absolute;
 }
@@ -9,8 +9,8 @@
   position: absolute;
   background: #FFCC66;
   height: 100vh;
-  width: 40% !important;
-  z-index: 1001;
+  width: 40vw !important;
+  z-index: 1004;
   color: white !important;
   transition: transform .6s ease-in-out;
   -webkit-transition: -webkit-transform .6s ease-in-out;
@@ -30,14 +30,29 @@
     -moz-transform: none;
 }
 
-.signin-container{
+.signin-container, .signup-container{
+  position: absolute;
   height: 100%;
+  width: 30%;
   padding: 0 15%;
-  margin: 0 40% 0 0;
+  transition: transform .6s ease-in-out !important;
+  -webkit-transition: -webkit-transform .6s ease-in-out !important;
+  -moz-transition: -moz-transform .6s ease-in-out !important;
+  z-index: 1001;
 }
 
-.signup-container{
-  height: 100%;
+.signin-right, .signup-right{
+  transform: translateX(66%);
+    -webkit-transform: translateX(66%);
+    -moz-transform: translateX(66%);
+}
+
+.signin-left{
+  animation: fadeIn 1s normal forwards !important;
+}
+
+.signin-right{
+  animation: fadeOut 1s normal forwards !important;
 }
 
 .login-title{
@@ -59,39 +74,11 @@
 .login-banner-button{
   color: white !important;
   font-size: 1.1em !important;
-  width: 25% !important;
+  /* width: 25% !important; */
+  padding: 5px 40px !important;
   border-color: white !important;
   border-width: 2px !important;
   border-radius: 50px !important;
-}
-
-.login-box {
-  background: rgba(0,0,0, .8);
-  height: 100%;
-  width: 50%;
-  padding: 10% 15%;
-  /* color: white; */
-}
-
-.login-input{
-  margin-left: -25% !important;
-  min-width: 150%;
-  /* background: rgba(0,0,0,.1); */
-  padding: 40px 20px;
-  /* border-radius: 20px; */
-  /* box-shadow: 0 0 10px gray; */
-}
-
-.picture-box {
-   /* background: 'linear-gradient(black, rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0)), url('+LoginBG+')', */
-  /* background: url(+LoginBG+), */
-  backgroundSize: cover;
-  backgroundRepeat: no-repeat;
-  height: 100%;
-  width: 50%;
-  padding: 20px;
-  color: white;
-  boxShadow: 0 0 20px black inset;
 }
 
 
@@ -117,15 +104,24 @@
   box-shadow: 0 0 5px lightgray inset;
 }
 
-.input-label{
-  /* color: #FFCC66; */
-  color: gray;
-}
-
 .MuiFormLabel-root{
   color: gray !important;
 }
 
 .MuiFormLabel-root.Mui-focused{
   box-shadow: 0 0 10px 10px white inset, 0 0 5px 2px white;
+}
+
+@keyframes fadeIn {
+  0% {z-index: 1001;}
+  30% {z-index: 1001;}
+  35% {z-index: 1003;}
+  100% {z-index: 1003;}
+}
+
+@keyframes fadeOut {
+  0% {z-index: 1003;}
+  30% {z-index: 1003;}
+  35% {z-index: 1001;}
+  100% {z-index: 1001;}
 }
