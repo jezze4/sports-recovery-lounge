@@ -172,7 +172,6 @@ export default class Login extends PureComponent{
           resistance
           index={this.state.mobileIndex}
           onChangeIndex={(i)=>this.handleChangeIndex(i)}
-          // springConfig={this.carouselConfig}
           >
             {this.renderMobileSignin()}
             {this.renderMobileSignup()}
@@ -183,8 +182,8 @@ export default class Login extends PureComponent{
             variant="fullWidth"
             onChange={(event, value)=>this.handleChangeIndex(value)}
           >
-            <Tab classes={{root: (this.state.mobileIndex===1)?'m-tab-inactive':''}} label="Sign In" />
-            <Tab classes={{root: (this.state.mobileIndex===0)?'m-tab-inactive':''}} label="Create Account" />
+            <Tab classes={{root: (this.state.mobileIndex===0)?'m-tab-active':'m-tab-inactive'}} label="Sign In" />
+            <Tab classes={{root: (this.state.mobileIndex===1)?'m-tab-active':'m-tab-inactive'}} label="Create Account" />
           </Tabs>
         </div>
     );
@@ -194,7 +193,7 @@ export default class Login extends PureComponent{
     return(
       <Paper className="mobile-signin-container">
         <Grid container direction="column" alignItems="stretch" justify="center" style={{height: '100%'}}>
-          <Grid item><Typography variant="h4" className="login-title">Sign In</Typography></Grid>
+          <Grid item><Typography variant="h4" className="login-title">Welcome Back!</Typography></Grid>
           <Grid item style={{width: '100%', marginBottom: '20px'}}>
             <TextField
               // label=<span className="input-label">Email</span>
@@ -229,7 +228,7 @@ export default class Login extends PureComponent{
     return(
       <Paper className="mobile-signin-container">
         <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
-          <Grid item><Typography variant="h4" className="login-title">Create Account</Typography></Grid>
+          <Grid item><Typography variant="h4" className="login-title">Welcome!</Typography></Grid>
           <Grid item style={{width: '100%', marginBottom: '20px'}}>
             <TextField
               label=<span className="input-label">Name</span>

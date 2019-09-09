@@ -8,6 +8,16 @@
 .mobile-login-container{
   height: 90vh;
   box-shadow: none !important;
+  background-image: linear-gradient(
+                    to bottom right,
+                    rgba(0,0,0,.7),
+                    rgba(00,00,00,.3)
+                    ),
+                    url('../imgs/group_session.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .login-banner{
@@ -118,10 +128,10 @@
 }
 
 .mobile-signin-container{
-  height: calc(90vh - 48px);
+  height: calc(90vh);
   box-shadow: none !important;
   padding: 0 40px;
-  /* background: black !important; */
+  background: rgba(0,0,0,0) !important;
 }
 
 .m-signin-root{
@@ -133,8 +143,15 @@
   transition: .3s !important;
 }
 
+.m-tab-active{
+  transition: .4s !important;
+  box-shadow: none;
+  color: #FFCC66 !important;
+}
+
 .m-tab-inactive{
   transition: .4s !important;
+  /* color: lightgray !important; */
   color: gray !important;
   box-shadow: 0 0 50px black inset;
 }
