@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
+import Profile from '../pages/profile';
 import Login from '../pages/login';
 import Schedule from '../pages/schedule';
 import Appointments from '../pages/appointments';
@@ -162,6 +163,7 @@ export default class NavBar extends PureComponent {
               {(isMobile) ? this.renderMobileNav(location) : this.renderDesktopNav(location)}
 
               <Switch>
+                <Route path="/user" render={() => <Profile />} />
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/schedule" render={() => <Schedule />} />
                 <Route path="/appointments" render={() => <Appointments />} />

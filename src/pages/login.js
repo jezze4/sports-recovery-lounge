@@ -104,7 +104,7 @@ export default class Login extends PureComponent{
               type="password"
               autoComplete="current-password"
               variant="outlined"
-              helperText=<a href="">Forgot Password?</a>
+              // helperText=<a href="">Forgot Password?</a>
               fullWidth
             />
           </Grid>
@@ -212,7 +212,7 @@ export default class Login extends PureComponent{
               type="password"
               autoComplete="current-password"
               variant="outlined"
-              helperText=<a href="">Forgot Password?</a>
+              // helperText=<a href="">Forgot Password?</a>
               fullWidth
             />
           </Grid>

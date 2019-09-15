@@ -1,0 +1,25 @@
+.profile-container{
+  padding-top: 55px;
+  min-height: calc(90vh - 50px);
+  background: red;
+}
+
+.profile-info-container{
+  padding: 16px 0 24px 0;
+}
+
+/* Appointment Data */
+
+.profile-apt-title-container{
+  box-shadow: 0 2px 2px gray;
+  margin-bottom: 4px;
+}
+
+.profile-apt-title{
+  font-weight: bold !important;
+}
+
+.profile-apt-info-container{
+  padding: 16px 8px;
+  box-shadow: 0 0 1px gray;
+}
