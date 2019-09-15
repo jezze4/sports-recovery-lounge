@@ -1,18 +1,35 @@
 .profile-container{
   padding-top: 55px;
-  min-height: calc(90vh - 50px);
+  min-height: calc(90vh - 55px);
   background: red;
 }
 
 .profile-info-container{
-  padding: 16px 0 24px 0;
+  padding: 16px 0 8px 0;
+}
+
+.profile-tabs-root{
+}
+
+.profile-tabs-indicator{
+  background: #FFCC66 !important;
+}
+
+.profile-settings-container{
+  text-align: left;
 }
 
 /* Appointment Data */
 
+.profile-swipeable-container{
+  margin: 8px;
+}
+
 .profile-apt-title-container{
-  box-shadow: 0 2px 2px gray;
-  margin-bottom: 4px;
+  padding: 8px 0;
+  box-shadow: 0 2px 2px darkgray;
+  margin-top: 4px;
+  border-radius: 8px 8px 0 0 ;
 }
 
 .profile-apt-title{

@@ -129,7 +129,7 @@ export default class NavBar extends PureComponent {
             label=
             <div>
               <i className="material-icons md-24" style={{color: 'white'}}>people</i>
-              {(location.pathname==="/login") ? <div>Me</div> : ''}
+              {(location.pathname==="/login" || location.pathname==="/user") ? <div>Me</div> : ''}
             </div>
             component={Link}
             to="/login"
