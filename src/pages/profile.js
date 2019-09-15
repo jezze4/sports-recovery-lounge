@@ -1,8 +1,8 @@
 import React, {PureComponent} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
+// import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -48,9 +48,9 @@ export default class Profile extends PureComponent {
     return(
       <Grid container direction="column">
         <Grid className="profile-apt-title-container" container direction="row">
-          <Grid item xs={5}><Typography className="profile-apt-title">Start Time</Typography></Grid>
-          <Grid item xs={3}><Typography className="profile-apt-title">Duration</Typography></Grid>
-          <Grid item xs={4}><Typography className="profile-apt-title">Type</Typography></Grid>
+          <Grid item xs={5}><Typography variant="h6" className="profile-apt-title">Start Time</Typography></Grid>
+          <Grid item xs={3}><Typography variant="h6" className="profile-apt-title">Duration</Typography></Grid>
+          <Grid item xs={4}><Typography variant="h6" className="profile-apt-title">Type</Typography></Grid>
         </Grid>
         {data.map((item, i) => (
           <Grid className="profile-apt-info-container" container direction="row" key={"profile-appt-"+i}>
@@ -66,9 +66,11 @@ export default class Profile extends PureComponent {
   renderSettings(){
     return(
       <div className="profile-settings-container">
-        <Typography style={{lineHeight:'2', padding:'8px 16px', border: '1px solid lightgray'}}>Phone: 956-337-7531</Typography>
-        <Typography style={{lineHeight:'2', padding:'8px 16px', border: '1px solid lightgray'}}>Email: jezze.04@gmail.com</Typography>
-        <Typography style={{lineHeight:'2', padding:'8px 16px', border: '1px solid lightgray'}}>Cancel Appointments?</Typography>
+        <Typography variant="h6" className="profile-settings-title">Contact Info</Typography>
+        <Typography className="profile-settings-text">Phone: 956-337-7531</Typography>
+        <Typography className="profile-settings-text">Email: jezze.04@gmail.com</Typography>
+        <Typography variant="h6" className="profile-settings-title">Options</Typography>
+        <Typography className="profile-settings-text">Cancel Appointments?</Typography>
         <Typography></Typography>
       </div>
     );
@@ -78,9 +80,9 @@ export default class Profile extends PureComponent {
   renderInfo(){
     return(
       <div className="profile-info-container">
-        <Typography variant="h5">{basicUser.name}</Typography>
-        <Typography>Scheduled Appointments: {basicUser.totalAppts}</Typography>
-        <Typography>Completed Appointments: {basicUser.totalAppts}</Typography>
+        <Typography variant="h4">{basicUser.name}</Typography>
+        <Typography variant="subtitle1">Scheduled Appointments: {basicUser.totalAppts}</Typography>
+        <Typography variant="subtitle1">Completed Appointments: {basicUser.totalAppts}</Typography>
       </div>
     );
   }
@@ -99,17 +101,17 @@ export default class Profile extends PureComponent {
           <Tab disableRipple disableFocusRipple label="Appointments"/>
           <Tab disableRipple disableFocusRipple label="Settings"/>
         </Tabs>
-        <Paper className="profile-swipeable-container">
+        <div className="profile-swipeable-container">
           <SwipeableViews
             enableMouseEvents
             resistance
             index={index}
             onChangeIndex={(index)=>this.setState({index})}
             >
-            <div>{this.renderAppointments(testAppts)}</div>
-            <div>{this.renderSettings()}</div>
+            <div className="profile-swipeable-view">{this.renderAppointments(testAppts)}</div>
+            <div className="profile-swipeable-view">{this.renderSettings()}</div>
           </SwipeableViews>
-        </Paper>
+        </div>
 
       </Paper>
     );

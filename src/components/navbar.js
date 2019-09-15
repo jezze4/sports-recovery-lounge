@@ -71,74 +71,75 @@ export default class NavBar extends PureComponent {
   }
 
   renderMobileNav(location){
-    if(location.pathname!=="/schedule")
-    return(
-      <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
-        <Tabs
-          classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
-          value={location.pathname}
-          onChange={this.handleChange}
-          >
-          <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-            label=
+    if(location.pathname!=="/schedule"){
+      var value = location.pathname;
+      if(value==="/user") value = "/login";
+      return(
+        <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
+          <Tabs
+            classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
+            value={value}
+            onChange={this.handleChange}
+            >
+            <Tab
+              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
+              label=
+                <div>
+                  <i className="material-icons md-24" style={{color: 'white'}}>home</i>
+                  {(value==="/") ? <div>Home</div> : ''}
+                </div>
+              component={Link}
+              to="/"
+              value="/"
+            />
+            <Tab
+              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
+              label=
+                <div>
+                  <i className="material-icons md-24" style={{color: 'white'}}>today</i>
+                  {(value==="/appointments") ? <div>Schedule</div> : ''}
+                </div>
+              component={Link}
+              to="/appointments"
+              value="/appointments"
+            />
+            <Tab
+              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
+              label=
               <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>home</i>
-                {(location.pathname==="/") ? <div>Home</div> : ''}
+                <i className="material-icons md-24" style={{color: 'white'}}>fitness_center</i>
+                {(value==="/services") ? <div>Services</div> : ''}
               </div>
-            component={Link}
-            to="/"
-            value="/"
-          />
-          <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-            label=
+              component={Link}
+              to="/services"
+              value="/services"
+            />
+            <Tab
+              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
+              label=
               <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>today</i>
-                {(location.pathname==="/appointments") ? <div>Schedule</div> : ''}
+                <i className="material-icons md-24" style={{color: 'white'}}>people</i>
+                {(value==="/about") ? <div>About</div> : ''}
               </div>
-            component={Link}
-            to="/appointments"
-            value="/appointments"
-          />
-          <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-            label=
-            <div>
-              <i className="material-icons md-24" style={{color: 'white'}}>fitness_center</i>
-              {(location.pathname==="/services") ? <div>Services</div> : ''}
-            </div>
-            component={Link}
-            to="/services"
-            value="/services"
-          />
-          <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-            label=
-            <div>
-              <i className="material-icons md-24" style={{color: 'white'}}>people</i>
-              {(location.pathname==="/about") ? <div>About</div> : ''}
-            </div>
-            component={Link}
-            to="/about"
-            value="/about"
-          />
-          />
-          <Tab
-            classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-            label=
-            <div>
-              <i className="material-icons md-24" style={{color: 'white'}}>people</i>
-              {(location.pathname==="/login" || location.pathname==="/user") ? <div>Me</div> : ''}
-            </div>
-            component={Link}
-            to="/login"
-            value="/login"
-          />
-        </Tabs>
-      </AppBar>
-
-    );
+              component={Link}
+              to="/about"
+              value="/about"
+            />
+            <Tab
+              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
+              label=
+              <div>
+                <i className="material-icons md-24" style={{color: 'white'}}>people</i>
+                {(value==="/login" || value==="/user") ? <div>Me</div> : ''}
+              </div>
+              component={Link}
+              to="/login"
+              value="/login"
+            />
+          </Tabs>
+        </AppBar>
+      );
+    }
   }
 
   renderMobileHeader(){

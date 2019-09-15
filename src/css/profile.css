@@ -1,42 +1,64 @@
 .profile-container{
   padding-top: 55px;
   min-height: calc(90vh - 55px);
-  background: red;
+  background: linear-gradient(to bottom, #FFCC66, black);
 }
 
 .profile-info-container{
   padding: 16px 0 8px 0;
+  color: whitesmoke;
+  /* background: linear-gradient(to bottom, #FFCC66, white); */
 }
 
 .profile-tabs-root{
+  background: rgba(0,0,0,.7) !important;
+  color: white;
+  border-radius: 8px 8px 0 0;
 }
 
 .profile-tabs-indicator{
-  background: #FFCC66 !important;
+  background: linear-gradient(to right, black, #FFCC66, #FFCC66, black) !important;
 }
 
 .profile-settings-container{
   text-align: left;
+  color: gainsboro;
+  background-color: rgba(0,0,0,.4);
+}
+
+.profile-settings-text, .profile-settings-title{
+  padding: 12px 16px 12px 32px;
+  /* line-height: 2 !important; */
+  /* border-bottom: 1px gray solid; */
+}
+
+.profile-settings-title{
+  padding: 8px 12px;
+  border: none;
+  box-shadow: 0 0 2px #FFCC66;
 }
 
 /* Appointment Data */
 
 .profile-swipeable-container{
-  margin: 8px;
+  /* margin: 8px; */
+  background: rgba(0,0,0,0) !important;
 }
 
 .profile-apt-title-container{
   padding: 8px 0;
-  box-shadow: 0 2px 2px darkgray;
-  margin-top: 4px;
-  border-radius: 8px 8px 0 0 ;
+  box-shadow: 0 2px 2px #FFCC66;
+  background: rgba(0,0,0,.4);
 }
 
 .profile-apt-title{
-  font-weight: bold !important;
+  /* font-weight: bold !important; */
+  color: whitesmoke;
 }
 
 .profile-apt-info-container{
   padding: 16px 8px;
   box-shadow: 0 0 1px gray;
+  color: gainsboro;
+  background: rgba(0,0,0,.4);
 }
