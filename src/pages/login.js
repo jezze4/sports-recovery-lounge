@@ -11,6 +11,8 @@ import SwipeableViews from "react-swipeable-views";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
+import {Link} from 'react-router-dom';
+
 import '../css/login.css';
 
 // const picQuote = "Insert a short description or something";
@@ -109,7 +111,13 @@ export default class Login extends PureComponent{
             />
           </Grid>
           <Grid item>
-            <Button classes={{root: 'login-button'}}>Sign In</Button>
+            <Button
+              classes={{root: 'login-button'}}
+              component={Link}
+              to="/user"
+            >
+              Sign In
+            </Button>
           </Grid>
         </Grid>
       </Paper>
@@ -217,7 +225,9 @@ export default class Login extends PureComponent{
             />
           </Grid>
           <Grid item>
-            <Button classes={{root: 'login-button'}}>Sign In</Button>
+            <Button classes={{root: 'login-button'}} component={Link} to="/user">
+              Sign In
+            </Button>
           </Grid>
         </Grid>
       </Paper>
@@ -257,7 +267,9 @@ export default class Login extends PureComponent{
             />
           </Grid>
           <Grid item>
-            <Button classes={{root: 'login-button'}}>Sign Up</Button>
+            <Button classes={{root: 'login-button'}} component={Link} to="/user">
+              Sign Up
+            </Button>
           </Grid>
         </Grid>
       </Paper>
