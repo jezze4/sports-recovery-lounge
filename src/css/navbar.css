@@ -55,7 +55,7 @@
 .tab-mobile{
   align-items: center !important;
   height: 10vh !important;
-  max-width: calc(100vw/5) !important;
+  width: calc(100vw/4) !important;
   font-size: .6em !important;
 }
 

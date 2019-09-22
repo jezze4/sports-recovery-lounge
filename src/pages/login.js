@@ -13,6 +13,8 @@ import Tab from '@material-ui/core/Tab';
 
 import {Link} from 'react-router-dom';
 
+import {auth, providers} from '../components/firebase';
+
 import '../css/login.css';
 
 // const picQuote = "Insert a short description or something";

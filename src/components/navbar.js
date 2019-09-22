@@ -125,7 +125,7 @@ export default class NavBar extends PureComponent {
               to="/about"
               value="/about"
             />
-            <Tab
+            {/* <Tab
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
               label=
               <div>
@@ -135,7 +135,7 @@ export default class NavBar extends PureComponent {
               component={Link}
               to="/login"
               value="/login"
-            />
+            /> */}
           </Tabs>
         </AppBar>
       );
