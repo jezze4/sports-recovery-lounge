@@ -118,7 +118,7 @@ export default class NavBar extends PureComponent {
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
               label=
               <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>people</i>
+                <i className="material-icons md-24" style={{color: 'white'}}>people_alt</i>
                 {(value==="/about") ? <div>About</div> : ''}
               </div>
               component={Link}
