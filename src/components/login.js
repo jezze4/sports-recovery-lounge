@@ -11,7 +11,7 @@ import SwipeableViews from "react-swipeable-views";
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
 import {auth, providers} from '../components/firebase';
 
@@ -19,7 +19,7 @@ import '../css/login.css';
 
 // const picQuote = "Insert a short description or something";
 
-export default class Login extends PureComponent{
+class Login extends PureComponent{
 
   state={
     isMobile: true,
@@ -28,10 +28,35 @@ export default class Login extends PureComponent{
     signupPos: "signup-left",
     newUser: false,
     mobileIndex: 0,
+
+    email: '',
+    password: '',
+    username: "jezze",
   }
 
   componentWillMount(){
     this.setState({isMobile: this.mobilecheck()});
+  }
+
+  handleChange(e){
+    this.setState({[e.target.name]: e.target.value});
+  }
+
+  login(e){
+    e.preventDefault();
+    auth.signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then((u) =>{
+        console.log("I guess you signed in....");
+        this.renderRedirect();
+      }).catch((error) =>{
+        console.log(error);
+        alert("Uh-oh... issue with email: " + this.state.email + ", or the password :/");
+      })
+  }
+
+  renderRedirect = () => {
+    // this.props.getUser(this.props.email);
+    this.props.history.push('/' + "user");
   }
 
 
@@ -96,6 +121,8 @@ export default class Login extends PureComponent{
               label="Email"
               type="email"
               name="email"
+              value={this.state.email}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="email"
               variant="outlined"
               fullWidth
@@ -106,6 +133,9 @@ export default class Login extends PureComponent{
               // label=<span className="input-label">Password</span>
               label="Password"
               type="password"
+              name="password"
+              value={this.state.password}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="current-password"
               variant="outlined"
               // helperText=<a href="">Forgot Password?</a>
@@ -116,7 +146,7 @@ export default class Login extends PureComponent{
             <Button
               classes={{root: 'login-button'}}
               component={Link}
-              to="/user"
+              onClick={(e)=>this.login(e)}
             >
               Sign In
             </Button>
@@ -144,6 +174,8 @@ export default class Login extends PureComponent{
               label=<span className="input-label">Email</span>
               type="email"
               name="email"
+              value={this.state.email}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="email"
               variant="outlined"
               fullWidth
@@ -153,6 +185,9 @@ export default class Login extends PureComponent{
             <TextField
               label=<span className="input-label">Password</span>
               type="password"
+              name="password"
+              value={this.state.password}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="current-password"
               variant="outlined"
               fullWidth
@@ -210,6 +245,8 @@ export default class Login extends PureComponent{
               label="Email"
               type="email"
               name="email"
+              value={this.state.email}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="email"
               variant="outlined"
               fullWidth
@@ -220,6 +257,9 @@ export default class Login extends PureComponent{
               // label=<span className="input-label">Password</span>
               label="Password"
               type="password"
+              name="password"
+              value={this.state.password}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="current-password"
               variant="outlined"
               // helperText=<a href="">Forgot Password?</a>
@@ -227,7 +267,11 @@ export default class Login extends PureComponent{
             />
           </Grid>
           <Grid item>
-            <Button classes={{root: 'login-button'}} component={Link} to="/user">
+            <Button
+              classes={{root: 'login-button'}}
+              // component={Link}
+              onClick={(e)=>this.login(e)}
+              >
               Sign In
             </Button>
           </Grid>
@@ -254,6 +298,8 @@ export default class Login extends PureComponent{
               label=<span className="input-label">Email</span>
               type="email"
               name="email"
+              value={this.state.email}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="email"
               variant="outlined"
               fullWidth
@@ -263,6 +309,9 @@ export default class Login extends PureComponent{
             <TextField
               label=<span className="input-label">Password</span>
               type="password"
+              name="password"
+              value={this.state.password}
+              onChange={(e)=>this.handleChange(e)}
               autoComplete="current-password"
               variant="outlined"
               fullWidth
@@ -305,3 +354,5 @@ export default class Login extends PureComponent{
     return check;
   };
 }
+
+export default withRouter(Login);

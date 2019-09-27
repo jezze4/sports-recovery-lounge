@@ -1,11 +1,15 @@
 import React, {PureComponent} from 'react';
 import AppBar from '@material-ui/core/AppBar';
+import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
-import Profile from '../pages/profile';
-import Login from '../pages/login';
+import User from '../pages/user';
+
+import Profile from '../components/profile';
+import Login from '../components/login';
 import Schedule from '../pages/schedule';
 import Appointments from '../pages/appointments';
 import Home from '../pages/home';
@@ -19,6 +23,7 @@ export default class NavBar extends PureComponent {
   state={
     value: 0,
     isMobile: false,
+    user: null,
   }
 
   handleChange = (event, value) =>{
@@ -142,20 +147,48 @@ export default class NavBar extends PureComponent {
     }
   }
 
+  /* Welcome message only rendered if user is logged in */
   renderMobileHeader(){
     return(
       <AppBar position="static" classes={{root: 'mobile-header'}}>
-        <Link to="/">
-          <img src={Logo} alt="" id="appbar-logo"/>
-        </Link>
+        <Grid container justify="space-between" alignItems="center">
+          <Grid item xs={3}>
+            {(this.state.user) ? (
+              <div>
+                <Typography className="mobile-appbar-welcome">
+                  Welcome
+                </Typography>
+                <Typography variant="h6" className="mobile-appbar-welcome">
+                  {this.state.user}!
+                </Typography>
+              </div>
+              ) : null
+            }
+          </Grid>
+          <Grid item xs={6}>
+            <Link to="/"><img src={Logo} alt="" id="appbar-logo"/></Link>
+          </Grid>
+          <Grid item xs={3}>
+            <Link to="/user">
+              <i className="material-icons md-36 mobile-login-button" style={{color: 'white'}}>
+                account_circle
+              </i>
+            </Link>
+          </Grid>
+        </Grid>
       </AppBar>
     );
+  }
+
+  getUser = (data) => {
+    this.setState({user: data});
   }
 
   render(){
     const { isMobile } = this.state;
     return(
       <BrowserRouter>
+        {/* <User render={false} getUser={()=>this.getUser()} /> */}
         <Route
           path="/"
           render={({location}) =>(
@@ -164,7 +197,7 @@ export default class NavBar extends PureComponent {
               {(isMobile) ? this.renderMobileNav(location) : this.renderDesktopNav(location)}
 
               <Switch>
-                <Route path="/user" render={() => <Profile />} />
+                <Route path="/user" render={() => <Profile getUser={this.getUser}/>} />
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/schedule" render={() => <Schedule />} />
                 <Route path="/appointments" render={() => <Appointments />} />
@@ -181,6 +214,10 @@ export default class NavBar extends PureComponent {
 
   componentWillMount(){
     this.setState({isMobile: this.mobilecheck()});
+  }
+
+  componentDidMount(){
+
   }
 
   mobilecheck = ()=> {

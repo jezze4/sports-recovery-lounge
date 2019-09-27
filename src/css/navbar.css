@@ -26,6 +26,17 @@
   padding: 10px;
 }
 
+.mobile-login-button{
+  /* padding: 10px; */
+  color: #f8cc67 !important;
+}
+
+.mobile-appbar-welcome{
+  font-size: .8em !important;
+  color: #f8cc67;
+  filter: brightness(70%);
+}
+
 .tabs-root{
   z-index: 100;
   margin-right: 0;

@@ -30,8 +30,6 @@ const testAppts = [
   },
 ]
 
-
-
 const basicUser = {
   name: 'Jezze Martinez',
   dob: '10/23/1992',
@@ -42,6 +40,17 @@ export default class Profile extends PureComponent {
 
   state={
     index: 0,
+    user: "Jezze"
+  }
+
+  getUser = (returnFunction) => {
+    returnFunction(this.state.user);
+  }
+
+  componentDidMount(){
+    if(this.props.getUser !== undefined){
+      this.getUser(this.props.getUser);
+    }
   }
 
   renderAppointments(data){
@@ -87,7 +96,7 @@ export default class Profile extends PureComponent {
     );
   }
 
-  render(){
+  renderProfile(){
     const { index } = this.state;
     return(
       <Paper className="profile-container">
@@ -115,5 +124,15 @@ export default class Profile extends PureComponent {
 
       </Paper>
     );
+  }
+
+  render(){
+    if(this.state.user){
+      return(this.renderProfile());
+    } else {
+      return(
+        <h1>NOTHING</h1>
+      );
+    }
   }
 }
