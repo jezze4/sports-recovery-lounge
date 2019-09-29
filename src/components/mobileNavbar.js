@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import { Link } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Dialog from '@material-ui/core/Dialog';
-import Slide from '@material-ui/core/Slide';
+// import Slide from '@material-ui/core/Slide';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -15,7 +15,7 @@ import '../css/navbar.css';
 
 export default class MobileNavbar extends PureComponent {
   state={
-    value: 0,
+    value: null,
     loginDialog: true,
   }
 
@@ -30,7 +30,7 @@ export default class MobileNavbar extends PureComponent {
   renderMobileNav(path){
     if(path!=="/schedule"){
       var value = path;
-      if(value==="/user") value = "/login";
+      // (value === '/account')?this.setState({inAccount: false}):this.setState({inAccount: true});
       return(
         <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
           <Tabs
@@ -42,8 +42,9 @@ export default class MobileNavbar extends PureComponent {
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
               label=
                 <div>
-                  <i className="material-icons md-24" style={{color: 'white'}}>home</i>
-                  {(value==="/") ? <div>Home</div> : null}
+                  <i className="material-icons md-24">home</i>
+                  {/* {(value==="/") ? <div>Home</div> : null} */}
+                  <div>Home</div>
                 </div>
               component={Link}
               to="/"
@@ -53,8 +54,9 @@ export default class MobileNavbar extends PureComponent {
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
               label=
                 <div>
-                  <i className="material-icons md-24" style={{color: 'white'}}>today</i>
-                  {(value==="/appointments") ? <div>Schedule</div> : null}
+                  <i className="material-icons md-24">today</i>
+                  {/* {(value==="/appointments") ? <div>Schedule</div> : null} */}
+                  <div>Schedule</div>
                 </div>
               component={Link}
               to="/appointments"
@@ -64,8 +66,9 @@ export default class MobileNavbar extends PureComponent {
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
               label=
               <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>fitness_center</i>
-                {(value==="/services") ? <div>Services</div> : null}
+                <i className="material-icons md-24">fitness_center</i>
+                {/* {(value==="/services") ? <div>Services</div> : null} */}
+                <div>Services</div>
               </div>
               component={Link}
               to="/services"
@@ -75,12 +78,16 @@ export default class MobileNavbar extends PureComponent {
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
               label=
               <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>people_alt</i>
-                {(value==="/about") ? <div>About</div> : null}
+                <i className="material-icons md-24">people_alt</i>
+                {/* {(value==="/about") ? <div>About</div> : null} */}
+                <div>About</div>
               </div>
               component={Link}
               to="/about"
               value="/about"
+            />
+            <Tab
+              value="/account"
             />
             {/* <Tab
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
@@ -121,15 +128,23 @@ export default class MobileNavbar extends PureComponent {
             <Link to="/"><img src={Logo} alt="" id="appbar-logo"/></Link>
           </Grid>
           <Grid item xs={3}>
-            <div onClick={(e)=>this.handleDialog()}>
-              <i className="material-icons md-36 mobile-login-button"
-                style={(this.props.user) ? {color: '#f8cc67'} : {color: 'whitesmoke'}}>
-                account_circle
-              </i>
-            </div>
+            {(this.props.user) ? <Link to="/account">{this.getAccountIcon()}</Link>
+            : <div onClick={this.handleDialog}>{this.getAccountIcon()}</div>}
           </Grid>
         </Grid>
       </AppBar>
+    );
+  }
+
+  getAccountIcon(){
+    return(
+      <i className="material-icons md-36 mobile-login-button"
+        style={
+          (this.props.path==="/account") ? {textShadow: '0 0 10px goldenrod', color: '#f8cc67'} :
+          (this.props.user) ? {color: '#f8cc67'} :
+          {color: 'whitesmoke'}}>
+        account_circle
+      </i>
     );
   }
 

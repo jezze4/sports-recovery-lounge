@@ -95,7 +95,7 @@ export default class NavBar extends PureComponent {
                 : this.renderDesktopNav(location)}
 
               <Switch>
-                <Route path="/user" render={() => <Profile getUser={this.getUser}/>} />
+                <Route path="/account" render={() => <Profile getUser={this.getUser}/>} />
                 <Route path="/login" render={() => <Login />} />
                 <Route path="/schedule" render={() => <Schedule />} />
                 <Route path="/appointments" render={() => <Appointments />} />

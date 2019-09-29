@@ -57,7 +57,7 @@ class Login extends PureComponent{
   renderRedirect = () => {
     this.props.close();
     // this.props.getUser(this.props.email);
-    this.props.history.push('/' + "user");
+    this.props.history.push('/' + "account");
   }
 
 

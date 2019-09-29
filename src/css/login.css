@@ -10,7 +10,7 @@
   box-shadow: none !important;
   background-image: linear-gradient(
                     to bottom right,
-                    rgba(0,0,0,.5),
+                    rgba(0,0,0,.6),
                     rgba(0,0,0,.8)
                     ),
                     url('../imgs/group_session.jpg');
@@ -154,7 +154,7 @@
   transition: .4s !important;
   /* color: lightgray !important; */
   color: gray !important;
-  box-shadow: 0 0 50px black inset;
+  box-shadow: 0 0 100px black inset;
 }
 
 .m-signin-indicator{
