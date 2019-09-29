@@ -1,15 +1,17 @@
 import React, {PureComponent} from 'react';
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
-import Grid from '@material-ui/core/Grid';
+// import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
-
-import User from '../pages/user';
+// import Typography from '@material-ui/core/Typography';
+import Modal from '@material-ui/core/Modal';
 
 import Profile from '../components/profile';
 import Login from '../components/login';
+import MobileNavbar from '../components/mobileNavbar';
+
+import User from '../pages/user';
 import Schedule from '../pages/schedule';
 import Appointments from '../pages/appointments';
 import Home from '../pages/home';
@@ -24,6 +26,7 @@ export default class NavBar extends PureComponent {
     value: 0,
     isMobile: false,
     user: null,
+    loginModal: false,
   }
 
   handleChange = (event, value) =>{
@@ -72,112 +75,7 @@ export default class NavBar extends PureComponent {
           />
         </Tabs>
       </AppBar>
-    );
-  }
-
-  renderMobileNav(location){
-    if(location.pathname!=="/schedule"){
-      var value = location.pathname;
-      if(value==="/user") value = "/login";
-      return(
-        <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
-          <Tabs
-            classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
-            value={value}
-            onChange={this.handleChange}
-            >
-            <Tab
-              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-                <div>
-                  <i className="material-icons md-24" style={{color: 'white'}}>home</i>
-                  {(value==="/") ? <div>Home</div> : ''}
-                </div>
-              component={Link}
-              to="/"
-              value="/"
-            />
-            <Tab
-              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-                <div>
-                  <i className="material-icons md-24" style={{color: 'white'}}>today</i>
-                  {(value==="/appointments") ? <div>Schedule</div> : ''}
-                </div>
-              component={Link}
-              to="/appointments"
-              value="/appointments"
-            />
-            <Tab
-              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-              <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>fitness_center</i>
-                {(value==="/services") ? <div>Services</div> : ''}
-              </div>
-              component={Link}
-              to="/services"
-              value="/services"
-            />
-            <Tab
-              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-              <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>people_alt</i>
-                {(value==="/about") ? <div>About</div> : ''}
-              </div>
-              component={Link}
-              to="/about"
-              value="/about"
-            />
-            {/* <Tab
-              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-              <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>people</i>
-                {(value==="/login" || value==="/user") ? <div>Me</div> : ''}
-              </div>
-              component={Link}
-              to="/login"
-              value="/login"
-            /> */}
-          </Tabs>
-        </AppBar>
       );
-    }
-  }
-
-  /* Welcome message only rendered if user is logged in */
-  renderMobileHeader(){
-    return(
-      <AppBar position="static" classes={{root: 'mobile-header'}}>
-        <Grid container justify="space-between" alignItems="center">
-          <Grid item xs={3}>
-            {(this.state.user) ? (
-              <div>
-                <Typography className="mobile-appbar-welcome">
-                  Welcome
-                </Typography>
-                <Typography variant="h6" className="mobile-appbar-welcome">
-                  {this.state.user}!
-                </Typography>
-              </div>
-              ) : null
-            }
-          </Grid>
-          <Grid item xs={6}>
-            <Link to="/"><img src={Logo} alt="" id="appbar-logo"/></Link>
-          </Grid>
-          <Grid item xs={3}>
-            <Link to="/user">
-              <i className="material-icons md-36 mobile-login-button" style={{color: 'white'}}>
-                account_circle
-              </i>
-            </Link>
-          </Grid>
-        </Grid>
-      </AppBar>
-    );
   }
 
   getUser = (data) => {
@@ -193,8 +91,8 @@ export default class NavBar extends PureComponent {
           path="/"
           render={({location}) =>(
             <div>
-              {(isMobile) ? this.renderMobileHeader() : ''}
-              {(isMobile) ? this.renderMobileNav(location) : this.renderDesktopNav(location)}
+              {(isMobile) ? <MobileNavbar path={location.pathname} user={this.state.user}/>
+                : this.renderDesktopNav(location)}
 
               <Switch>
                 <Route path="/user" render={() => <Profile getUser={this.getUser}/>} />
@@ -214,10 +112,6 @@ export default class NavBar extends PureComponent {
 
   componentWillMount(){
     this.setState({isMobile: this.mobilecheck()});
-  }
-
-  componentDidMount(){
-
   }
 
   mobilecheck = ()=> {

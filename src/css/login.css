@@ -6,18 +6,18 @@
 }
 
 .mobile-login-container{
-  height: 90vh;
+  height: 92vh;
   box-shadow: none !important;
   background-image: linear-gradient(
                     to bottom right,
-                    rgba(0,0,0,.7),
-                    rgba(00,00,00,.3)
+                    rgba(0,0,0,.5),
+                    rgba(0,0,0,.8)
                     ),
                     url('../imgs/group_session.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
 }
 
 .login-banner{
@@ -81,8 +81,8 @@
   color: white !important;
   font-size: 1.1em !important;
   background: #FFCC66 !important;
-  width: 50% !important;
-  padding: 10px !important;
+  /* width: 50% !important; */
+  padding: 10px 20px!important;
   border-radius: 50px !important;
 }
 
@@ -90,7 +90,7 @@
   color: white !important;
   font-size: 1.1em !important;
   /* width: 25% !important; */
-  padding: 5px 40px !important;
+  padding: 10px 20px !important;
   border-color: white !important;
   border-width: 2px !important;
   border-radius: 50px !important;
@@ -104,8 +104,8 @@
 }
 
 .MuiOutlinedInput-root {
-  /* color: whitesmoke !important; */
-  background: rgb(240,240,240);
+  /* background: rgb(240,240,240); */
+  background: rgba(255,255,255, .6);
   transition: .2s;
 }
 
@@ -114,32 +114,33 @@
 }
 
 .MuiOutlinedInput-root.Mui-focused{
-  color: rgb(100,100,100) !important;
-  background: rgb(245,245,245) !important;
+  color: rgb(50,50,50) !important;
+  background: rgba(245,245,245, .7) !important;
   box-shadow: 0 0 5px lightgray inset;
 }
 
 .MuiFormLabel-root{
-  color: gray !important;
+  color: white !important;
 }
 
 .MuiFormLabel-root.Mui-focused{
-  box-shadow: 0 0 10px 10px white inset, 0 0 5px 2px white;
+  font-weight: bold !important;
+  /* background: rgba(0,0,0,.2) !important; */
+  text-shadow: 0 4px 10px gray;
+  /* color: default !important; */
+  /* box-shadow: 0 0 10px 10px white inset, 0 0 5px 2px white; */
 }
 
 .mobile-signin-container{
-  height: calc(90vh);
+  justify-content: center;
+  height: 84vh;
   box-shadow: none !important;
   padding: 0 40px;
   background: rgba(0,0,0,0) !important;
 }
 
 .m-signin-root{
-  position: absolute;
-  top: calc(90vh - 48px);
-  left: 0;
-  width: 100%;
-  /* color: white; */
+  height: 8vh;
   transition: .3s !important;
 }
 

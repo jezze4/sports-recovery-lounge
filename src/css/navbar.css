@@ -15,6 +15,7 @@
   position: fixed !important;
   height: 8vh;
   z-index: 1000 !important;
+  opacity: .9;
 }
 
 .appbar-desktop{
@@ -28,7 +29,7 @@
 
 .mobile-login-button{
   /* padding: 10px; */
-  color: #f8cc67 !important;
+  /* color: #f8cc67 !important; */
 }
 
 .mobile-appbar-welcome{
@@ -68,6 +69,12 @@
   height: 10vh !important;
   width: calc(100vw/4) !important;
   font-size: .6em !important;
+}
+
+/* Mobile Login Modal */
+.mobile-login-dialog{
+  /* height: 92vh; */
+  margin-top: 8vh;
 }
 
 /* For Desktop */

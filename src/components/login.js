@@ -55,6 +55,7 @@ class Login extends PureComponent{
   }
 
   renderRedirect = () => {
+    this.props.close();
     // this.props.getUser(this.props.email);
     this.props.history.push('/' + "user");
   }
@@ -237,7 +238,7 @@ class Login extends PureComponent{
   renderMobileSignin(){
     return(
       <Paper className="mobile-signin-container">
-        <Grid container direction="column" alignItems="stretch" justify="center" style={{height: '100%'}}>
+        <Grid container direction="column" alignItems="center" justify="center" style={{height: '100%'}}>
           <Grid item><Typography variant="h4" className="login-title">Welcome Back!</Typography></Grid>
           <Grid item style={{width: '100%', marginBottom: '20px'}}>
             <TextField
@@ -283,7 +284,7 @@ class Login extends PureComponent{
   renderMobileSignup(){
     return(
       <Paper className="mobile-signin-container">
-        <Grid container direction="column" justify="center" alignItems="stretch" style={{height: '100%'}}>
+        <Grid container direction="column" justify="center" alignItems="center" style={{height: '100%'}}>
           <Grid item><Typography variant="h4" className="login-title">Welcome!</Typography></Grid>
           <Grid item style={{width: '100%', marginBottom: '20px'}}>
             <TextField
