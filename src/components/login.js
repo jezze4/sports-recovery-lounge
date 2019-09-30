@@ -29,6 +29,7 @@ class Login extends PureComponent{
     newUser: false,
     mobileIndex: 0,
 
+    user: {},
     email: '',
     password: '',
     name: '',
@@ -45,10 +46,11 @@ class Login extends PureComponent{
   login(e){
     e.preventDefault();
     auth.signInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((u) =>{
-        console.log("I guess you signed in....");
+      .then((res) =>{
+        this.setState({user: res.user});
         this.renderRedirect();
-      }).catch((error) =>{
+      })
+      .catch((error) =>{
         console.log(error);
         alert("Uh-oh... issue with email: " + this.state.email + ", or the password :/");
       })
@@ -59,7 +61,8 @@ class Login extends PureComponent{
     auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res)=>{
         // console.log("createAccount: " + JSON.stringify(res.user.uid))
-        this.setUserData(res.user.uid)
+        this.setState({user: res.user});
+        this.setUserData(res.user.uid);
         this.renderRedirect();
       })
       .catch((error)=>{console.log("Account creation error: " + error)})
@@ -74,7 +77,6 @@ class Login extends PureComponent{
 
   renderRedirect = () => {
     this.props.close();
-    // this.props.getUser(this.props.email);
     this.props.history.push("/account");
   }
 

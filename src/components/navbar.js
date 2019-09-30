@@ -4,8 +4,8 @@ import AppBar from '@material-ui/core/AppBar';
 // import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import Dialog from '@material-ui/core/Dialog';
 // import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
 
 import Profile from '../components/profile';
 import Login from '../components/login';
@@ -17,7 +17,7 @@ import Appointments from '../pages/appointments';
 import Home from '../pages/home';
 import About from '../pages/about';
 import Services from '../pages/services';
-import {auth, providers} from '../components/firebase';
+import {srl_db, auth, providers} from '../components/firebase';
 
 import Logo from '../imgs/logo.png';
 import '../css/navbar.css';
@@ -27,7 +27,13 @@ export default class NavBar extends PureComponent {
     value: 0,
     isMobile: false,
     user: null,
-    loginModal: false,
+    fullName: null,
+    username: null,
+    loginDialog: false,
+  }
+
+  componentWillMount(){
+    this.setState({isMobile: this.mobilecheck()});
   }
 
   componentDidMount(){
@@ -38,13 +44,31 @@ export default class NavBar extends PureComponent {
     this.setState({value});
   }
 
+  handleDialog = () => {
+    this.setState({loginDialog : !this.state.loginDialog});
+  }
+
+  getUser(){
+    srl_db.collection("Users").doc(this.state.user.uid)
+      .get()
+      .then(doc => {
+        if(doc.exists){
+          console.log(doc.data());
+          this.setState({fullName: doc.data().name})
+          let fullName = doc.data().name.split(' ');
+          this.setState({username: fullName[0]});
+        }
+      });
+  }
+
   authListener() {
     auth.onAuthStateChanged((user) => {
       // console.log("authListener: " + JSON.stringify(user.providerData[0].email));
       if(user) {
-        this.setState({user: user.providerData[0].email});
+        this.setState({user: user})
+        this.getUser();
       } else {
-        this.setState({user: null});
+        this.setState({user: null, username: null, fullName: null});
       }
     })
   }
@@ -94,25 +118,36 @@ export default class NavBar extends PureComponent {
       );
   }
 
-  getUser = (data) => {
-    this.setState({user: data});
+  renderLogin(){
+    return(
+      <Dialog
+        classes={{root: 'mobile-login-dialog'}}
+        open={this.state.loginDialog}
+        onClose={this.handleDialog}
+        fullScreen={true}
+      >
+        {/* <div className="mobile-login-modal"> */}
+          <Login close={this.handleDialog}/>
+        {/* </div> */}
+      </Dialog>
+    );
   }
 
   render(){
     const { isMobile } = this.state;
     return(
       <BrowserRouter>
-        {/* <User render={false} getUser={()=>this.getUser()} /> */}
         <Route
           path="/"
           render={({location}) =>(
             <div>
-              {(isMobile) ? <MobileNavbar path={location.pathname} user={this.state.user}/>
+              {this.renderLogin()}
+              {(isMobile) ?
+                <MobileNavbar path={location.pathname} user={this.state.username} handleDialog={this.handleDialog}/>
                 : this.renderDesktopNav(location)}
 
               <Switch>
-                <Route path="/account" render={() => <Profile getUser={this.getUser}/>} />
-                <Route path="/login" render={() => <Login />} />
+                <Route path="/account" render={() => <Profile user={this.state.user} name={this.state.fullName}/>} />
                 <Route path="/schedule" render={() => <Schedule />} />
                 <Route path="/appointments" render={() => <Appointments />} />
                 <Route path="/services" render={() => <Services />} />
@@ -124,10 +159,6 @@ export default class NavBar extends PureComponent {
         />
       </BrowserRouter>
     );
-  }
-
-  componentWillMount(){
-    this.setState({isMobile: this.mobilecheck()});
   }
 
   mobilecheck = ()=> {

@@ -33,27 +33,15 @@ const testAppts = [
   },
 ]
 
-const basicUser = {
-  name: 'Jezze Martinez',
-  dob: '10/23/1992',
-  totalAppts: '3',
-}
-
 class Profile extends PureComponent {
 
   state={
     index: 0,
-    user: "Jezze"
+    user: null,
   }
 
   componentDidMount(){
-    if(this.props.getUser !== undefined){
-      this.getUser(this.props.getUser);
-    }
-  }
-
-  getUser = (returnFunction) => {
-    returnFunction(this.state.user);
+    this.setState({user: this.props.user})
   }
 
   logout(){
@@ -103,9 +91,9 @@ class Profile extends PureComponent {
   renderInfo(){
     return(
       <div className="profile-info-container">
-        <Typography variant="h4">{basicUser.name}</Typography>
-        <Typography variant="subtitle1">Scheduled Appointments: {basicUser.totalAppts}</Typography>
-        <Typography variant="subtitle1">Completed Appointments: {basicUser.totalAppts}</Typography>
+        <Typography variant="h4">{this.props.name}</Typography>
+        <Typography variant="subtitle1">Scheduled Appointments: 3</Typography>
+        <Typography variant="subtitle1">Completed Appointments: 3</Typography>
       </div>
     );
   }
@@ -141,11 +129,13 @@ class Profile extends PureComponent {
   }
 
   render(){
-    if(this.state.user){
+    if(this.props.user){
       return(this.renderProfile());
     } else {
       return(
-        <h1>NOTHING</h1>
+        <div style={{paddingTop: '10vh', background: 'black', height: '100vh'}}>
+          <Typography variant="h3" style={{color: 'goldenrod'}}>Getting Info...</Typography>
+        </div>
       );
     }
   }

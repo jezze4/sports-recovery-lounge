@@ -17,14 +17,11 @@ export default class MobileNavbar extends PureComponent {
   state={
     value: null,
     loginDialog: false,
+    uid: null,
   }
 
   handleChange = (event, value) =>{
     this.setState({value});
-  }
-
-  handleDialog = () => {
-    this.setState({loginDialog : !this.state.loginDialog});
   }
 
   renderMobileNav(path){
@@ -129,7 +126,7 @@ export default class MobileNavbar extends PureComponent {
           </Grid>
           <Grid item xs={3}>
             {(this.props.user) ? <Link to="/account">{this.getAccountIcon()}</Link>
-            : <div onClick={this.handleDialog}>{this.getAccountIcon()}</div>}
+            : <div onClick={this.props.handleDialog}>{this.getAccountIcon()}</div>}
           </Grid>
         </Grid>
       </AppBar>
@@ -148,25 +145,16 @@ export default class MobileNavbar extends PureComponent {
     );
   }
 
-  renderLogin(){
-    return(
-      <Dialog
-        classes={{root: 'mobile-login-dialog'}}
-        open={this.state.loginDialog}
-        onClose={this.handleDialog}
-        fullScreen={true}
-      >
-        {/* <div className="mobile-login-modal"> */}
-          <Login close={this.handleDialog}/>
-        {/* </div> */}
-      </Dialog>
-    );
+
+
+  setUser(uid){
+    this.setState({uid});
   }
 
   render(){
     return(
       <div>
-        {this.renderLogin()}
+        {/* {this.renderLogin()} */}
         {this.renderMobileAppbar()}
         {this.renderMobileNav(this.props.path)}
       </div>
