@@ -12,7 +12,7 @@ import SwipeableViews from "react-swipeable-views";
 
 
 /* Firebase */
-import {srl_db} from '../components/firebase.js';
+import {srl_db} from '../components/firebase';
 
 import MyScheduler from '../components/myScheduler';
 
@@ -45,8 +45,14 @@ export default class Appointment extends PureComponent {
     var session_date = date.toDateString();
     var session_time = date.toLocaleTimeString();
 
-    srl_db.collection("appointments")
-    .doc(key)
+    /* Check for no logged-in user. for now, return nothing. */
+    if(this.props.user === null){
+      alert("Not Logged in!");
+      return;
+    }
+
+    srl_db.collection("Users").doc(this.props.user.uid)
+    .collection("appointments").doc(key)
     .set({
       startDate: date.toISOString(),
       date: session_date,
@@ -54,7 +60,7 @@ export default class Appointment extends PureComponent {
       type: session_type,
       start: session_time,
       length: session_length,
-      name: "Jezze"
+      user: this.props.user.email,
     })
     .then(function() {
       alert("Appointment Submitted!");
@@ -74,7 +80,8 @@ export default class Appointment extends PureComponent {
   }
 
   /* For TimePicker */
-  handleDateChange = (date) => {
+  handleDateChange = (date, user) => {
+
     date = new Date(date);
 
     /* Set Hours to first hours of day */
@@ -97,29 +104,36 @@ export default class Appointment extends PureComponent {
     //   default: date.setHours(0);
     // }
 
+    this.setState({
+      date: date,
+    });
 
-    this.setState({date: date});
+    if(user){
+      let nextStep = this.state.activeStep + 1;
+      this.setState({activeStep: nextStep});
+    }
+
     return date;
   }
 
   setStartDate(){
     var fullDate = new Date();
 
-    const hours = fullDate.getHours();
-    const weekday = fullDate.getDay();
+    let hours = fullDate.getHours();
+    let weekday = fullDate.getDay();
 
     /* move to next day if current time is past closing time */
     switch(weekday){
       case 6: {
         if (hours > 13)
           fullDate.setDate(fullDate.getDate()+1);
-          fullDate = this.handleDateChange(fullDate);
+          // fullDate = this.handleDateChange(fullDate);
         break;
       }
       default: {
         if (hours > 18)
           fullDate.setDate(fullDate.getDate()+1);
-          fullDate = this.handleDateChange(fullDate);
+          // fullDate = this.handleDateChange(fullDate);
         break;
       }
     }
@@ -127,7 +141,7 @@ export default class Appointment extends PureComponent {
     /* skip Sunday */
     if(fullDate.getDay()===0){
       fullDate.setDate(fullDate.getDate()+1);
-      fullDate = this.handleDateChange(fullDate);
+      // fullDate = this.handleDateChange(fullDate);
     }
 
     fullDate.setMinutes(0);
@@ -157,12 +171,12 @@ export default class Appointment extends PureComponent {
   renderDateSelect(){
     return(
       <Container id="calendar-container">
-        {(this.mobilecheck())?<Typography className="app-section-title">Date</Typography> : ''}
+        {(this.mobilecheck())?<Typography className="app-section-title">Date</Typography> : null}
         <Calendar
           className="calendar-root"
           tileClassName="calendar-tile"
           value={this.state.date}
-          onChange={this.handleDateChange}
+          onChange={(e)=>this.handleDateChange(e, "user")}
           navigationLabel={(props)=>{return(
             <Typography className="calendar-nav">{props.label}</Typography>
           )}}
@@ -173,6 +187,23 @@ export default class Appointment extends PureComponent {
           tileDisabled={(props)=>this.checkDisabled(props)}
         />
       </Container>
+    );
+  }
+  
+  renderTimeSelect(){
+    return(
+      <Grid id="time-container" item container direction="row" justify={(!this.mobilecheck())?'space-between':'center'}>
+        {(this.mobilecheck())?<Typography className="app-section-title">Time</Typography> : ''}
+        <Grid item sm={4} xs={10}>
+          <MyScheduler
+            date={this.state.date}
+            onSelectTime={(e)=>this.handleDateChange(e, "user")}
+            duration={this.state.sessionDur}
+            AppData={this.state.appData}
+          />
+        </Grid>
+        {(!this.mobilecheck())?this.renderSummary():''}
+      </Grid>
     );
   }
 
@@ -210,25 +241,6 @@ export default class Appointment extends PureComponent {
           </Grid>
       </Grid>
     );
-  }
-
-  renderTimeSelect(){
-    if(true){
-      return(
-        <Grid id="time-container" item container direction="row" justify={(!this.mobilecheck())?'space-between':'center'}>
-          {(this.mobilecheck())?<Typography className="app-section-title">Time</Typography> : ''}
-          <Grid item sm={4} xs={10}>
-            <MyScheduler
-              date={this.state.date}
-              onSelectTime={this.handleDateChange}
-              duration={this.state.sessionDur}
-              AppData={this.state.appData}
-            />
-          </Grid>
-          {(!this.mobilecheck())?this.renderSummary():''}
-        </Grid>
-      );
-    }
   }
 
   formatDay(){
@@ -330,6 +342,8 @@ export default class Appointment extends PureComponent {
         this.setState({sessionPrice: '35'})
       }
     }
+    let nextStep = this.state.activeStep + 1;
+    this.setState({activeStep: nextStep})
   }
 
   /* Mobile Functions */

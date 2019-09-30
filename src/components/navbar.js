@@ -149,7 +149,7 @@ export default class NavBar extends PureComponent {
               <Switch>
                 <Route path="/account" render={() => <Profile user={this.state.user} name={this.state.fullName}/>} />
                 <Route path="/schedule" render={() => <Schedule />} />
-                <Route path="/appointments" render={() => <Appointments />} />
+                <Route path="/appointments" render={() => <Appointments user={this.state.user}/>} />
                 <Route path="/services" render={() => <Services />} />
                 <Route path="/about" render={() => <About/>} />
                 <Route path="/" render={() => <Home />} />
