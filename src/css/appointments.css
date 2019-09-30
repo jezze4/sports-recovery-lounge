@@ -300,13 +300,14 @@
 
 .submit-app-btn{
   color: white !important;
-  width: 100% !important;
+  /* width: 100% !important; */
   background: goldenrod !important;
 }
 
 @media screen and (max-width: 480px) {
   #appointment-summary{
     min-height: 70vh;
+    width: 100vw;
     background: rgba(0,0,0,0);
     box-shadow: none;
   }

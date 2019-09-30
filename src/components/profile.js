@@ -47,7 +47,11 @@ class Profile extends PureComponent {
       srl_db.collection("Users").doc(user.uid).collection("appointments")
         .get()
         .then(query => query.docs.map(doc => doc.data()))
-        .then(docs => this.setState({appData: docs}))
+        .then(docs => {
+          docs.sort((a, b) =>
+            new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+          this.setState({appData: docs})
+        })
     }
   }
 
@@ -85,6 +89,7 @@ class Profile extends PureComponent {
           <Grid item xs={3}><Typography variant="h6" className="profile-apt-title">Duration</Typography></Grid>
           <Grid item xs={4}><Typography variant="h6" className="profile-apt-title">Type</Typography></Grid>
         </Grid>
+        <div className="profile-locked-appointments">
         {data.map((item, i) => (
           <Grid className="profile-apt-info-container"
             container direction="row"
@@ -99,6 +104,7 @@ class Profile extends PureComponent {
             <Grid className="profile-apt-info" item xs={4}><Typography>{item.type}</Typography></Grid>
           </Grid>
         ))}
+        </div>
       </Grid>
     );
   }
@@ -110,7 +116,7 @@ class Profile extends PureComponent {
         {/* <Typography className="profile-settings-text">Phone: 956-337-7531</Typography> */}
         <Typography className="profile-settings-text">{this.state.userEmail}</Typography>
         <Typography variant="h6" className="profile-settings-title">Options</Typography>
-        <Typography className="profile-settings-text">Cancel Appointments?</Typography>
+        <Typography className="profile-settings-text">Cancel Appointments? coming soon</Typography>
         <div className="profile-settings-text">
           <Button variant="outlined" color="secondary" onClick={()=>this.logout()}>
             Sign out

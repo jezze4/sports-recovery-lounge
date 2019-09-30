@@ -189,7 +189,7 @@ export default class Appointment extends PureComponent {
       </Container>
     );
   }
-  
+
   renderTimeSelect(){
     return(
       <Grid id="time-container" item container direction="row" justify={(!this.mobilecheck())?'space-between':'center'}>
@@ -209,7 +209,7 @@ export default class Appointment extends PureComponent {
 
   renderSummary(){
     return(
-      <Grid container item xs={12} sm={7} direction="column" justify="space-between" id="appointment-summary">
+      <Grid container item xs={12} sm={7} direction="column" justify="space-between" alignItems="stretch" id="appointment-summary">
           <Grid item>
             <Typography variant="h4">Summary<div className="underbar"></div></Typography>
           </Grid>
@@ -235,7 +235,7 @@ export default class Appointment extends PureComponent {
             </Grid>
           </Grid>
           <Grid item>
-            <Button variant="contained" classes={{root: 'submit-app-btn'}} onClick={this.handleSubmit}>
+            <Button fullWidth variant="contained" classes={{root: 'submit-app-btn'}} onClick={this.handleSubmit}>
               Submit
             </Button>
           </Grid>
