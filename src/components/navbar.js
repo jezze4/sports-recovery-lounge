@@ -53,7 +53,7 @@ export default class NavBar extends PureComponent {
       .get()
       .then(doc => {
         if(doc.exists){
-          console.log(doc.data());
+          // console.log(doc.data());
           this.setState({fullName: doc.data().name})
           let fullName = doc.data().name.split(' ');
           this.setState({username: fullName[0]});

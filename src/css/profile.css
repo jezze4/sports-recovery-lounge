@@ -62,3 +62,13 @@
   color: gainsboro;
   background: rgba(0,0,0,.4);
 }
+
+.loading-in{
+  opacity: 0;
+  animation: loadIn 1s linear forwards !important;
+}
+
+@keyframes loadIn {
+  from {opacity: 0;}
+  to {opacity: 1}
+}

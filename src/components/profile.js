@@ -1,47 +1,39 @@
 import React, {PureComponent} from 'react';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-// import Button from '@material-ui/core/Button';
-// import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Button from '@material-ui/core/Button';
 import SwipeableViews from "react-swipeable-views";
 import {withRouter} from 'react-router-dom';
 
-import {auth, providers} from '../components/firebase';
-
+import {srl_db, auth, providers} from '../components/firebase';
 
 import '../css/profile.css';
-
-const testAppts = [
-  {
-    start: "9/19, 12:00 PM",
-    duration: "60 min.",
-    type: "full body",
-  },
-  {
-    start: "9/19, 2:00 PM",
-    duration: "30 min.",
-    type: "legs",
-  },
-  {
-    start: "9/19, 4:00 PM",
-    duration: "20 min.",
-    type: "arms",
-  },
-]
 
 class Profile extends PureComponent {
 
   state={
     index: 0,
-    user: null,
+    appData: [],
+    userData: null,
+    userEmail: null,
   }
 
   componentDidMount(){
-    this.setState({user: this.props.user})
+    this.authListener();
+  }
+
+  authListener() {
+    auth.onAuthStateChanged((user) => {
+      if(user) {
+        this.getUserAppointments(user);
+        this.getUser(user.uid);
+      } else {
+        this.setState({userData: null, userEmail: null});
+      }
+    })
   }
 
   logout(){
@@ -50,6 +42,40 @@ class Profile extends PureComponent {
     alert("You have signed out!");
   }
 
+  getUserAppointments(user) {
+    if(user){
+      srl_db.collection("Users").doc(user.uid).collection("appointments")
+        .get()
+        .then(query => query.docs.map(doc => doc.data()))
+        .then(docs => this.setState({appData: docs}))
+    }
+  }
+
+  getUser(uid){
+    srl_db.collection("Users").doc(uid)
+      .get()
+      .then(doc => {
+        if(doc.exists){
+          this.setState({userData: doc.data()})
+          this.setState({userEmail: doc.data().email})
+        }
+      });
+  }
+
+  Months = ["Jan.", "Feb.", "March", "April", "May", "June",
+                  "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec." ]
+
+  formatDate(date){
+    date = new Date(date);
+    return this.Months[date.getMonth()] + ' ' + date.getDay();
+  }
+
+  formatHours = (date) => {
+    date = new Date(date);
+    let hours = date.toLocaleTimeString();
+    hours = hours.substr(0, hours.length-6) + ' ' + hours.substr(hours.length-2);
+    return hours;
+  }
 
   renderAppointments(data){
     return(
@@ -60,9 +86,16 @@ class Profile extends PureComponent {
           <Grid item xs={4}><Typography variant="h6" className="profile-apt-title">Type</Typography></Grid>
         </Grid>
         {data.map((item, i) => (
-          <Grid className="profile-apt-info-container" container direction="row" key={"profile-appt-"+i}>
-            <Grid className="profile-apt-info" item xs={5}><Typography>{item.start}</Typography></Grid>
-            <Grid className="profile-apt-info" item xs={3}><Typography>{item.duration}</Typography></Grid>
+          <Grid className="profile-apt-info-container"
+            container direction="row"
+            key={"profile-appt-"+i}
+            alignItems="center"
+            >
+            <Grid className="profile-apt-info" item xs={5}>
+              <Typography style={{fontSize: '.8em'}}>{this.formatDate(item.startDate)}</Typography>
+              <Typography>{this.formatHours(item.startDate)}</Typography>
+            </Grid>
+            <Grid className="profile-apt-info" item xs={3}><Typography>{item.length} min.</Typography></Grid>
             <Grid className="profile-apt-info" item xs={4}><Typography>{item.type}</Typography></Grid>
           </Grid>
         ))}
@@ -74,8 +107,8 @@ class Profile extends PureComponent {
     return(
       <div className="profile-settings-container">
         <Typography variant="h6" className="profile-settings-title">Contact Info</Typography>
-        <Typography className="profile-settings-text">Phone: 956-337-7531</Typography>
-        <Typography className="profile-settings-text">Email: jezze.04@gmail.com</Typography>
+        {/* <Typography className="profile-settings-text">Phone: 956-337-7531</Typography> */}
+        <Typography className="profile-settings-text">{this.state.userEmail}</Typography>
         <Typography variant="h6" className="profile-settings-title">Options</Typography>
         <Typography className="profile-settings-text">Cancel Appointments?</Typography>
         <div className="profile-settings-text">
@@ -92,8 +125,8 @@ class Profile extends PureComponent {
     return(
       <div className="profile-info-container">
         <Typography variant="h4">{this.props.name}</Typography>
-        <Typography variant="subtitle1">Scheduled Appointments: 3</Typography>
-        <Typography variant="subtitle1">Completed Appointments: 3</Typography>
+        <Typography variant="subtitle1">Scheduled Appointments: {this.state.appData.length}</Typography>
+        <Typography variant="subtitle1">Completed Appointments: {this.state.appData.length}</Typography>
       </div>
     );
   }
@@ -119,7 +152,7 @@ class Profile extends PureComponent {
             index={index}
             onChangeIndex={(index)=>this.setState({index})}
             >
-            <div className="profile-swipeable-view">{this.renderAppointments(testAppts)}</div>
+            <div className="profile-swipeable-view">{this.renderAppointments(this.state.appData)}</div>
             <div className="profile-swipeable-view">{this.renderSettings()}</div>
           </SwipeableViews>
         </div>
@@ -129,12 +162,13 @@ class Profile extends PureComponent {
   }
 
   render(){
-    if(this.props.user){
+    if(this.state.userData){
       return(this.renderProfile());
     } else {
       return(
-        <div style={{paddingTop: '10vh', background: 'black', height: '100vh'}}>
-          <Typography variant="h3" style={{color: 'goldenrod'}}>Getting Info...</Typography>
+        <div style={{paddingTop: '40vh', background: 'black', height: '100vh'}}>
+          <Typography className="loading-in" style={{color: 'goldenrod'}} variant="h3">Welcome</Typography>
+          <Typography className="loading-in" style={{color: 'goldenrod'}} variant="h3">Jezze</Typography>
         </div>
       );
     }
