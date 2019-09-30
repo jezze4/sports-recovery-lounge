@@ -6,8 +6,11 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-
+import Button from '@material-ui/core/Button';
 import SwipeableViews from "react-swipeable-views";
+import {withRouter} from 'react-router-dom';
+
+import {auth, providers} from '../components/firebase';
 
 
 import '../css/profile.css';
@@ -36,15 +39,11 @@ const basicUser = {
   totalAppts: '3',
 }
 
-export default class Profile extends PureComponent {
+class Profile extends PureComponent {
 
   state={
     index: 0,
     user: "Jezze"
-  }
-
-  getUser = (returnFunction) => {
-    returnFunction(this.state.user);
   }
 
   componentDidMount(){
@@ -52,6 +51,17 @@ export default class Profile extends PureComponent {
       this.getUser(this.props.getUser);
     }
   }
+
+  getUser = (returnFunction) => {
+    returnFunction(this.state.user);
+  }
+
+  logout(){
+    auth.signOut();
+    this.props.history.push("/");
+    alert("You have signed out!");
+  }
+
 
   renderAppointments(data){
     return(
@@ -80,7 +90,11 @@ export default class Profile extends PureComponent {
         <Typography className="profile-settings-text">Email: jezze.04@gmail.com</Typography>
         <Typography variant="h6" className="profile-settings-title">Options</Typography>
         <Typography className="profile-settings-text">Cancel Appointments?</Typography>
-        <Typography></Typography>
+        <div className="profile-settings-text">
+          <Button variant="outlined" color="secondary" onClick={()=>this.logout()}>
+            Sign out
+          </Button>
+        </div>
       </div>
     );
 
@@ -136,3 +150,5 @@ export default class Profile extends PureComponent {
     }
   }
 }
+
+export default withRouter(Profile);

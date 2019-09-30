@@ -16,7 +16,7 @@ import '../css/navbar.css';
 export default class MobileNavbar extends PureComponent {
   state={
     value: null,
-    loginDialog: true,
+    loginDialog: false,
   }
 
   handleChange = (event, value) =>{

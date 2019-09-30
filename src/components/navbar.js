@@ -11,12 +11,13 @@ import Profile from '../components/profile';
 import Login from '../components/login';
 import MobileNavbar from '../components/mobileNavbar';
 
-import User from '../pages/user';
+// import User from '../pages/user';
 import Schedule from '../pages/schedule';
 import Appointments from '../pages/appointments';
 import Home from '../pages/home';
 import About from '../pages/about';
 import Services from '../pages/services';
+import {auth, providers} from '../components/firebase';
 
 import Logo from '../imgs/logo.png';
 import '../css/navbar.css';
@@ -29,8 +30,23 @@ export default class NavBar extends PureComponent {
     loginModal: false,
   }
 
+  componentDidMount(){
+    this.authListener();
+  }
+
   handleChange = (event, value) =>{
     this.setState({value});
+  }
+
+  authListener() {
+    auth.onAuthStateChanged((user) => {
+      // console.log("authListener: " + JSON.stringify(user.providerData[0].email));
+      if(user) {
+        this.setState({user: user.providerData[0].email});
+      } else {
+        this.setState({user: null});
+      }
+    })
   }
 
   renderDesktopNav(location){

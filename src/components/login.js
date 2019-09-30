@@ -13,7 +13,7 @@ import Tab from '@material-ui/core/Tab';
 
 import {Link, withRouter} from 'react-router-dom';
 
-import {auth, providers} from '../components/firebase';
+import {srl_db, auth, providers} from '../components/firebase';
 
 import '../css/login.css';
 
@@ -31,7 +31,7 @@ class Login extends PureComponent{
 
     email: '',
     password: '',
-    username: "jezze",
+    name: '',
   }
 
   componentWillMount(){
@@ -54,10 +54,28 @@ class Login extends PureComponent{
       })
   }
 
+  createAccount(e){
+    e.preventDefault();
+    auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((res)=>{
+        // console.log("createAccount: " + JSON.stringify(res.user.uid))
+        this.setUserData(res.user.uid)
+        this.renderRedirect();
+      })
+      .catch((error)=>{console.log("Account creation error: " + error)})
+  }
+
+  setUserData(uuid){
+    srl_db.collection("Users").doc(uuid).set({
+      name: this.state.name,
+      email: this.state.email
+    })
+  }
+
   renderRedirect = () => {
     this.props.close();
     // this.props.getUser(this.props.email);
-    this.props.history.push('/' + "account");
+    this.props.history.push("/account");
   }
 
 
@@ -289,7 +307,11 @@ class Login extends PureComponent{
           <Grid item style={{width: '100%', marginBottom: '20px'}}>
             <TextField
               label=<span className="input-label">Name</span>
+              type="text"
               name="name"
+              value={this.state.name}
+              onChange={(e)=>this.handleChange(e)}
+              autoComplete="name"
               variant="outlined"
               fullWidth
             />
@@ -319,7 +341,10 @@ class Login extends PureComponent{
             />
           </Grid>
           <Grid item>
-            <Button classes={{root: 'login-button'}} component={Link} to="/user">
+            <Button
+              classes={{root: 'login-button'}}
+              onClick={(e)=>this.createAccount(e)}
+              >
               Sign Up
             </Button>
           </Grid>
