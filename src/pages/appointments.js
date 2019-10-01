@@ -4,6 +4,7 @@ import Calendar from 'react-calendar'
 import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import {withRouter} from 'react-router-dom';
 
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -18,7 +19,7 @@ import MyScheduler from '../components/myScheduler';
 
 import '../css/appointments.css'
 
-export default class Appointment extends PureComponent {
+class Appointment extends PureComponent {
   state = {
     date: new Date(),
     appData: {},
@@ -47,7 +48,7 @@ export default class Appointment extends PureComponent {
 
     /* Check for no logged-in user. for now, return nothing. */
     if(this.props.user === null){
-      alert("Not Logged in!");
+      this.props.handleDialog();
       return;
     }
     srl_db.collection("appointments").doc(key).set({
@@ -71,9 +72,10 @@ export default class Appointment extends PureComponent {
       length: session_length,
       user: this.props.user.email,
     })
-    .then(function() {
-      alert("Appointment Submitted!");
-    })
+    .then(res => {
+        alert("Appointment Submitted!");
+        this.props.history.push("/account");
+      })
     .catch(function(error) {
       alert("Uhh... Something happened. Blame it on this error: ", error);
     });
@@ -92,26 +94,6 @@ export default class Appointment extends PureComponent {
   handleDateChange = (date, user) => {
 
     date = new Date(date);
-
-    /* Set Hours to first hours of day */
-    // switch(date.getDay()){
-    //   case 1:
-    //   case 2:
-    //   case 5: {
-    //     date.setHours(8);
-    //     break;
-    //   }
-    //   case 3:
-    //   case 4: {
-    //     date.setHours(10);
-    //     break;
-    //   }
-    //   case 6: {
-    //     date.setHours(9);
-    //     break;
-    //   }
-    //   default: date.setHours(0);
-    // }
 
     this.setState({
       date: date,
@@ -243,11 +225,12 @@ export default class Appointment extends PureComponent {
               <Typography variant="h5">Estimated Price: ${this.state.sessionPrice}.00</Typography>
             </Grid>
           </Grid>
-          <Grid item>
-            <Button fullWidth variant="contained" classes={{root: 'submit-app-btn'}} onClick={this.handleSubmit}>
-              Submit
-            </Button>
-          </Grid>
+          <Button
+            fullWidth variant="contained"
+            classes={(this.props.user) ? {root: 'submit-app-btn'} : {root: 'submit-app-btn-disabled'}}
+            onClick={this.handleSubmit}>
+            Submit
+          </Button>
       </Grid>
     );
   }
@@ -462,3 +445,5 @@ export default class Appointment extends PureComponent {
     return check;
   };
 }
+
+export default withRouter(Appointment);

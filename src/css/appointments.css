@@ -300,14 +300,21 @@
 
 .submit-app-btn{
   color: white !important;
-  /* width: 100% !important; */
+  min-width: 100% !important;
   background: goldenrod !important;
+}
+
+.submit-app-btn-disabled{
+  /* pointer-events: none; */
+  filter: opacity(.5);
+  color: gainsboro !important;
+  min-width: 100% !important;
+  background: gray !important;
 }
 
 @media screen and (max-width: 480px) {
   #appointment-summary{
     min-height: 70vh;
-    width: 100vw;
     background: rgba(0,0,0,0);
     box-shadow: none;
   }

@@ -13,7 +13,7 @@ import MobileNavbar from '../components/mobileNavbar';
 
 // import User from '../pages/user';
 import Schedule from '../pages/schedule';
-import Appointments from '../pages/appointments';
+import Appointment from '../pages/appointments';
 import Home from '../pages/home';
 import About from '../pages/about';
 import Services from '../pages/services';
@@ -149,7 +149,7 @@ export default class NavBar extends PureComponent {
               <Switch>
                 <Route path="/account" render={() => <Profile user={this.state.user} name={this.state.fullName}/>} />
                 <Route path="/schedule" render={() => <Schedule />} />
-                <Route path="/appointments" render={() => <Appointments user={this.state.user}/>} />
+                <Route path="/appointments" render={() => <Appointment user={this.state.user} handleDialog={this.handleDialog}/>} />
                 <Route path="/services" render={() => <Services />} />
                 <Route path="/about" render={() => <About/>} />
                 <Route path="/" render={() => <Home />} />
