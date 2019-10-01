@@ -16,9 +16,31 @@ import '../css/navbar.css';
 export default class MobileNavbar extends PureComponent {
   state={
     value: null,
-    loginDialog: false,
-    uid: null,
+    prevScrollpos: window.pageYOffset,
+    hidden: false
   }
+
+  // Adds an event listener when the component is mount.
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  // Remove the event listener when the component is unmount.
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const hidden = prevScrollpos < currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      hidden
+    });
+  };
 
   handleChange = (event, value) =>{
     this.setState({value});
@@ -26,10 +48,11 @@ export default class MobileNavbar extends PureComponent {
 
   renderMobileNav(path){
     if(path!=="/schedule"){
-      var value = path;
-      // (value === '/account')?this.setState({inAccount: false}):this.setState({inAccount: true});
+      let value = path;
+      const { hidden } = this.state;
       return(
-        <AppBar position="static" classes={{root: 'appbar-root appbar-mobile'}}>
+        <AppBar position="static"
+          classes={{root: 'appbar-root appbar-mobile ' + ((hidden) ? 'appbar-hidden' : null)}}>
           <Tabs
             classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
             value={value}
@@ -37,48 +60,28 @@ export default class MobileNavbar extends PureComponent {
             >
             <Tab
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-                <div>
-                  <i className="material-icons md-24">home</i>
-                  {/* {(value==="/") ? <div>Home</div> : null} */}
-                  <div>Home</div>
-                </div>
+              label=<div><i className="material-icons md-24">home</i><div>Home</div></div>
               component={Link}
               to="/"
               value="/"
             />
             <Tab
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-                <div>
-                  <i className="material-icons md-24">today</i>
-                  {/* {(value==="/appointments") ? <div>Schedule</div> : null} */}
-                  <div>Schedule</div>
-                </div>
+              label=<div><i className="material-icons md-24">today</i><div>Schedule</div></div>
               component={Link}
               to="/appointments"
               value="/appointments"
             />
             <Tab
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-              <div>
-                <i className="material-icons md-24">fitness_center</i>
-                {/* {(value==="/services") ? <div>Services</div> : null} */}
-                <div>Services</div>
-              </div>
+              label=<div><i className="material-icons md-24">fitness_center</i><div>Services</div></div>
               component={Link}
               to="/services"
               value="/services"
             />
             <Tab
               classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-              <div>
-                <i className="material-icons md-24">people_alt</i>
-                {/* {(value==="/about") ? <div>About</div> : null} */}
-                <div>About</div>
-              </div>
+              label=<div><i className="material-icons md-24">people_alt</i><div>About</div></div>
               component={Link}
               to="/about"
               value="/about"
@@ -86,17 +89,6 @@ export default class MobileNavbar extends PureComponent {
             <Tab
               value="/account"
             />
-            {/* <Tab
-              classes={{root: 'tab-root tab-mobile', selected: 'tab-selected tab-mobile-selected'}}
-              label=
-              <div>
-                <i className="material-icons md-24" style={{color: 'white'}}>people</i>
-                {(value==="/login" || value==="/user") ? <div>Me</div> : null}
-              </div>
-              component={Link}
-              to="/login"
-              value="/login"
-            /> */}
           </Tabs>
         </AppBar>
       );
@@ -105,8 +97,10 @@ export default class MobileNavbar extends PureComponent {
 
   /* Welcome message only rendered if user is logged in */
   renderMobileAppbar(){
+    const { hidden } = this.state;
     return(
-      <AppBar position="static" classes={{root: 'mobile-header'}}>
+      <AppBar position="static"
+        classes={{root: 'mobile-header ' + ((hidden)?'header-hidden':null)}}>
         <Grid container justify="space-between" alignItems="center">
           <Grid item xs={3}>
             {(this.props.user) ? (
@@ -145,16 +139,9 @@ export default class MobileNavbar extends PureComponent {
     );
   }
 
-
-
-  setUser(uid){
-    this.setState({uid});
-  }
-
   render(){
     return(
       <div>
-        {/* {this.renderLogin()} */}
         {this.renderMobileAppbar()}
         {this.renderMobileNav(this.props.path)}
       </div>

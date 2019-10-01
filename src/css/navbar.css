@@ -6,16 +6,26 @@
   width: 100% !important;
   z-index: 1000 !important;
   height: 10vh;
+  transition: bottom .5s !important;
   /* box-shadow: none !important; */
 }
 
 .mobile-header{
   background: linear-gradient(to bottom, rgba(60,60,60,1),rgba(0,0,0,.8)) !important;
-  top: 0 !important;
+  top: 0;
   position: fixed !important;
   height: 8vh;
   z-index: 1000 !important;
   opacity: .9;
+  transition: top .5s !important;
+}
+
+.appbar-hidden{
+  bottom: -10vh;
+}
+
+.header-hidden{
+  top: -8vh;
 }
 
 .appbar-desktop{
