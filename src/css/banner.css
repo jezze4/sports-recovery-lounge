@@ -1,5 +1,5 @@
 .banner-container{
-  height: 90vh;
+  height: 60vh;
   width: 100%;
   background-size: cover;
   background-position: center;
@@ -12,7 +12,7 @@
 .banner-bt-root{
   background-color: #FFC44D !important;
   border-color: #FFC44D !important;
-  font-size: .7em !important;
+  font-size: 1.1em !important;
   color: white !important;
   border-radius: 50px !important;
   transition: .3s !important;
@@ -24,19 +24,19 @@
 }
 
 #banner-desc{
-  margin-top: 60vh;
+  margin-top: 30vh;
   height: inherit;
   text-shadow: 0 1px 5px gray;
 }
 
 #banner-title{
   color: #FFCC66;
-  font-size: .8em;
+  font-size: 1.1em;
 }
 
 #banner-subtitle{
   text-align: left;
-  font-size: 1em;
+  font-size: 1.7em;
 }
 
 #banner-img{

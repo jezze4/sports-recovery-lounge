@@ -7,7 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import '../css/home.css'
 import AboutImage from '../imgs/runner-girl.jpg';
 import BenefitsImage from '../imgs/benefits-girl.jpg'
-import BenefitsImageM from '../imgs/benefits-girl-mobile.jpg'
 
 /* Summary Image */
 import FirstSummary from '../imgs/runner-girl2.jpg';
@@ -57,58 +56,13 @@ export default class Home extends PureComponent {
     );
   }
 
-  renderBenefits(){
-    return(
-      <Grid container id="section-benefits" justify="flex-start" alignItems="center"
-        style={{
-          background: ((this.state.isMobile) ?
-            'linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,.8)), url('+ BenefitsImageM +')' :
-            'linear-gradient(to bottom right, rgba(250,210,0,0), rgba(0,0,0,.5)), url('+ BenefitsImage +')' ),
-          minHeight: '100vh',
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          color: 'white'
-        }}
-        >
-          <Grid item id="benefits-text">
-            <Typography variant="h2" id="benefits-title">
-              WHO WOULD BENEFIT FROM COMPRESSION THERAPY?
-              <div className="underbar"/>
-            </Typography>
-            <br/><br/>
-            <Typography variant="body2" component="div" className="benefits-bullets">
-              <span className="gold-bullet"/>
-              Any athlete who uses his/her legs: Runners, Swimmers, Cyclists, Crossfitters, etc.
-              <br/>
-              <span className="gold-bullet"/>
-              <div className="underbar underbar-bullets"/>
-              Athletes of all sports including football, basketball, baseball, soccer, volleyball, etc.
-              <br/>
-              <span className="gold-bullet"/>
-              <div className="underbar underbar-bullets"/>
-              Anyone who works on his/her feet all day, because gravity causes poor circulation in your legs
-              when you are standing all day. Nurses, doctors, construction, and numerous professions benefit.
-              <br/>
-              <span className="gold-bullet"/>
-              <div className="underbar underbar-bullets"/>
-              Anyone who battles poor circulation would benefit: diabetes, varicose, peripheral artery disease,
-              and just about any circulation disease with the exception of deep vein thrombosis.
-              <br/>
-              <span className="gold-bullet"/>
-              <div className="underbar underbar-bullets"/>
-              Finally, anyone who enjoys a relaxing massage!
-            </Typography>
-          </Grid>
-      </Grid>
-    );
-  }
 
   render(){
     return(
       <div>
         <Carousel />
         {this.renderSummaries()}
-        {this.renderBenefits()}
+        {/* this.renderBenefits()} */}
       </div>
     );
   }
