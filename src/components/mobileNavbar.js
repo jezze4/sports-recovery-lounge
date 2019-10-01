@@ -1,14 +1,14 @@
 import React, {PureComponent} from 'react';
 import { Link } from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
-import Dialog from '@material-ui/core/Dialog';
+// import Dialog from '@material-ui/core/Dialog';
 // import Slide from '@material-ui/core/Slide';
 import Grid from '@material-ui/core/Grid';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 
-import Login from '../components/login';
+// import Login from '../components/login';
 
 import Logo from '../imgs/logo.png';
 import '../css/navbar.css';

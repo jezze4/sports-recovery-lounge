@@ -50,6 +50,15 @@ export default class Appointment extends PureComponent {
       alert("Not Logged in!");
       return;
     }
+    srl_db.collection("appointments").doc(key).set({
+      startDate: date.toISOString(),
+      date: session_date,
+      endDate: endDate.toISOString(),
+      type: session_type,
+      start: session_time,
+      length: session_length,
+      user: this.props.user.email,
+    })
 
     srl_db.collection("Users").doc(this.props.user.uid)
     .collection("appointments").doc(key)
@@ -127,13 +136,13 @@ export default class Appointment extends PureComponent {
       case 6: {
         if (hours > 13)
           fullDate.setDate(fullDate.getDate()+1);
-          // fullDate = this.handleDateChange(fullDate);
+          fullDate = this.handleDateChange(fullDate);
         break;
       }
       default: {
         if (hours > 18)
           fullDate.setDate(fullDate.getDate()+1);
-          // fullDate = this.handleDateChange(fullDate);
+          fullDate = this.handleDateChange(fullDate);
         break;
       }
     }
@@ -141,7 +150,7 @@ export default class Appointment extends PureComponent {
     /* skip Sunday */
     if(fullDate.getDay()===0){
       fullDate.setDate(fullDate.getDate()+1);
-      // fullDate = this.handleDateChange(fullDate);
+      fullDate = this.handleDateChange(fullDate);
     }
 
     fullDate.setMinutes(0);

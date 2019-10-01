@@ -19,7 +19,8 @@ const ScheduledAppointment = ({...props}) => {
 export default class Schedule extends PureComponent {
 
   state={
-    appData: []
+    appData: [],
+    dataFetched: false
   }
 
   componentDidMount(){
@@ -27,35 +28,23 @@ export default class Schedule extends PureComponent {
   }
 
   getAppointments(){
-    srl_db.collection("appointments")
-      .get()
+    srl_db.collection("appointments").get()
       .then(query => query.docs.map(doc => doc.data()))
       .then(docs => this.setState({appData: docs}))
-      .then(res => this.setState({dataFetched: true}));
   }
 
   render(){
     return(
       <Paper className="schedule-container">
+        <h1>Total Appointments: {this.state.appData.length}</h1>
         <Scheduler rootComponent={SchedulerRoot} data={this.state.appData}>
-          {/* Update the schedulerData */}
+
           <ViewState
             // currentDate={this.props.date}
           />
           <WeekView
             excludedDays={[0]}
             startDayHour={8}
-            // endDayHour={19}
-            // cellDuration={this.props.duration}
-            // layoutComponent={DayViewLayout}
-            // timeScaleLayoutComponent={TimeScaleLayout}
-            // timeScaleCellComponent={TimeScaleCell}
-            // dayScaleLayoutComponent={DayScaleLayout}
-            // dayScaleCellComponent={DayScaleCell}
-            // dayScaleEmptyCellComponent={DayScaleEmptyCell}
-            // timeTableLayoutComponent={TimeTableLayout}
-            // timeTableCellComponent={({...props})=>
-            //   TimeTableCell(this.props.onSelectTime, this.props.date, {...props})}
           />
           <Toolbar />
           <DateNavigator />
