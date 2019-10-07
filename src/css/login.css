@@ -1,8 +1,18 @@
 .login-container {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   z-index: 1000;
-  position: absolute;
+  background: rgba(0,0,0,1) !important;
+  /* position: absolute; */
+}
+
+.login-dialog{
+  margin-top: 8vh;
+  width: 90vw;
+  margin: 5vh 4vw;
+  min-width: 60vw;
+  border-radius: 20px !important;
+  /* background: rgba(0,0,0,1) !important; */
 }
 
 .mobile-login-container{
@@ -20,33 +30,53 @@
   /* background-attachment: fixed; */
 }
 
+/* Mobile Login Modal */
+.mobile-login-dialog{
+  /* height: 92vh; */
+  margin-top: 8vh;
+}
+
 .login-banner{
   position: absolute;
-  background: #FFCC66;
-  height: 100vh;
+  background: linear-gradient(to bottom right, black, #FFCC66, black);
+  background-size: 800% 200%;
+  height: inherit;
   width: 40vw !important;
   z-index: 1004;
   color: white !important;
-  transition: transform .6s ease-in-out;
-  -webkit-transition: -webkit-transform .6s ease-in-out;
-  -moz-transition: -moz-transform .6s ease-in-out;
-  right: 0;
+  transition: .6s ease-in-out !important;
+  -webkit-transition: .6s ease-in-out !important;
+  -moz-transition: .6s ease-in-out !important;
+  margin-left: 50vw !important;
+  animation: animateGradient 8s ease infinite;
+  /* right: 0; */
 }
 
 .lb-left{
-  transform: translateX(-150%);
+  /* background-image: linear-gradient(to top right, #FFCC66, black); */
+  margin-left: 0 !important;
+  /* filter: invert(); */
+  /* transform: translateX(-150%);
     -webkit-transform: translateX(-150%);
-    -moz-transform: translateX(-150%);
+    -moz-transform: translateX(-150%); */
 }
 
 .lb-right{
-  transform: none;
+  /* transform: none;
     -webkit-transform: none;
-    -moz-transform: none;
+    -moz-transform: none; */
+}
+
+@keyframes animateGradient {
+  0%{background-position:0% 100%}
+  50%{background-position:100% 100%}
+  100%{background-position:0% 100%}
+  /* 100%{background-position:0% 50%} */
 }
 
 .signin-container, .signup-container{
   position: absolute;
+  background: rgba(0,0,0,1) !important;
   height: 100%;
   width: 30%;
   padding: 0 15%;
@@ -57,9 +87,9 @@
 }
 
 .signin-right, .signup-right{
-  transform: translateX(66%);
-    -webkit-transform: translateX(66%);
-    -moz-transform: translateX(66%);
+  transform: translateX(66.6%);
+    -webkit-transform: translateX(66.6%);
+    -moz-transform: translateX(66.6%);
 }
 
 .signin-left{

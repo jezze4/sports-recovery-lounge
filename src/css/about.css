@@ -1,7 +1,7 @@
 #about-desc{
-  background: black;
   background-attachment: fixed !important;
   background-size: cover !important;
+  background:linear-gradient(to bottom right, rgba(255, 210, 110, .3),rgba(0, 0, 0, .6),rgba(0, 0, 0, 1)),url('../imgs/runner-girl.jpg');
   /* background-position: bottom !important; */
   filter: none;
   box-shadow: 0 -2px 10px black;
@@ -11,7 +11,7 @@
 
 .desc-section, .rick-section{
   margin: 18px !important;
-  background: rgba(0, 0, 0, .6);
+  /* background: rgba(0, 0, 0, .6); */
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-size: contain !important;
@@ -81,6 +81,11 @@
 /* CSS for Desktop */
 
 @media screen and (min-width: 480px) {
+  #about-desc{
+    background-attachment: fixed !important;
+  }
+
+
   .desc-section, .rick-section{
     padding: 40px;
     width: 80% !important;

@@ -17,7 +17,7 @@ export default class About extends PureComponent{
   renderDesc(){
     return(
       <Grid container direction="row" justify="center" alignItems="center" id="about-desc"
-        style={{background: 'linear-gradient(to bottom right, rgba(255, 210, 110, .3),rgba(0, 0, 0, .6),rgba(0, 0, 0, 1)),url('+AboutBG+')'}}
+        // style={{backgroundImage: 'linear-gradient(to bottom right, rgba(255, 210, 110, .3),rgba(0, 0, 0, .6),rgba(0, 0, 0, 1)),url('+AboutBG+')'}}
       >
         <Grid item className="desc-section"
           style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
@@ -40,7 +40,7 @@ export default class About extends PureComponent{
     return(
       <Grid container id="about-rick" justify="center" alignItems="center">
         <Grid container className="rick-section" direction="row"
-          style={{background: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
+          style={{backgroundImage: 'linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.8)), url('+Logo+')'}}>
           <Grid item xs={3} sm={3} id="pic-container">
             <img
               src={RickPic}
@@ -70,7 +70,7 @@ export default class About extends PureComponent{
       return(
         <Grid container id="section-benefits" justify="flex-start" alignItems="center"
           style={{
-            background: ((this.mobilecheck()) ?
+            backgroundImage: ((this.mobilecheck()) ?
               'linear-gradient(to bottom, rgba(0,0,0,.5), rgba(0,0,0,.8)), url('+ BenefitsImageM +')' :
               'linear-gradient(to bottom right, rgba(250,210,0,0), rgba(0,0,0,.5)), url('+ BenefitsImage +')' ),
             minHeight: '100vh',

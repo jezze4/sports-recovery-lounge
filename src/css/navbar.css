@@ -81,12 +81,6 @@
   font-size: .6em !important;
 }
 
-/* Mobile Login Modal */
-.mobile-login-dialog{
-  /* height: 92vh; */
-  margin-top: 8vh;
-}
-
 /* For Desktop */
 
 @media screen and (min-width: 480px) {
