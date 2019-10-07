@@ -100,8 +100,8 @@ class Profile extends PureComponent {
               <Typography style={{fontSize: '.8em'}}>{this.formatDate(item.startDate)}</Typography>
               <Typography>{this.formatHours(item.startDate)}</Typography>
             </Grid>
-            <Grid className="profile-apt-info" item xs={3}><Typography>{item.length} min.</Typography></Grid>
-            <Grid className="profile-apt-info" item xs={4}><Typography>{item.type}</Typography></Grid>
+            <Grid item xs={3}><Typography className="profile-apt-info">{item.length} min.</Typography></Grid>
+            <Grid item xs={4}><Typography className="profile-apt-info">{item.type}</Typography></Grid>
           </Grid>
         ))}
         </div>
@@ -116,9 +116,12 @@ class Profile extends PureComponent {
         {/* <Typography className="profile-settings-text">Phone: 956-337-7531</Typography> */}
         <Typography className="profile-settings-text">{this.state.userEmail}</Typography>
         <Typography variant="h6" className="profile-settings-title">Options</Typography>
-        <Typography className="profile-settings-text">Cancel Appointments? coming soon</Typography>
+        <Typography className="profile-settings-text">
+          Cancel Appointments? coming soon <br />
+          For now, call (956) 701-0173 or email rferdin@sportsrecoverylounge.com
+        </Typography>
         <div className="profile-settings-text">
-          <Button variant="outlined" color="secondary" onClick={()=>this.logout()}>
+          <Button classes={{root: 'profile-out-btn'}} variant="outlined" color="secondary" onClick={()=>this.logout()}>
             Sign out
           </Button>
         </div>
