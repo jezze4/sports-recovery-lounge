@@ -27,6 +27,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+  overflow: hidden;
   /* background-attachment: fixed; */
 }
 
@@ -170,17 +171,22 @@
 }
 
 .m-signin-root{
-  height: 8vh;
+  position: absolute;
+  bottom: 0px;
+  height: 8vh !important;
+  width: 100%;
   transition: .3s !important;
 }
 
 .m-tab-active{
+  height: 8vh !important;
   transition: .4s !important;
   box-shadow: none;
   color: #FFCC66 !important;
 }
 
 .m-tab-inactive{
+  height: 8vh !important;
   transition: .4s !important;
   /* color: lightgray !important; */
   color: gray !important;
@@ -188,6 +194,7 @@
 }
 
 .m-signin-indicator{
+  display: none !important;
   height: 0vh !important;
   background: rgba(255, 210, 100, .3) !important;
 }
