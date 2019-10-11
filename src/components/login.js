@@ -169,7 +169,6 @@ class Login extends PureComponent{
           <Grid item>
             <Button
               classes={{root: 'login-button'}}
-              component={Link}
               onClick={(e)=>this.login(e)}
             >
               Sign In

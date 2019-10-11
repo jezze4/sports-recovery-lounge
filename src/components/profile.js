@@ -176,8 +176,8 @@ class Profile extends PureComponent {
     } else {
       return(
         <div style={{paddingTop: '40vh', background: 'black', height: '100vh'}}>
-          <Typography className="loading-in" style={{color: 'goldenrod'}} variant="h3">Welcome</Typography>
-          <Typography className="loading-in" style={{color: 'goldenrod'}} variant="h3">Jezze</Typography>
+          <Typography className="loading-in" style={{color: 'goldenrod'}} variant="h3">Welcome to</Typography>
+          <Typography className="loading-in" style={{color: 'goldenrod'}} variant="h3">Sport's Recovery</Typography>
         </div>
       );
     }

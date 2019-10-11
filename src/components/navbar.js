@@ -1,17 +1,15 @@
 import React, {PureComponent} from 'react';
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import { withRouter, Switch, Route, Link, BrowserRouter as Router} from "react-router-dom";
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Dialog from '@material-ui/core/Dialog';
-// import Typography from '@material-ui/core/Typography';
 
 import Profile from '../components/profile';
 import Login from '../components/login';
 import MobileNavbar from '../components/mobileNavbar';
 
-// import User from '../pages/user';
 import Schedule from '../pages/schedule';
 import Appointment from '../pages/appointments';
 import Home from '../pages/home';
@@ -22,14 +20,19 @@ import {srl_db, auth, providers} from '../components/firebase';
 import Logo from '../imgs/logo.png';
 import '../css/navbar.css';
 
-export default class NavBar extends PureComponent {
-  state={
-    value: 0,
-    isMobile: false,
-    user: null,
-    fullName: null,
-    username: null,
-    loginDialog: false,
+class NavBar extends PureComponent {
+
+  constructor(props) {
+    super(props);
+    this.state={
+      value: 0,
+      isMobile: false,
+      user: null,
+      fullName: null,
+      username: null,
+      loginDialog: false,
+      prevTab: "/",
+    }
   }
 
   componentWillMount(){
@@ -37,7 +40,28 @@ export default class NavBar extends PureComponent {
   }
 
   componentDidMount(){
+    window.onpopstate = this.onBackButtonEvent;
     this.authListener();
+  }
+
+  onBackButtonEvent = (e) => {
+    if(this.state.loginDialog)
+      this.setState({loginDialog: false})
+    else if(this.props.location.pathname === "/login"){
+      this.setState({loginDialog: true})
+    }
+  }
+
+  addLoginHistory = () => {
+    if(this.props.location.pathname !== "/login")
+      this.setState({prevTab: this.props.location.pathname})
+    this.props.history.push("/login");
+  }
+
+  removeLoginHistory = () => {
+    if(this.props.location.pathname === "/login"){
+      window.history.back();
+    }
   }
 
   handleChange = (event, value) =>{
@@ -75,57 +99,60 @@ export default class NavBar extends PureComponent {
 
   renderDesktopNav(location){
     const {username} = this.state;
-    if(location.pathname!=="/schedule")
-    return(
-      <AppBar position="static" classes={{root: 'appbar-root appbar-desktop'}}>
-        <Link to="/">
-          <img src={Logo} alt="" id="appbar-logo"/>
-        </Link>
-        <Tabs
-          classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
-          value={location.pathname}
-          onChange={this.handleChange}
-          >
-          <Tab
-            classes={{root: 'tab-root', selected: 'tab-selected'}}
-            label="Home"
-            component={Link}
-            to="/"
-            value="/"
-          />
-          <Tab
-            classes={{root: 'tab-root', selected: 'tab-selected'}}
-            label="Book Appointment"
-            component={Link}
-            to="/appointments"
-            value="/appointments"
-          />
-          <Tab
-            classes={{root: 'tab-root', selected: 'tab-selected'}}
-            label="Services & Pricing"
-            component={Link}
-            to="/services"
-            value="/services"
-          />
-          <Tab
-            classes={{root: 'tab-root', selected: 'tab-selected'}}
-            label="About"
-            component={Link}
-            to="/about"
-            value="/about"
-          />
-          />
-          <Tab
-            classes={{root: 'tab-root', selected: 'tab-selected'}}
-            label={(username)?"Hello, " + username + "!":"Login/Signup"}
-            component={(username)?Link:Button}
-            onClick={(username)?null:this.handleDialog}
-            to={(username)?"/account":null}
-            value="/account"
-          />
-        </Tabs>
-      </AppBar>
+    if(location.pathname!=="/schedule"){
+      var path = location.pathname
+      if(location.pathname === "/login") path = this.state.prevTab
+      return(
+        <AppBar position="static" classes={{root: 'appbar-root appbar-desktop'}}>
+          <Link to="/">
+            <img src={Logo} alt="" id="appbar-logo"/>
+          </Link>
+          <Tabs
+            classes={{root: 'tabs-root', indicator: 'tabs-indicator'}}
+            value={path}
+            onChange={this.handleChange}
+            >
+            <Tab
+              classes={{root: 'tab-root', selected: 'tab-selected'}}
+              label="Home"
+              component={Link}
+              to="/"
+              value="/"
+            />
+            <Tab
+              classes={{root: 'tab-root', selected: 'tab-selected'}}
+              label="Book Appointment"
+              component={Link}
+              to="/appointments"
+              value="/appointments"
+            />
+            <Tab
+              classes={{root: 'tab-root', selected: 'tab-selected'}}
+              label="Services & Pricing"
+              component={Link}
+              to="/services"
+              value="/services"
+            />
+            <Tab
+              classes={{root: 'tab-root', selected: 'tab-selected'}}
+              label="About"
+              component={Link}
+              to="/about"
+              value="/about"
+            />
+            />
+            <Tab
+              classes={{root: 'tab-root', selected: 'tab-selected'}}
+              label={(username)?"Hello, " + username + "!":"Login/Signup"}
+              component={(username)?Link:Button}
+              onClick={(username)?null:this.handleDialog}
+              to={(username)?"/account":null}
+              value="/account"
+            />
+          </Tabs>
+        </AppBar>
       );
+    }
   }
 
   renderLogin(isMobile){
@@ -133,6 +160,8 @@ export default class NavBar extends PureComponent {
       <Dialog
         classes={{root: ((isMobile)?'mobile-login-dialog':'login-dialog')}}
         open={this.state.loginDialog}
+        onEntered={this.addLoginHistory}
+        onExit={this.removeLoginHistory}
         onClose={this.handleDialog}
         fullScreen={true}
       >
@@ -146,7 +175,7 @@ export default class NavBar extends PureComponent {
   render(){
     const { isMobile } = this.state;
     return(
-      <BrowserRouter>
+      <Router>
         <Route
           path="/"
           render={({location}) =>(
@@ -162,12 +191,12 @@ export default class NavBar extends PureComponent {
                 <Route path="/appointments" render={() => <Appointment user={this.state.user} handleDialog={this.handleDialog}/>} />
                 <Route path="/services" render={() => <Services />} />
                 <Route path="/about" render={() => <About/>} />
-                <Route path="/" render={() => <Home />} />
+                <Route path="/" render={() => <Home/>} />
               </Switch>
             </div>
           )}
         />
-      </BrowserRouter>
+      </Router>
     );
   }
 
@@ -177,3 +206,5 @@ export default class NavBar extends PureComponent {
     return check;
   };
 }
+
+export default withRouter(NavBar);
