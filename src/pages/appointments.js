@@ -92,7 +92,6 @@ class Appointment extends PureComponent {
 
   /* For TimePicker */
   handleDateChange = (date, user) => {
-
     date = new Date(date);
 
     this.setState({
@@ -185,7 +184,7 @@ class Appointment extends PureComponent {
     return(
       <Grid id="time-container" item container direction="row" justify={(!this.mobilecheck())?'space-between':'center'}>
         {(this.mobilecheck())?<Typography className="app-section-title">Time</Typography> : ''}
-        <Grid item sm={4} xs={10}>
+        <Grid item sm={6} xs={10}>
           <MyScheduler
             date={this.state.date}
             onSelectTime={(e)=>this.handleDateChange(e, "user")}
@@ -200,7 +199,7 @@ class Appointment extends PureComponent {
 
   renderSummary(){
     return(
-      <Grid container item xs={12} sm={7} direction="column" justify="space-between" alignItems="stretch" id="appointment-summary">
+      <Grid container item xs={12} sm={5} direction="column" justify="space-evenly" id="appointment-summary">
           <Grid item>
             <Typography variant="h4">Summary<div className="underbar"></div></Typography>
           </Grid>
@@ -412,16 +411,16 @@ class Appointment extends PureComponent {
         <Container id="appointment-container">
           {this.renderSessionSelect()}
           {this.renderDurationSelect()}
-          <Grid container direction="row" alignItems="center" justify="center">
+          <Grid container direction="row" alignItems="flex-start" justify="center">
             <Grid item sm={12}>
               <Typography variant="h5" className="app-section-title" gutterBottom>
                 Select Date and Start Time
               </Typography>
             </Grid>
-            <Grid item sm={6}>
+            <Grid item sm={5}>
               {this.renderDateSelect()}
             </Grid>
-            <Grid item sm={6}>
+            <Grid item sm={7}>
               {this.renderTimeSelect()}
             </Grid>
           </Grid>

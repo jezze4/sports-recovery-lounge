@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import { Scheduler, DayView, Appointments } from '@devexpress/dx-react-scheduler-material-ui';
 import { ViewState } from '@devexpress/dx-react-scheduler';
+import Grid from '@material-ui/core/Grid'
+
 
 const SchedulerRoot = ({...props}) => {
   return <Scheduler.Root	{...props} className="scheduler-root" />
@@ -29,8 +31,8 @@ const DayScaleLayout = ({...props}) => {
 }
 
 const DayScaleCell = ({...props}) => {
-  // return <span {...props} className="day-scale-cell" />
-  return null;
+  return <DayView.DayScaleCell {...props} className="day-scale-cell" />
+  // return null;
 }
 
 const DayScaleEmptyCell = ({...props}) => {
@@ -45,20 +47,50 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   const {startDate} = props;
   const date = new Date(startDate);
   const aDate = new Date(activeDate);
-  const idNum = ''+date.getHours()+date.getMinutes();
-  const active = ''+aDate.getHours()+aDate.getMinutes();
+  const idNum = ''+date.getHours()+'-0';
+  const idNum2 = ''+date.getHours()+'-20';
+  const idNum3 = ''+date.getHours()+'-40';
+  const active = ''+aDate.getHours()+'-'+aDate.getMinutes();
   const isValid = validTime(date);
 
+  console.log(aDate.getMinutes())
+
   return(
-    <DayView.TimeTableCell {...props}
-      className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
-      id={(idNum===active) ? 'cell-active' : ''}
-      onClick={(e)=>onSelectTime(date)}
-      >
-        {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
-        {(date.getMinutes()===0) ? '00' : date.getMinutes()}
-        {(date.getHours() < 12) ? ' AM' : ' PM'}
-    </DayView.TimeTableCell>
+    <Grid container direction="row" justify="space-evenly" alignItems="center" component="td">
+      <Grid item>
+        <DayView.TimeTableCell {...props} component="span"
+          className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
+          id={(idNum===active) ? 'cell-active' : ''}
+          onClick={(e)=>onSelectTime(date)}
+          >
+            {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
+            {(date.getMinutes()===0) ? '00' : date.getMinutes()}
+            {(date.getHours() < 12) ? ' AM' : ' PM'}
+        </DayView.TimeTableCell>
+      </Grid>
+      <Grid item>
+        <DayView.TimeTableCell {...props} component="span"
+          className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
+          id={(idNum2===active) ? 'cell-active' : ''}
+          onClick={(e)=>onSelectTime(date.setMinutes(20))}
+          >
+            {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
+            {(date.getMinutes()===0) ? '20' : date.getMinutes()}
+            {(date.getHours() < 12) ? ' AM' : ' PM'}
+        </DayView.TimeTableCell>
+      </Grid>
+      <Grid item>
+        <DayView.TimeTableCell {...props} component="span"
+          className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
+          id={(idNum3===active) ? 'cell-active' : ''}
+          onClick={(e)=>onSelectTime(date.setMinutes(40))}
+          >
+            {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
+            {(date.getMinutes()===0) ? '40' : date.getMinutes()}
+            {(date.getHours() < 12) ? ' AM' : ' PM'}
+        </DayView.TimeTableCell>
+      </Grid>
+    </Grid>
   );
 }
 
@@ -141,7 +173,9 @@ export default class MyScheduler extends PureComponent {
         <DayView
           startDayHour={this.state.startHour}
           endDayHour={this.state.endHour}
-          cellDuration={this.props.duration}
+          // intervalCount={2}
+          // cellDuration={this.props.duration}
+          cellDuration={60}
           layoutComponent={DayViewLayout}
           timeScaleLayoutComponent={TimeScaleLayout}
           timeScaleCellComponent={TimeScaleCell}

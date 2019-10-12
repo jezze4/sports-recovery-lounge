@@ -76,17 +76,26 @@
 
 /***************** Scheduler Styling*****************/
 
+.MuiTableRow-root{
+}
+
+.MuiTableCell-root{
+}
+
 .scheduler-root{
   overflow-x: hidden !important;
-  box-shadow: 0 0 5px gold;
-  background: black;
+  /* box-shadow: 0 0 5px gold; */
+  background: none;
+  /* height: 100%; */
   border-radius: 10px;
 }
 
 .day-view-layout{
+  height: 100% !important;
   overflow-x: hidden !important;
+  /* overflow-y: hidden !important; */
   border-radius: 10px;
-  width: 108% !important;
+  /* width: 108% !important; */
 }
 
 .time-scale-cell{
@@ -108,8 +117,10 @@
 }
 
 .day-scale-cell{
+  display: none !important;
   background: black;
   color: #FFCC66 !important;
+  border: none !important;
 }
 
 .day-scale-cell-empty{
@@ -117,16 +128,29 @@
 }
 
 .time-table-layout{
-  margin-left: -10% !important;
-  width: 111% !important;
+  margin-left: -5% !important;
+  width: 100% !important;
 }
 
 .time-table-cell{
-  background: rgb(30,30,30) !important;
+  /* background: rgb(30,30,30) !important; */
+  background: linear-gradient(to bottom right, black, black, rgba(255, 210, 110, .2)) !important;
+  border-color: #FFCC66 !important;
+  border-style: inset!important;
+  color: #FFCC66 !important;
+  box-shadow: 0 0 3px #FFCC66 inset;
   transition: .2s !important;
-  width: 100%;
+  /* width: 100%; */
+  justify-content: center !important;
   text-align: center !important;
   color: gold !important;
+
+  display: block !important;
+  margin: 8px 0 !important;
+  border: none !important;
+  padding: 8px !important;
+  width: 100%;
+  height: 100% !important;
 }
 
 .time-table-cell:hover{
@@ -295,16 +319,18 @@
   color: lightgray;
   box-shadow: 0 0 5px #FFCC66;
   border-radius: 10px;
-  min-height: 90%;
+  height: 100% !important;
 }
 
 .submit-app-btn{
+  margin-top: 32px !important;
   color: white !important;
   min-width: 100% !important;
   background: goldenrod !important;
 }
 
 .submit-app-btn-disabled{
+  margin-top: 32px !important;
   /* pointer-events: none; */
   filter: opacity(.5);
   color: gainsboro !important;
