@@ -2,7 +2,7 @@
 
 .calendar-root{
   border-width: 0;
-  box-shadow: 0 0 5px gold;
+  box-shadow: 0 0 5px #FFCC66 inset;
   width: 100%;
   background: black;
   border-radius: 10px;
@@ -30,7 +30,7 @@
 }
 
 .react-calendar__navigation__label{
-  background: black !important;
+  background: rgba(0,0,0,0) !important;
 }
 
 .calendar-slownav{
@@ -56,7 +56,7 @@
 
 .react-calendar__navigation__arrow:disabled{
   border-radius: 50%;
-  background: rgba(0, 0, 0, 1) !important;
+  background: rgba(0, 0, 0, 0) !important;
 }
 
 .react-calendar__navigation__label{
@@ -111,13 +111,22 @@
   width: 400% !important;
 }
 
+.day-view-layout.MuiGrid-container{
+  /* display: none !important; */
+}
+
+.VerticalViewLayout-stickyHeader-236,
+.VerticalViewLayout-stickyHeader-263{
+  display: none !important;
+}
+
 .day-scale-layout{
   margin-left: -10% !important;
   width: 111% !important;
 }
 
 .day-scale-cell{
-  display: none !important;
+  /* display: none !important; */
   background: black;
   color: #FFCC66 !important;
   border: none !important;
@@ -134,9 +143,10 @@
 
 .time-table-cell{
   /* background: rgb(30,30,30) !important; */
-  background: linear-gradient(to bottom right, black, black, rgba(255, 210, 110, .2)) !important;
-  border-color: #FFCC66 !important;
-  border-style: inset!important;
+  /* background: linear-gradient(to bottom right, black, black, rgba(255, 210, 110, .2)) !important; */
+  background: black;
+  border: #FFCC66 inset !important;
+  border-radius: 4px;
   color: #FFCC66 !important;
   box-shadow: 0 0 3px #FFCC66 inset;
   transition: .2s !important;
@@ -317,7 +327,7 @@
   padding: 16px 24px;
   background: black;
   color: lightgray;
-  box-shadow: 0 0 5px #FFCC66;
+  box-shadow: 0 0 5px #FFCC66 inset;
   border-radius: 10px;
   height: 100% !important;
 }

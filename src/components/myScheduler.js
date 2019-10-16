@@ -56,8 +56,8 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   console.log(aDate.getMinutes())
 
   return(
-    <Grid container direction="row" justify="space-evenly" alignItems="center" component="td">
-      <Grid item>
+    <Grid container direction="row" justify="space-around" alignItems="center" component="td">
+      <Grid item style={{width: '40%'}}>
         <DayView.TimeTableCell {...props} component="span"
           className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
           id={(idNum===active) ? 'cell-active' : ''}
@@ -68,18 +68,18 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
             {(date.getHours() < 12) ? ' AM' : ' PM'}
         </DayView.TimeTableCell>
       </Grid>
-      <Grid item>
+      <Grid item style={{width: '40%'}}>
         <DayView.TimeTableCell {...props} component="span"
           className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
           id={(idNum2===active) ? 'cell-active' : ''}
-          onClick={(e)=>onSelectTime(date.setMinutes(20))}
+          onClick={(e)=>onSelectTime(date.setMinutes(30))}
           >
             {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
-            {(date.getMinutes()===0) ? '20' : date.getMinutes()}
+            {(date.getMinutes()===0) ? '30' : date.getMinutes()}
             {(date.getHours() < 12) ? ' AM' : ' PM'}
         </DayView.TimeTableCell>
       </Grid>
-      <Grid item>
+      {/* <Grid item>
         <DayView.TimeTableCell {...props} component="span"
           className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
           id={(idNum3===active) ? 'cell-active' : ''}
@@ -89,7 +89,7 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
             {(date.getMinutes()===0) ? '40' : date.getMinutes()}
             {(date.getHours() < 12) ? ' AM' : ' PM'}
         </DayView.TimeTableCell>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 }
