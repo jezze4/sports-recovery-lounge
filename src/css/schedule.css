@@ -5,7 +5,7 @@
 .admin-schedule-root{
   background: white;
   position: absolute;
-  z-index: 999999;
+  z-index: 10;
   height: calc(100vh - 65px) !important;
 }
 
