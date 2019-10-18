@@ -329,7 +329,7 @@
   color: lightgray;
   box-shadow: 0 0 5px #FFCC66 inset;
   border-radius: 10px;
-  height: 100% !important;
+  height: 100%;
 }
 
 .submit-app-btn{
@@ -350,7 +350,7 @@
 
 @media screen and (max-width: 480px) {
   #appointment-summary{
-    min-height: 70vh;
+    height: 70vh;
     background: rgba(0,0,0,0);
     box-shadow: none;
   }

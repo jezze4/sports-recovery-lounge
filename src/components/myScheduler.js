@@ -53,8 +53,6 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   const active = ''+aDate.getHours()+'-'+aDate.getMinutes();
   const isValid = validTime(date);
 
-  console.log(aDate.getMinutes())
-
   return(
     <Grid container direction="row" justify="space-around" alignItems="center" component="td">
       <Grid item style={{width: '40%'}}>

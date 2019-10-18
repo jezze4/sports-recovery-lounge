@@ -52,7 +52,7 @@ class Appointment extends PureComponent {
       return;
     }
 
-    console.log(this.props.user);
+    // console.log(this.props.user);
 
     srl_db.collection("appointments").doc(key).set({
       startDate: date.toISOString(),
