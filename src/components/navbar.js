@@ -53,14 +53,18 @@ class NavBar extends PureComponent {
   }
 
   addLoginHistory = () => {
-    if(this.props.location.pathname !== "/login")
-      this.setState({prevTab: this.props.location.pathname})
-    this.props.history.push("/login");
+    if(this.state.isMobile){
+      if(this.props.location.pathname !== "/login")
+        this.setState({prevTab: this.props.location.pathname})
+      this.props.history.push("/login");
+    }
   }
 
   removeLoginHistory = () => {
-    if(this.props.location.pathname === "/login"){
-      window.history.back();
+    if(this.state.isMobile){
+      if(this.props.location.pathname === "/login"){
+        window.history.back();
+      }
     }
   }
 
@@ -90,10 +94,12 @@ class NavBar extends PureComponent {
       // console.log("authListener: " + JSON.stringify(user.providerData[0].email));
       if(user) {
         this.setState({user: user});
-        this.setState({fullName: user.displayName});
-        let fullName = user.displayName.split(' ');
-        this.setState({username: fullName[0]});
-        // this.getUser();
+        if(user.displayName){
+          this.setState({fullName: user.displayName});
+          let fullName = user.displayName.split(' ');
+          this.setState({username: fullName[0]});
+        }
+        else this.getUser();
       } else {
         this.setState({user: null, username: null, fullName: null});
       }

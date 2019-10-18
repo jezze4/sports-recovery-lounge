@@ -61,27 +61,30 @@ class Login extends PureComponent{
     e.preventDefault();
     auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res)=>{
-        console.log("createAccount: " + JSON.stringify(res.user))
+        // console.log("createAccount: " + JSON.stringify(res.user))
         res.user.updateProfile({
           displayName: this.state.name
         })
-        this.setState({user: res.user});
-        this.setUserData(res.user.uid);
-        this.renderRedirect();
+        .then(this.setUserData(res.user))
+        .then(this.renderRedirect())
+        // this.setState({user: res.user});
       })
       .catch((error)=>{console.log("Account creation error: " + error)})
+
   }
 
-  setUserData(uuid){
-    srl_db.collection("Users").doc(uuid).set({
+  setUserData(user){
+    console.log("setUserData: ");
+    console.log(user);
+    srl_db.collection("Users").doc(user.uid).set({
       name: this.state.name,
-      email: this.state.email
+      email: user.email
     })
   }
 
   renderRedirect = () => {
     this.props.close();
-    this.props.history.push("/account");
+    this.props.history.push("/");
   }
 
 
@@ -190,7 +193,11 @@ class Login extends PureComponent{
           <Grid item style={{width: '100%', marginBottom: '20px'}}>
             <TextField
               label=<span className="input-label">Name</span>
+              type="text"
               name="name"
+              value={this.state.name}
+              onChange={(e)=>this.handleChange(e)}
+              autoComplete="name"
               variant="outlined"
               fullWidth
             />
