@@ -21,7 +21,7 @@ const appointmentContent = ({...props}) => {
   const {data} = props;
   return(
     <div style={{color: 'white'}}>
-      <p>{data.user}</p>
+      <p>{data.username}</p>
       <Appointments.AppointmentContent {...props}	/>
     </div>
   );
@@ -34,7 +34,7 @@ const tooltipHeader = ({...props}) => {
   const {appointmentData} = props;
   return(
     <div style={{textAlign: 'center', padding: '8px 16px', background: '#5FBBFF', color: 'white'}}>
-      <h2 style={{fontWeight: '500'}}>{appointmentData.user}</h2>
+      <h2 style={{fontWeight: '500'}}>{appointmentData.username}</h2>
     </div>
   );
 }
@@ -43,9 +43,11 @@ const tooltipContent = ({...props}) => {
   const {appointmentData} = props;
   console.log(appointmentData);
   return(
-    <div style={{padding: '0px 16px', textAlign: 'center'}}>
+    <div style={{padding: '0px 16px', textAlign: 'left'}}>
+      <p style={{fontSize: ".8em", marginBottom: '0px'}}>User ID: {appointmentData.userID}</p>
+      <h4 style={{fontWeight: "normal"}}>Email: {appointmentData.user}</h4>
       <h4 style={{fontWeight: "normal"}}>Type: {appointmentData.type.toUpperCase()}</h4>
-      <h4 style={{fontWeight: "normal"}}>Length: {appointmentData.length} minutes</h4>
+      <h4 style={{fontWeight: "normal", marginBottom: '0px'}}>Length: {appointmentData.length} minutes</h4>
       <AppointmentTooltip.Content {...props}/>
     </div>
   );
@@ -71,7 +73,7 @@ export default class Schedule extends PureComponent {
   render(){
     return(
       <Paper className="schedule-container">
-        <h1>Total Appointments: {this.state.appData.length}</h1>
+        {/* <h1>Total Appointments: {this.state.appData.length}</h1> */}
         <Scheduler rootComponent={SchedulerRoot} data={this.state.appData}>
 
           <ViewState
