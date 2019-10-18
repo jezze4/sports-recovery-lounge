@@ -76,12 +76,6 @@
 
 /***************** Scheduler Styling*****************/
 
-.MuiTableRow-root{
-}
-
-.MuiTableCell-root{
-}
-
 .scheduler-root{
   overflow-x: hidden !important;
   /* box-shadow: 0 0 5px gold; */
@@ -111,17 +105,18 @@
   width: 400% !important;
 }
 
-.day-view-layout.VerticalViewLayout{
+.day-view-layout.MuiGrid-container{
   /* display: none !important; */
   /* background: rgba(0,0,0,0) !important; */
-  background: red !important;
+  margin-top: -5px;
+  overflow: hidden;
 }
 
-[class*="VerticalViewLayout-stickyHeader"]{
+/* [class*="VerticalViewLayout-stickyHeader"]{ */
 /* -stickyHeader-236, */
 /* .VerticalViewLayout-stickyHeader-263{ */
-  display: none !important;
-}
+  /* display: none !important;
+} */
 
 .day-scale-layout{
   background: red;
@@ -130,7 +125,7 @@
 }
 
 .day-scale-cell{
-  /* display: none !important; */
+  display: none !important;
   background: black;
   color: #FFCC66 !important;
   border: none !important;
@@ -374,5 +369,10 @@
     font-size: 2em !important;
     text-align: center;
     margin-left: 0 !important;
+  }
+
+  .day-view-layout.MuiGrid-container{
+    max-height: 65vh;
+    overflow: auto;
   }
 }
