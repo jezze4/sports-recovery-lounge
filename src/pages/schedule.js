@@ -80,6 +80,7 @@ export default class Schedule extends PureComponent {
           <WeekView
             excludedDays={[0]}
             startDayHour={8}
+            endDayHour={20}
           />
           <Toolbar />
           <DateNavigator />

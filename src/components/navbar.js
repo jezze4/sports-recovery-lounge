@@ -89,8 +89,11 @@ class NavBar extends PureComponent {
     auth.onAuthStateChanged((user) => {
       // console.log("authListener: " + JSON.stringify(user.providerData[0].email));
       if(user) {
-        this.setState({user: user})
-        this.getUser();
+        this.setState({user: user});
+        this.setState({fullName: user.displayName});
+        let fullName = user.displayName.split(' ');
+        this.setState({username: fullName[0]});
+        // this.getUser();
       } else {
         this.setState({user: null, username: null, fullName: null});
       }

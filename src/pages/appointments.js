@@ -51,6 +51,9 @@ class Appointment extends PureComponent {
       this.props.handleDialog();
       return;
     }
+
+    console.log(this.props.user);
+
     srl_db.collection("appointments").doc(key).set({
       startDate: date.toISOString(),
       date: session_date,
@@ -59,6 +62,8 @@ class Appointment extends PureComponent {
       start: session_time,
       length: session_length,
       user: this.props.user.email,
+      username: this.props.user.displayName,
+      userID: this.props.user.uid,
     })
 
     srl_db.collection("Users").doc(this.props.user.uid)
@@ -71,6 +76,8 @@ class Appointment extends PureComponent {
       start: session_time,
       length: session_length,
       user: this.props.user.email,
+      username: this.props.user.displayName,
+      userID: this.props.user.uid,
     })
     .then(res => {
         alert("Appointment Submitted!");

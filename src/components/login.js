@@ -61,7 +61,10 @@ class Login extends PureComponent{
     e.preventDefault();
     auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res)=>{
-        // console.log("createAccount: " + JSON.stringify(res.user.uid))
+        console.log("createAccount: " + JSON.stringify(res.user))
+        res.user.updateProfile({
+          displayName: this.state.name
+        })
         this.setState({user: res.user});
         this.setUserData(res.user.uid);
         this.renderRedirect();
@@ -217,7 +220,12 @@ class Login extends PureComponent{
             />
           </Grid>
           <Grid item>
-            <Button classes={{root: 'login-button'}}>Sign Up</Button>
+            <Button
+              classes={{root: 'login-button'}}
+              onClick={(e)=>this.createAccount(e)}
+              >
+              Sign Up
+            </Button>
           </Grid>
         </Grid>
       </Paper>
