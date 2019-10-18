@@ -48,16 +48,20 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   const date = new Date(startDate);
   const aDate = new Date(activeDate);
   const idNum = ''+date.getHours()+'-0';
-  const idNum2 = ''+date.getHours()+'-20';
-  const idNum3 = ''+date.getHours()+'-40';
+  const idNum2 = ''+date.getHours()+'-30';
+  // const idNum3 = ''+date.getHours()+'-40';
   const active = ''+aDate.getHours()+'-'+aDate.getMinutes();
   const isValid = validTime(date);
+  const isBooked = bookedTime(date);
+  const isBooked2 = bookedTime((new Date(date)).setMinutes(30));
 
   return(
     <Grid container direction="row" justify="space-around" alignItems="center" component="td">
       <Grid item style={{width: '40%'}}>
         <DayView.TimeTableCell {...props} component="span"
-          className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
+          className={"time-table-cell"
+                    + ((!isValid)?" invalid-time" : "")
+                    + ((isBooked)?" booked-time" : "")}
           id={(idNum===active) ? 'cell-active' : ''}
           onClick={(e)=>onSelectTime(date)}
           >
@@ -68,7 +72,9 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
       </Grid>
       <Grid item style={{width: '40%'}}>
         <DayView.TimeTableCell {...props} component="span"
-          className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
+          className={"time-table-cell"
+                    + ((!isValid)?" invalid-time" : "")
+                    + ((isBooked2)?" booked-time" : "")}
           id={(idNum2===active) ? 'cell-active' : ''}
           onClick={(e)=>onSelectTime(date.setMinutes(30))}
           >
@@ -77,17 +83,6 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
             {(date.getHours() < 12) ? ' AM' : ' PM'}
         </DayView.TimeTableCell>
       </Grid>
-      {/* <Grid item>
-        <DayView.TimeTableCell {...props} component="span"
-          className={"time-table-cell" + ((!isValid)?" invalid-time" : "")}
-          id={(idNum3===active) ? 'cell-active' : ''}
-          onClick={(e)=>onSelectTime(date.setMinutes(40))}
-          >
-            {(date.getHours()>12) ? date.getHours()-12 : date.getHours()}:
-            {(date.getMinutes()===0) ? '40' : date.getMinutes()}
-            {(date.getHours() < 12) ? ' AM' : ' PM'}
-        </DayView.TimeTableCell>
-      </Grid> */}
     </Grid>
   );
 }
@@ -95,12 +90,37 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
 function validTime(cellDate){
   const today = new Date();
   if(today.getTime() >= cellDate.getTime())
-    return false
+    return false;
   return true;
 }
 
+/* Appointments Components */
+
+const booked = [];
+
 const ScheduledAppointment = ({...props}) => {
-  return <Appointments.Container {...props} className="scheduled-appointment"/>
+  const {data} = props;
+  if(!booked.includes(data))
+    booked.push(data);
+  // console.log(booked);
+  bookedTime();
+
+  return <Appointments.Appointment {...props} className="scheduled-appointment"/>
+}
+
+function bookedTime(cellDate){
+  cellDate = new Date(cellDate);
+  for(let i = 0; i < booked.length; i++){
+    let currData = booked[i];
+    let startTime = new Date(currData.startDate);
+    let endTime = new Date(currData.endDate);
+
+    if(cellDate.getTime() >= startTime.getTime()
+    && cellDate.getTime() < endTime.getTime()){
+      return true;
+    }
+  }
+  return false;
 }
 
 export default class MyScheduler extends PureComponent {
@@ -171,7 +191,6 @@ export default class MyScheduler extends PureComponent {
         <DayView
           startDayHour={this.state.startHour}
           endDayHour={this.state.endHour}
-          // intervalCount={2}
           // cellDuration={this.props.duration}
           cellDuration={60}
           layoutComponent={DayViewLayout}
@@ -185,7 +204,7 @@ export default class MyScheduler extends PureComponent {
             TimeTableCell(this.props.onSelectTime, this.props.date, {...props})}
         />
         <Appointments
-          containerComponent={ScheduledAppointment}
+          appointmentComponent={ScheduledAppointment}
         />
       </Scheduler>
     );

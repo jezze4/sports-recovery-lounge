@@ -111,17 +111,21 @@
   width: 400% !important;
 }
 
-.day-view-layout.MuiGrid-container{
+.day-view-layout.VerticalViewLayout{
   /* display: none !important; */
+  /* background: rgba(0,0,0,0) !important; */
+  background: red !important;
 }
 
-.VerticalViewLayout-stickyHeader-236,
-.VerticalViewLayout-stickyHeader-263{
+[class*="VerticalViewLayout-stickyHeader"]{
+/* -stickyHeader-236, */
+/* .VerticalViewLayout-stickyHeader-263{ */
   display: none !important;
 }
 
 .day-scale-layout{
-  margin-left: -10% !important;
+  background: red;
+  /* margin-left: -10% !important; */
   width: 111% !important;
 }
 
@@ -133,7 +137,7 @@
 }
 
 .day-scale-cell-empty{
-  background: black;
+  /* background: black; */
 }
 
 .time-table-layout{
@@ -184,6 +188,7 @@
 }
 
 .scheduled-appointment{
+  display: none;
   background: rgba(80,80,80,.9);
   min-height: 3em;
   width: 111% !important;
@@ -191,6 +196,15 @@
   padding-bottom: 3%;
   margin-top: -1%;
   box-shadow: 0 0 5px black inset;
+}
+
+.booked-time{
+  pointer-events: none;
+  opacity: .5;
+  background: rgba(0,0,0,0);
+  color: gray !important;
+  box-shadow: 0 0 2px #FFCC66 inset;
+  /* display: none !important; */
 }
 
 /****************************************************/
@@ -350,7 +364,7 @@
 
 @media screen and (max-width: 480px) {
   #appointment-summary{
-    height: 70vh;
+    min-height: 70vh;
     background: rgba(0,0,0,0);
     box-shadow: none;
   }
