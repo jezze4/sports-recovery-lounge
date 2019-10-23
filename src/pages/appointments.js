@@ -80,38 +80,38 @@ class Appointment extends PureComponent {
        console.log('FAILED...', err);
     });
 
-    // srl_db.collection("appointments").doc(key).set({
-    //   startDate: date.toISOString(),
-    //   date: session_date,
-    //   endDate: endDate.toISOString(),
-    //   type: session_type,
-    //   start: session_time,
-    //   length: session_length,
-    //   user: this.props.user.email,
-    //   username: this.props.user.displayName,
-    //   userID: this.props.user.uid,
-    // })
-    //
-    // srl_db.collection("Users").doc(this.props.user.uid)
-    // .collection("appointments").doc(key)
-    // .set({
-    //   startDate: date.toISOString(),
-    //   date: session_date,
-    //   endDate: endDate.toISOString(),
-    //   type: session_type,
-    //   start: session_time,
-    //   length: session_length,
-    //   user: this.props.user.email,
-    //   username: this.props.user.displayName,
-    //   userID: this.props.user.uid,
-    // })
-    // .then(res => {
-    //     alert("Appointment Submitted!");
-    //     this.props.history.push("/account");
-    //   })
-    // .catch(function(error) {
-    //   alert("Uhh... Something happened. Blame it on this error: ", error);
-    // });
+    srl_db.collection("appointments").doc(key).set({
+      startDate: date.toISOString(),
+      date: session_date,
+      endDate: endDate.toISOString(),
+      type: session_type,
+      start: session_time,
+      length: session_length,
+      user: this.props.user.email,
+      username: this.props.user.displayName,
+      userID: this.props.user.uid,
+    })
+
+    srl_db.collection("Users").doc(this.props.user.uid)
+    .collection("appointments").doc(key)
+    .set({
+      startDate: date.toISOString(),
+      date: session_date,
+      endDate: endDate.toISOString(),
+      type: session_type,
+      start: session_time,
+      length: session_length,
+      user: this.props.user.email,
+      username: this.props.user.displayName,
+      userID: this.props.user.uid,
+    })
+    .then(res => {
+        alert("Appointment Submitted!");
+        this.props.history.push("/account");
+      })
+    .catch(function(error) {
+      alert("Uhh... Something happened. Blame it on this error: ", error);
+    });
   }
 
   /* get from Firebase */
