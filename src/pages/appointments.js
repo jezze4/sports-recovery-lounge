@@ -11,6 +11,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from "react-swipeable-views";
 
+import emailjs from 'emailjs-com';
 
 /* Firebase */
 import {srl_db} from '../components/firebase';
@@ -18,6 +19,10 @@ import {srl_db} from '../components/firebase';
 import MyScheduler from '../components/myScheduler';
 
 import '../css/appointments.css'
+
+/* Months for EmailJS */
+const months = ["Jan.", "Feb.", "March", "April", "May", "June",
+                "July", "Aug.", "Sept.", "Oct.", "Nov.", "Dec."]
 
 class Appointment extends PureComponent {
   state = {
@@ -31,6 +36,7 @@ class Appointment extends PureComponent {
     //mobile
     activeStep: 0,
   }
+
 
   /* add to Firebase */
   handleSubmit = () => {
@@ -46,46 +52,66 @@ class Appointment extends PureComponent {
     var session_date = date.toDateString();
     var session_time = date.toLocaleTimeString();
 
+    var appt_start = session_time.substring(0, session_time.length-6);
+    appt_start += session_time.substring(session_time.length-3)
+
+    const appt_date = months[date.getMonth()] + ' ' + date.getDate() + ", " + date.getFullYear();
+
+    /* For EmailJS */
+    var templateParams = {
+      "user_email": this.props.user.email,
+      "user_name": this.props.user.displayName.split(' ')[0],
+      "appt_date": appt_date,
+      "appt_start": appt_start,
+      "appt_type": session_type,
+      "appt_length": session_length,
+    }
+
     /* Check for no logged-in user. for now, return nothing. */
     if(this.props.user === null){
       this.props.handleDialog();
       return;
     }
 
-    // console.log(this.props.user);
-
-    srl_db.collection("appointments").doc(key).set({
-      startDate: date.toISOString(),
-      date: session_date,
-      endDate: endDate.toISOString(),
-      type: session_type,
-      start: session_time,
-      length: session_length,
-      user: this.props.user.email,
-      username: this.props.user.displayName,
-      userID: this.props.user.uid,
-    })
-
-    srl_db.collection("Users").doc(this.props.user.uid)
-    .collection("appointments").doc(key)
-    .set({
-      startDate: date.toISOString(),
-      date: session_date,
-      endDate: endDate.toISOString(),
-      type: session_type,
-      start: session_time,
-      length: session_length,
-      user: this.props.user.email,
-      username: this.props.user.displayName,
-      userID: this.props.user.uid,
-    })
-    .then(res => {
-        alert("Appointment Submitted!");
-        this.props.history.push("/account");
-      })
-    .catch(function(error) {
-      alert("Uhh... Something happened. Blame it on this error: ", error);
+    emailjs.send("default_service","user_appt_submit", templateParams, process.env.REACT_APP_EMAILJS_USERID)
+    .then((response) => {
+       console.log('SUCCESS!', response.status, response.text);
+    }, (err) => {
+       console.log('FAILED...', err);
     });
+
+    // srl_db.collection("appointments").doc(key).set({
+    //   startDate: date.toISOString(),
+    //   date: session_date,
+    //   endDate: endDate.toISOString(),
+    //   type: session_type,
+    //   start: session_time,
+    //   length: session_length,
+    //   user: this.props.user.email,
+    //   username: this.props.user.displayName,
+    //   userID: this.props.user.uid,
+    // })
+    //
+    // srl_db.collection("Users").doc(this.props.user.uid)
+    // .collection("appointments").doc(key)
+    // .set({
+    //   startDate: date.toISOString(),
+    //   date: session_date,
+    //   endDate: endDate.toISOString(),
+    //   type: session_type,
+    //   start: session_time,
+    //   length: session_length,
+    //   user: this.props.user.email,
+    //   username: this.props.user.displayName,
+    //   userID: this.props.user.uid,
+    // })
+    // .then(res => {
+    //     alert("Appointment Submitted!");
+    //     this.props.history.push("/account");
+    //   })
+    // .catch(function(error) {
+    //   alert("Uhh... Something happened. Blame it on this error: ", error);
+    // });
   }
 
   /* get from Firebase */
