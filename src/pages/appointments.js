@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import {withRouter} from 'react-router-dom';
+import { renderToString } from 'react-dom/server'
 
 import MobileStepper from '@material-ui/core/MobileStepper';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -17,6 +18,7 @@ import emailjs from 'emailjs-com';
 import {srl_db} from '../components/firebase';
 
 import MyScheduler from '../components/myScheduler';
+import EmailTemplate from '../components/emailTemplate';
 
 import '../css/appointments.css'
 
@@ -67,12 +69,28 @@ class Appointment extends PureComponent {
       "appt_length": session_length,
     }
 
+    let emailTemplate = new EmailTemplate;
+    let toAdmin = emailTemplate.renderAdminConfirmation(templateParams, this.mobilecheck());
+    toAdmin = renderToString(toAdmin);
+
+    var admin_template = {
+      "user_email": this.props.user.email,
+      "email_subject": "New Appointment Alert",
+      "email_template": toAdmin,
+    }
+
+    // console.log(toAdmin);
+
     /* Check for no logged-in user. for now, return nothing. */
     if(this.props.user === null){
       this.props.handleDialog();
       return;
     }
 
+
+    emailjs.send("default_service", "global_temp", admin_template, process.env.REACT_APP_EMAILJS_USERID);
+
+    /*
     emailjs.send("default_service","user_appt_submit", templateParams, process.env.REACT_APP_EMAILJS_USERID)
     .then((response) => {
        console.log('SUCCESS!', response.status, response.text);
@@ -112,6 +130,7 @@ class Appointment extends PureComponent {
     .catch(function(error) {
       alert("Uhh... Something happened. Blame it on this error: ", error);
     });
+    /**/
   }
 
   /* get from Firebase */
