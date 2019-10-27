@@ -79,18 +79,14 @@ class Appointment extends PureComponent {
       "email_template": toAdmin,
     }
 
-    // console.log(toAdmin);
-
     /* Check for no logged-in user. for now, return nothing. */
     if(this.props.user === null){
       this.props.handleDialog();
       return;
     }
 
-
     emailjs.send("default_service", "global_temp", admin_template, process.env.REACT_APP_EMAILJS_USERID);
 
-    /*
     emailjs.send("default_service","user_appt_submit", templateParams, process.env.REACT_APP_EMAILJS_USERID)
     .then((response) => {
        console.log('SUCCESS!', response.status, response.text);
