@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import Logo from '../imgs/logo.png';
 
-import AboutBG from '../imgs/runner-girl.jpg';
+// import AboutBG from '../imgs/runner-girl.jpg';
 import RickPic from '../imgs/rick-spartan.jpg';
 import RickBG from '../imgs/recovery.png';
 import BenefitsImage from '../imgs/benefits-girl.jpg'

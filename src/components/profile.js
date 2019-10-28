@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab';
 import SwipeableViews from "react-swipeable-views";
 import {withRouter} from 'react-router-dom';
 
-import {srl_db, auth, providers} from '../components/firebase';
+import {srl_db, auth} from '../components/firebase';
 
 import '../css/profile.css';
 

@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import Paper from '@material-ui/core/Paper'
 import { Scheduler, WeekView, Appointments } from '@devexpress/dx-react-scheduler-material-ui';
 import { DateNavigator, Toolbar, TodayButton } from '@devexpress/dx-react-scheduler-material-ui';
-import { AppointmentTooltip, AppointmentForm } from '@devexpress/dx-react-scheduler-material-ui';
+import { AppointmentTooltip } from '@devexpress/dx-react-scheduler-material-ui';
 import { ViewState } from '@devexpress/dx-react-scheduler';
 
 import {srl_db} from '../components/firebase.js';

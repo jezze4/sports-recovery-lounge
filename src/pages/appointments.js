@@ -63,7 +63,7 @@ class Appointment extends PureComponent {
       "appt_length": session_length,
     }
 
-    let emailTemplate = new EmailTemplate;
+    let emailTemplate = new EmailTemplate();
     let toAdmin = emailTemplate.renderAdminConfirmation(templateParams, this.mobilecheck());
     toAdmin = renderToString(toAdmin);
 
@@ -451,6 +451,7 @@ class Appointment extends PureComponent {
         maxHours = 14;
         break;
       }
+      default: break;
     }
 
     if(hours < minHours || hours >= maxHours)

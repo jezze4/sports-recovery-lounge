@@ -15,7 +15,7 @@ import Appointment from '../pages/appointments';
 import Home from '../pages/home';
 import About from '../pages/about';
 import Services from '../pages/services';
-import {srl_db, auth, providers} from '../components/firebase';
+import {srl_db, auth} from '../components/firebase';
 
 import Logo from '../imgs/logo.png';
 import '../css/navbar.css';

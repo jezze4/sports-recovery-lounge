@@ -2,7 +2,7 @@ import React, {PureComponent} from 'react';
 import Carousel from '../components/carousel'
 import Summary from '../components/summary.js'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography';
+// import Typography from '@material-ui/core/Typography';
 
 import '../css/home.css'
 import AboutImage from '../imgs/runner-girl.jpg';
