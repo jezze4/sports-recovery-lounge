@@ -30,9 +30,7 @@ class Appointment extends PureComponent {
     sessionDur: '20',
     sessionPrice: '20',
     dataFetched: false,
-
-    //mobile
-    activeStep: 0,
+    activeStep: 0, // for mobile
   }
 
 
@@ -135,17 +133,15 @@ class Appointment extends PureComponent {
   }
 
   /* For TimePicker */
-  handleDateChange = (date, user) => {
+  handleDateChange = (date) => {
     date = new Date(date);
 
     this.setState({
       date: date,
     });
 
-    if(user){
-      let nextStep = this.state.activeStep + 1;
-      this.setState({activeStep: nextStep});
-    }
+    let nextStep = this.state.activeStep + 1;
+    this.setState({activeStep: nextStep});
 
     return date;
   }
@@ -161,13 +157,13 @@ class Appointment extends PureComponent {
       case 6: {
         if (hours > 13)
           fullDate.setDate(fullDate.getDate()+1);
-          fullDate = this.handleDateChange(fullDate);
+          // fullDate = this.handleDateChange(fullDate);
         break;
       }
       default: {
         if (hours > 18)
           fullDate.setDate(fullDate.getDate()+1);
-          fullDate = this.handleDateChange(fullDate);
+          // fullDate = this.handleDateChange(fullDate);
         break;
       }
     }
@@ -175,7 +171,7 @@ class Appointment extends PureComponent {
     /* skip Sunday */
     if(fullDate.getDay()===0){
       fullDate.setDate(fullDate.getDate()+1);
-      fullDate = this.handleDateChange(fullDate);
+      // fullDate = this.handleDateChange(fullDate);
     }
 
     fullDate.setMinutes(0);
@@ -270,7 +266,8 @@ class Appointment extends PureComponent {
           </Grid>
           <Button
             fullWidth variant="contained"
-            classes={(this.props.user) ? {root: 'submit-app-btn'} : {root: 'submit-app-btn-disabled'}}
+            classes={(this.props.user && this.validSubmit()) ? {root: 'submit-app-btn'} : {root: 'submit-app-btn-disabled'}}
+            disabled={!this.validSubmit()}
             onClick={this.handleSubmit}>
             Submit
           </Button>
@@ -422,6 +419,45 @@ class Appointment extends PureComponent {
         />
       );
     }
+  }
+
+  validSubmit(){
+    let weekday = this.state.date.getDay();
+    let hours = this.state.date.getHours();
+    let minutes = this.state.date.getMinutes();
+
+    let minHours = 0;
+    let maxHours = 24;
+
+    switch(weekday){
+      //Monday, Tuesday, Friday
+      case 1:
+      case 2:
+      case 5: {
+        minHours = 8;
+        maxHours = 19;
+        break;
+      }
+      //Wednesday & Thursday
+      case 3:
+      case 4: {
+        minHours = 10;
+        maxHours = 19;
+        break;
+      }
+      //Saturday
+      case 6: {
+        minHours = 9;
+        maxHours = 14;
+        break;
+      }
+    }
+
+    if(hours < minHours || hours >= maxHours)
+      return false;
+    else if (hours === maxHours-1 && minutes > 0 && this.state.sessionType === "body")
+      return false;
+    return true;
   }
 
   mobilecheck = ()=> {
