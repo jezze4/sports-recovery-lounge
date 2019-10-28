@@ -7,11 +7,6 @@ import Typography from '@material-ui/core/Typography'
 import {withRouter} from 'react-router-dom';
 import { renderToString } from 'react-dom/server'
 
-import MobileStepper from '@material-ui/core/MobileStepper';
-import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
-import SwipeableViews from "react-swipeable-views";
-
 import emailjs from 'emailjs-com';
 
 /* Firebase */
@@ -19,6 +14,7 @@ import {srl_db} from '../components/firebase';
 
 import MyScheduler from '../components/myScheduler';
 import EmailTemplate from '../components/emailTemplate';
+import MobileAppointments from '../components/mobileAppointments';
 
 import '../css/appointments.css'
 
@@ -387,70 +383,8 @@ class Appointment extends PureComponent {
 
   /* Mobile Functions */
 
-  renderScheduler(){
-    const { activeStep } = this.state;
-    return(
-      <SwipeableViews
-        index={activeStep}
-        onChangeIndex={(i)=>this.handleChangeIndex(i)}
-      >
-        {this.renderSessionSelect()}
-        {this.renderDurationSelect()}
-        {this.renderDateSelect()}
-        {this.renderTimeSelect()}
-        {this.renderSummary()}
-
-      </SwipeableViews>
-    );
-  }
-
   handleChangeIndex(index){
     this.setState({activeStep: index});
-  }
-
-  renderStepper = () => {
-    return(
-      <MobileStepper
-      variant="dots"
-      steps={5}
-      position="bottom"
-      activeStep={this.state.activeStep}
-      classes={{
-        root: 'mobile-stepper-root',
-        progress: 'mobile-stepper-progress',
-        dot: 'mobile-stepper-dot',
-        dotActive: 'mobile-stepper-dot-active'
-      }}
-      nextButton={
-        <Button
-          size="small"
-          classes={{root: 'mobile-stepper-button'}}
-          onClick={()=>this.stepperNext(this.state.activeStep+1)}
-          disabled={this.state.activeStep === 4}>
-          <Typography className="mobile-stepper-text">Next</Typography>
-          <KeyboardArrowRight />
-        </Button>
-      }
-      backButton={
-        <Button
-          size="small"
-          classes={{root: 'mobile-stepper-button'}}
-          onClick={()=>this.stepperBack(this.state.activeStep-1)}
-          disabled={this.state.activeStep === 0}>
-          <KeyboardArrowLeft />
-          <Typography className="mobile-stepper-text">Back</Typography>
-        </Button>
-      }
-    />
-    );
-  }
-
-  stepperNext = (activeStep) => {
-    this.setState({activeStep});
-  }
-
-  stepperBack = (activeStep) => {
-    this.setState({activeStep});
   }
 
   render(){
@@ -477,10 +411,15 @@ class Appointment extends PureComponent {
     }
     else {
       return(
-        <Container id="appointment-container-mobile">
-          {this.renderScheduler()}
-          {this.renderStepper()}
-        </Container>
+        <MobileAppointments
+          activeStep = {this.state.activeStep}
+          SessionSelect = {this.renderSessionSelect()}
+          DurationSelect = {this.renderDurationSelect()}
+          DateSelect = {this.renderDateSelect()}
+          TimeSelect = {this.renderTimeSelect()}
+          Summary = {this.renderSummary()}
+          updateIndex = {(index) => this.handleChangeIndex(index)}
+        />
       );
     }
   }
