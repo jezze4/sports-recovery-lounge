@@ -99,20 +99,6 @@ class Appointment extends PureComponent {
       username: this.props.user.displayName,
       userID: this.props.user.uid,
     })
-
-    srl_db.collection("Users").doc(this.props.user.uid)
-    .collection("appointments").doc(key)
-    .set({
-      startDate: date.toISOString(),
-      date: session_date,
-      endDate: endDate.toISOString(),
-      type: session_type,
-      start: session_time,
-      length: session_length,
-      user: this.props.user.email,
-      username: this.props.user.displayName,
-      userID: this.props.user.uid,
-    })
     .then(res => {
         alert("Appointment Submitted!");
         this.props.history.push("/account");

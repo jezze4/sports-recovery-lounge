@@ -44,14 +44,21 @@ class Profile extends PureComponent {
 
   getUserAppointments(user) {
     if(user){
-      srl_db.collection("Users").doc(user.uid).collection("appointments")
-        .get()
-        .then(query => query.docs.map(doc => doc.data()))
-        .then(docs => {
-          docs.sort((a, b) =>
+      // srl_db.collection("Users").doc(user.uid).collection("appointments")
+      //   .get()
+      //   .then(query => query.docs.map(doc => doc.data()))
+      //   .then(docs => {
+      //     docs.sort((a, b) =>
+      //       new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
+      //     this.setState({appData: docs})
+      //   })
+    srl_db.collection("appointments").where("userID", "==", user.uid).get()
+      .then(query => query.docs.map(doc => doc.data()))
+      .then(docs => {
+        docs.sort((a, b) =>
             new Date(a.startDate).getTime() - new Date(b.startDate).getTime());
-          this.setState({appData: docs})
-        })
+            this.setState({appData: docs})
+      })
     }
   }
 
@@ -71,7 +78,7 @@ class Profile extends PureComponent {
 
   formatDate(date){
     date = new Date(date);
-    return this.Months[date.getMonth()] + ' ' + date.getDay();
+    return this.Months[date.getMonth()] + ' ' + date.getDate();
   }
 
   formatHours = (date) => {
@@ -134,8 +141,8 @@ class Profile extends PureComponent {
     return(
       <div className="profile-info-container">
         <Typography variant="h4">{this.props.name}</Typography>
-        <Typography variant="subtitle1">Scheduled Appointments: {this.state.appData.length}</Typography>
-        <Typography variant="subtitle1">Completed Appointments: {this.state.appData.length}</Typography>
+        <Typography variant="subtitle1" gutterBottom>Scheduled Appointments: {this.state.appData.length}</Typography>
+        {/* <Typography variant="subtitle1">Completed Appointments: {this.state.appData.length}</Typography> */}
       </div>
     );
   }
