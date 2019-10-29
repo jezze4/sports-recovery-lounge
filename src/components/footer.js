@@ -88,12 +88,17 @@ export default class Footer extends PureComponent {
   }
 
   render(){
-    return(
-      <Grid container direction="row" justify="space-evenly" id="footer-container">
-        {this.renderHours()}
-        {this.renderSocial()}
-        {this.renderContact()}
-      </Grid>
-    );
+    if(window.location.pathname !== "/schedule"){
+      return(
+        <Grid container direction="row" justify="space-evenly" id="footer-container">
+          {this.renderHours()}
+          {this.renderSocial()}
+          {this.renderContact()}
+        </Grid>
+      );
+    }
+    else{
+      return null;
+    }
   }
 }

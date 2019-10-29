@@ -181,6 +181,16 @@ class NavBar extends PureComponent {
     );
   }
 
+  isAdmin(){
+    const admins = ["jezze.04@gmail.com", "rferdin@gmail.com", "rferdin@sportsrecoverylounge.com"]
+    if(this.state.user){
+      let email = this.state.user.email;
+      if(admins.includes(email))
+        return true;
+    }
+    return false;
+  }
+
   render(){
     const { isMobile } = this.state;
     return(
@@ -196,7 +206,16 @@ class NavBar extends PureComponent {
 
               <Switch>
                 <Route path="/account" render={() => <Profile user={this.state.user} name={this.state.fullName}/>} />
-                <Route path="/schedule" render={() => <Schedule />} />
+                <Route path="/schedule" render={() => {
+                  if(this.isAdmin())
+                    return <Schedule />
+                  else {
+                    if(this.state.user){
+                      alert("Whoa... you do not go here.")
+                      window.history.back()
+                    }
+                  }
+                }} />
                 <Route path="/appointments" render={() => <Appointment user={this.state.user} handleDialog={this.handleDialog}/>} />
                 <Route path="/services" render={() => <Services />} />
                 <Route path="/about" render={() => <About/>} />

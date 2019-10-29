@@ -74,7 +74,6 @@ export default class Schedule extends PureComponent {
   render(){
     return(
       <Paper className="schedule-container">
-        {/* <h1>Total Appointments: {this.state.appData.length}</h1> */}
         <Scheduler rootComponent={SchedulerRoot} data={this.state.appData}>
 
           <ViewState
