@@ -79,14 +79,14 @@ class Appointment extends PureComponent {
       return;
     }
 
-    // emailjs.send("default_service", "global_temp", admin_template, process.env.REACT_APP_EMAILJS_USERID);
-    //
-    // emailjs.send("default_service","user_appt_submit", templateParams, process.env.REACT_APP_EMAILJS_USERID)
-    // .then((response) => {
-    //    console.log('SUCCESS!', response.status, response.text);
-    // }, (err) => {
-    //    console.log('FAILED...', err);
-    // });
+    emailjs.send("default_service", "global_temp", admin_template, process.env.REACT_APP_EMAILJS_USERID);
+
+    emailjs.send("default_service","user_appt_submit", templateParams, process.env.REACT_APP_EMAILJS_USERID)
+    .then((response) => {
+       console.log('SUCCESS!', response.status, response.text);
+    }, (err) => {
+       console.log('FAILED...', err);
+    });
 
     srl_db.collection("appointments").doc(key).set({
       startDate: date.toISOString(),

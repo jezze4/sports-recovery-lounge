@@ -79,7 +79,7 @@ export default class Services extends PureComponent{
     return(
       <Grid container className="services-section" id="massages" >
         <Grid item sm={12}>
-          <Typography variant="h3" className="services-title">Self-Massage Devices</Typography>
+          <Typography variant="h3" className="services-title">Self-Myofascial Release</Typography>
           <div className="underbar"></div>
         </Grid>
 
@@ -132,7 +132,7 @@ export default class Services extends PureComponent{
         }]},
 
     massage : {
-      title: "Self-Massage Devices",
+      title: "Self-Myofascial Release",
       data:[
         {
           title: "10 minutes", price: 5
