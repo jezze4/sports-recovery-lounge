@@ -2,8 +2,8 @@ import React, {PureComponent} from 'react';
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography';
 import GoldIcon from '../components/goldIcon';
-// import TempImg from '../imgs/logo.png';
-
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 /*images for icons*/
 import NormatecText from '../imgs/icons/normatec-white.png';
 import IconNormatec from '../imgs/icons/icon-normatec.jpg';
@@ -17,6 +17,8 @@ import '../css/services.css';
 export default class Services extends PureComponent{
 
   state = {
+    value: "compression",
+    pricingValue: "weekly",
     isMobile: false
   }
 
@@ -88,16 +90,13 @@ export default class Services extends PureComponent{
     return(
       <Grid container className="services-section" id="massages" >
         <Grid item sm={12}>
-          <Typography variant="h3" className="services-title">Self-Myofascial Release</Typography>
+          <Typography variant="h3" className="services-title">Self-myofascial release</Typography>
           <div className="underbar"></div>
         </Grid>
 
         <Grid item container direction="row" className="services-details" justify="space-between" alignItems="stretch">
           {this.renderService(this.serviceDetails['hypervolt'])}
           {this.renderService(this.serviceDetails["vyper"])}
-        {/* </Grid> */}
-
-        {/* <Grid item container direction="row" justify="space-between" alignItems="stretch"> */}
           {this.renderService(this.serviceDetails["myostorm"])}
           {this.renderService(this.serviceDetails["roller"])}
         </Grid>
@@ -130,7 +129,7 @@ export default class Services extends PureComponent{
         {title: "20 minutes", price: 15.00},
         {title: "30 minutes", price: 20.00},
         {title: "60 minutes", price: 30.00},
-        {title: "Full Body *", price: 35, note: "* By appointment only"}]},
+        {title: "** Full Body", price: 35, note: "* By appointment only"}]},
 
     massage : {
       title: <span id="pricing-title-smr">Self-Myofascial Release</span>,
@@ -139,15 +138,15 @@ export default class Services extends PureComponent{
         {title: "30 minutes", price: 10.00},
         {title: "60 minutes", price: 15.00}]},
 
-    session30 : {
-      title: "Weekly",
+    weekly : {
+      title: "Weekly *",
       data: [
         {title: "20 minutes", price: 26.20},
         {title: "30 minutes", price: 30.60},
         {title: "60 minutes", price: 42.00}]},
 
-    session60 : {
-      title: "Monthly",
+    monthly : {
+      title: "Monthly *",
       data: [
         {title: "20 minutes", price: 59.00},
         {title: "30 minutes", price: 79.00},
@@ -162,8 +161,8 @@ export default class Services extends PureComponent{
         <Grid item container direction="row" justify="space-between" alignItems="flex-start" id="price-section2">
           <Grid container item direction="row" sm={6} justify="space-around" id="price-memberships">
             <Grid item sm={12}><Typography className="memberships-title">Memberships</Typography></Grid>
-            <Grid item className="membership" sm={5}>{this.renderPriceSection(this.pricingData.session30)}</Grid>
-            <Grid item className="membership" sm={5}>{this.renderPriceSection(this.pricingData.session60)}</Grid>
+            <Grid item className="membership" sm={5}>{this.renderPriceSection(this.pricingData.weekly)}</Grid>
+            <Grid item className="membership" sm={5}>{this.renderPriceSection(this.pricingData.monthly)}</Grid>
           </Grid>
           <Grid item container direction="row" sm={6} justify="space-around">
             <Grid item sm={12}><Typography className="memberships-title">Individual</Typography></Grid>
@@ -176,12 +175,73 @@ export default class Services extends PureComponent{
           </Grid>
         </Grid>
 
-        <Typography style={{color: 'gray', textAlign: 'left', margin: '0 5vw'}}>
-          * By appointment only <br />
-          ** Complimentary 15 minutes Self-Massage Device Session with ANY Normatec Single Session purchase
+        <Typography className="pricing-conditions">
+          * one session per day <br />
+          ** By appointment only <br />
+          *** Complimentary 15 minutes Self-Massage Device Session with ANY Normatec Single Session purchase
         </Typography>
       </Grid>
     );
+  }
+
+  renderMobilePricing(){
+    if(this.state.value === "compression"){
+      const { pricingValue } = this.state;
+      return(
+        <div id="pricing-container">
+          <Typography variant="h3" className="pricing-title">Pricing</Typography>
+          <div className="underbar" />
+          <Tabs
+            value={pricingValue}
+            onChange={this.handlePricingChange}
+            variant="fullWidth"
+            classes={{root: 'services-tabs-root', indicator: 'services-tabs-indicator'}}
+            >
+              <Tab
+                classes={{root: 'services-tab-root', selected: 'services-tab-sel'}}
+                label="Weekly"
+                value="weekly"
+                disableFocusRipple
+              />
+              <Tab
+                classes={{root: 'services-tab-root', selected: 'services-tab-sel'}}
+                label="Monthly"
+                value="monthly"
+                disableFocusRipple
+              />
+              <Tab
+                classes={{root: 'services-tab-root', selected: 'services-tab-sel'}}
+                label="Single"
+                value="single"
+                disableFocusRipple
+              />
+            </Tabs>
+            <div hidden={pricingValue!=="weekly"}>{this.renderPriceSection(this.pricingData.weekly)}</div>
+            <div hidden={pricingValue!=="monthly"}>{this.renderPriceSection(this.pricingData.monthly)}</div>
+            <div hidden={pricingValue!=="single"}>{this.renderPriceSection(this.pricingData.single)}</div>
+            <Typography className="pricing-conditions">
+              * one session per day <br />
+              ** By appointment only <br />
+              *** Complimentary 15 minutes Self-Massage Device Session with ANY Normatec Single Session purchase
+            </Typography>
+        </div>
+      );
+    } else {
+      return(
+        <Grid container direction="column" id="pricing-container">
+          <Typography variant="h3" className="pricing-title">Pricing</Typography>
+          <div className="underbar" />
+          {this.renderPriceSection(this.pricingData.massage)}
+          <Typography
+            style={{color: 'gray',textAlign: 'left',marginLeft: '5vw',fontSize: '.875em',}}
+            >
+            * one session per day <br />
+            ** By appointment only <br />
+            *** Complimentary 15 minutes Self-Massage Device Session with ANY Normatec Single Session purchase
+          </Typography>
+        </Grid>
+      );
+    }
   }
 
   renderPriceSection(data){
@@ -191,10 +251,10 @@ export default class Services extends PureComponent{
 
         {data.data.map((item, i) =>
           <Grid key={data.title+item.title} item container direction="row" justify="space-evenly" className="pricing-details">
-            <Grid item xs={6}>
+            <Grid item xs={7}>
               <Typography className="pricing-detail-text">{item.title}: &nbsp;</Typography>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={5}>
               <Typography className="pricing-detail-text">${item.price.toFixed(2)}</Typography>
             </Grid>
           </Grid>
@@ -216,14 +276,46 @@ export default class Services extends PureComponent{
     );
   }
 
+  handleChange = (event, value) => {
+    this.setState({value});
+  }
+
+  handlePricingChange = (event, pricingValue) => {
+    this.setState({pricingValue});
+  }
+
   renderMobile(){
+    const { value } = this.state;
     return(
       <div>
         <Grid container direction="column" id="services-container" >
-          {this.renderCompression()}
-          {this.renderMassage()}
+          <Tabs
+            value={value}
+            onChange={this.handleChange}
+            variant="fullWidth"
+            classes={{root: 'services-tabs-root', indicator: 'services-tabs-indicator'}}
+            >
+              <Tab
+                classes={{root: 'services-tab-root', selected: 'services-tab-sel'}}
+                label="Compression Therapy"
+                value="compression"
+                disableFocusRipple
+              />
+              <Tab
+                classes={{root: 'services-tab-root', selected: 'services-tab-sel'}}
+                label="Self-Myofascial Release"
+                value="massage"
+                disableFocusRipple
+              />
+            </Tabs>
+            <div hidden={value!=="compression"}>
+              {this.renderCompression()}
+            </div>
+            <div hidden={value!=="massage"}>
+              {this.renderMassage()}
+            </div>
         </Grid>
-          {this.renderPricing()}
+        {this.renderMobilePricing()}
       </div>
     );
   }

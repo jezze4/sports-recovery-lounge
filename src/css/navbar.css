@@ -37,11 +37,6 @@
   padding: 10px;
 }
 
-.mobile-login-button{
-  /* padding: 10px; */
-  /* color: #f8cc67 !important; */
-}
-
 .mobile-appbar-welcome{
   font-size: .8em !important;
   color: #f8cc67;
@@ -50,8 +45,6 @@
 
 .tabs-root{
   z-index: 100;
-  margin-right: 0;
-  margin-left: auto;
 }
 
 .tabs-indicator{
@@ -60,7 +53,7 @@
 }
 
 .tab-root{
-  font-size: 1.2em !important;
+  font-size: 1.2vw !important;
   color: white !important;
   transition: .3s;
 }
@@ -70,7 +63,7 @@
 }
 
 .tab-selected{
-  font-size: 1.3em !important;
+  font-size: 1.3vw !important;
   color: #FFC44D !important;
 }
 
@@ -84,6 +77,10 @@
 /* For Desktop */
 
 @media screen and (min-width: 480px) {
+
+  .tabs-root{
+    align-self: flex-end;
+  }
 
   .appbar-desktop{
     display: flex !important;
