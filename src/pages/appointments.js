@@ -28,7 +28,7 @@ class Appointment extends PureComponent {
     appData: {},
     sessionType: 'legs',
     sessionDur: '20',
-    sessionPrice: '20',
+    sessionPrice: '15',
     dataFetched: false,
     activeStep: 0, // for mobile
   }
@@ -342,22 +342,22 @@ class Appointment extends PureComponent {
       if(activeID==='body'){
         this.setState({
           sessionDur: "60",
-          sessionPrice: "45"
+          sessionPrice: "35"
         });
       }
       else if(this.state.sessionDur==='60'){
-        this.setState({sessionPrice: '35'})
+        this.setState({sessionPrice: '30'})
       }
     } else{
       this.setState({sessionDur: activeID});
       if(activeID==='20'){
-        this.setState({sessionPrice: '20'})
+        this.setState({sessionPrice: '15'})
       }
       else if(activeID==='30'){
-        this.setState({sessionPrice: '25'})
+        this.setState({sessionPrice: '20'})
       }
       else {
-        this.setState({sessionPrice: '35'})
+        this.setState({sessionPrice: '30'})
       }
     }
     let nextStep = this.state.activeStep + 1;
