@@ -16,6 +16,15 @@ import '../css/services.css';
 
 export default class Services extends PureComponent{
 
+  state = {
+    isMobile: false
+  }
+
+  componentWillMount(){
+    this.setState({
+      isMobile: this.mobilecheck()
+    })
+  }
 
   /* Services */
 
@@ -118,63 +127,31 @@ export default class Services extends PureComponent{
     single : {
       title: "Single Sessions",
       data: [
-        {
-          title: "20 minutes", price: 20
-        },
-        {
-          title: "30 minutes", price: 25
-        },
-        {
-          title: "60 minutes", price: 35
-        },
-        {
-          title: "Full Body 60 minutes*", price: 45, note: "* By appointment only"
-        }]},
+        {title: "20 minutes", price: 15.00},
+        {title: "30 minutes", price: 20.00},
+        {title: "60 minutes", price: 30.00},
+        {title: "Full Body *", price: 35, note: "* By appointment only"}]},
 
     massage : {
-      title: "Self-Myofascial Release",
+      title: <span id="pricing-title-smr">Self-Myofascial Release</span>,
       data:[
-        {
-          title: "10 minutes", price: 5
-        },
-        {
-          title: "30 minutes", price: 10
-        },
-        {
-          title: "60 minutes", price: 15
-        }]},
+        {title: "10 minutes", price: 5.00},
+        {title: "30 minutes", price: 10.00},
+        {title: "60 minutes", price: 15.00}]},
 
     session30 : {
-      title: "30-Minute Sessions",
+      title: "Weekly",
       data: [
-        {
-          title: "3 Times", price: 60
-        },
-        {
-          title: "5 Times", price: 75
-        },
-        {
-          title: "10 Times", price: 125
-        },
-        {
-          title: "Monthly Pass", price: 175
-        }]},
+        {title: "20 minutes", price: 26.20},
+        {title: "30 minutes", price: 30.60},
+        {title: "60 minutes", price: 42.00}]},
 
     session60 : {
-      title: "60-Minute Sessions",
+      title: "Monthly",
       data: [
-        {
-          title: "3 Times", price: 80
-        },
-        {
-          title: "5 Times", price: 105
-        },
-        {
-          title: "10 Times", price: 175
-        },
-        {
-          title: "Monthly Pass", price: 225
-        }]}
+        {title: "20 minutes", price: 59.00},
+        {title: "30 minutes", price: 79.00},
+        {title: "60 minutes", price: 99.00}]}
   }
 
   renderPricing(){
@@ -182,16 +159,25 @@ export default class Services extends PureComponent{
       <Grid container direction="column" id="pricing-container">
         <Typography variant="h3" className="pricing-title">Pricing</Typography>
         <div className="underbar" />
-        <Grid item container direction="row" id="price-section1">
-          {this.renderPriceSection(this.pricingData.single)}
+        <Grid item container direction="row" justify="space-between" alignItems="flex-start" id="price-section2">
+          <Grid container item direction="row" sm={6} justify="space-around" id="price-memberships">
+            <Grid item sm={12}><Typography className="memberships-title">Memberships</Typography></Grid>
+            <Grid item className="membership" sm={5}>{this.renderPriceSection(this.pricingData.session30)}</Grid>
+            <Grid item className="membership" sm={5}>{this.renderPriceSection(this.pricingData.session60)}</Grid>
+          </Grid>
+          <Grid item container direction="row" sm={6} justify="space-around">
+            <Grid item sm={12}><Typography className="memberships-title">Individual</Typography></Grid>
+            <Grid item sm={5}>{this.renderPriceSection(this.pricingData.single)}</Grid>
+            <Grid item sm={5}>{this.renderPriceSection(this.pricingData.massage)}</Grid>
+          </Grid>
         </Grid>
-        <Grid item container direction="row" justify="space-around" alignItems="center" id="price-section2">
-            {this.renderPriceSection(this.pricingData.massage)}
-            {this.renderPriceSection(this.pricingData.session30)}
-            {this.renderPriceSection(this.pricingData.session60)}
+        <Grid item container direction="row" id="price-section1">
+          <Grid item sm={3}>
+          </Grid>
         </Grid>
 
-        <Typography style={{color: 'gray'}}>
+        <Typography style={{color: 'gray', textAlign: 'left', margin: '0 5vw'}}>
+          * By appointment only <br />
           ** Complimentary 15 minutes Self-Massage Device Session with ANY Normatec Single Session purchase
         </Typography>
       </Grid>
@@ -200,18 +186,17 @@ export default class Services extends PureComponent{
 
   renderPriceSection(data){
     return(
-      <Grid item container direction="column" className="pricing-section" xs={12} sm={4}>
-        <Typography className="pricing-section-title" gutterBottom>{data.title}:</Typography>
+      <Grid item container direction="column" className="pricing-section">
+        <Typography className="pricing-section-title" gutterBottom>{data.title}</Typography>
 
         {data.data.map((item, i) =>
-          <Grid key={data.title+item.title} item container direction="row" justify="flex-start" className="pricing-details">
-            <Grid item sm={6}>
-              <Typography>{item.title}: </Typography>
+          <Grid key={data.title+item.title} item container direction="row" justify="space-evenly" className="pricing-details">
+            <Grid item xs={6}>
+              <Typography className="pricing-detail-text">{item.title}: &nbsp;</Typography>
             </Grid>
-            <Grid item sm={6}>
-              <Typography>${item.price}.00</Typography>
+            <Grid item xs={6}>
+              <Typography className="pricing-detail-text">${item.price.toFixed(2)}</Typography>
             </Grid>
-            <Typography style={{marginLeft: '20px'}}>{item.note}</Typography>
           </Grid>
         )}
 
@@ -219,7 +204,7 @@ export default class Services extends PureComponent{
     );
   }
 
-  render(){
+  renderDesktop(){
     return(
       <div>
         <Grid container direction="column" id="services-container" >
@@ -230,4 +215,32 @@ export default class Services extends PureComponent{
       </div>
     );
   }
+
+  renderMobile(){
+    return(
+      <div>
+        <Grid container direction="column" id="services-container" >
+          {this.renderCompression()}
+          {this.renderMassage()}
+        </Grid>
+          {this.renderPricing()}
+      </div>
+    );
+  }
+
+  render(){
+    const {isMobile} = this.state;
+    if(!isMobile){
+      return( this.renderDesktop() );
+    } else {
+      return( this.renderMobile() );
+    }
+
+  }
+
+  mobilecheck = ()=> {
+    var check = false;
+    (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw-(n|u)|c55\/|capi|ccwa|cdm-|cell|chtm|cldc|cmd-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc-s|devi|dica|dmob|do(c|p)o|ds(12|-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(-|_)|g1 u|g560|gene|gf-5|g-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd-(m|p|t)|hei-|hi(pt|ta)|hp( i|ip)|hs-c|ht(c(-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i-(20|go|ma)|i230|iac( |-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|-[a-w])|libw|lynx|m1-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|-([1-8]|c))|phil|pire|pl(ay|uc)|pn-2|po(ck|rt|se)|prox|psio|pt-g|qa-a|qc(07|12|21|32|60|-[2-7]|i-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h-|oo|p-)|sdk\/|se(c(-|0|1)|47|mc|nd|ri)|sgh-|shar|sie(-|m)|sk-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h-|v-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl-|tdg-|tel(i|m)|tim-|t-mo|to(pl|sh)|ts(70|m-|m3|m5)|tx-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas-|your|zeto|zte-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+    return check;
+  };
 }

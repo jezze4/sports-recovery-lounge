@@ -20,6 +20,8 @@
 
 .massage-section{
   margin-bottom: 16px !important;
+  margin-left: 8px !important;
+  margin-right: 8px !important;
   background: rgba(0,0,0,.6);
   border-radius: 10px;
   border-width: 2px;
@@ -36,7 +38,7 @@
 }
 
 .massage-text{
-  color: whitesmoke;
+  color: gainsboro;
   padding: 8px 18px 16px 18px;
   text-align: left;
 }
@@ -72,32 +74,83 @@
 }
 
 .pricing-section{
-  margin-top: 20px !important;
+  /* width: 100%; */
 }
 
 .pricing-section-title{
-  text-decoration: underline;
-  font-size: 1.3em !important;
+  /* text-decoration: underline; */
+  font-size: 1.5em !important;
+  color: gainsboro;
+}
+
+.pricing-details{
+  margin: 4px 0 !important;
+  font-size: 1.2em !important;
 }
 
 #price-section1, #price-section2{
-  margin: 40px 0px;
+  margin: 24px 0px;
+}
+
+.memberships-title{
+  color: #FFCC66;
+  font-size: 2em !important;
+}
+
+.pricing-detail-text{
+  color: darkgray;
 }
 
 
 /* Desktop */
 @media screen and (min-width: 480px) {
 
+  .device-name{
+    font-size: 2.25vw !important;
+  }
+
+  .massage-text{
+    font-size: 1.1vw !important;
+  }
+
   .services-section{
     padding: 16px;
   }
 
   #price-section1, #price-section2{
-    margin: 40px;
+    /* margin: 40px; */
+  }
+
+  .pricing-section{
+    text-align: center;
   }
 
   .pricing-section-title{
-    font-size: 1.6em !important;
+    font-size: 2.4vw !important;
+    text-align: center;
+  }
+
+  #price-memberships {
+  }
+
+  .memberships-title{
+    font-size: 2.4em !important;
+    margin-bottom: 16px !important;
+  }
+
+  .membership{
+    background: rgba(10,10,10,.5);
+    border: 1px solid #FFCC66;
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  .pricing-detail-text{
+    font-size: 1.4vw !important;
+  }
+
+  #pricing-title-smr{
+    font-size: 1.6vw !important;
   }
 }
 
@@ -120,5 +173,9 @@
 
   .device-name{
     font-size: 1.5em !important;
+  }
+
+  #pricing-container{
+    padding: 40px;
   }
 }
