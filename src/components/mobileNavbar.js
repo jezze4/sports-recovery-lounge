@@ -88,6 +88,7 @@ export default class MobileNavbar extends PureComponent {
             />
             <Tab
               value="/account"
+              classes={{root: 'tab-display-none'}}
             />
           </Tabs>
         </AppBar>
