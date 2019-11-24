@@ -7,7 +7,7 @@ import { mod } from 'react-swipeable-views-core';
 
 
 // import JulySpecialImage from '../imgs/runner-girl.jpg'
-import DefaultBanner from '../imgs/home_banner_tony-dark.jpg';
+import DefaultBanner from '../imgs/home_banner_tony-dark.png';
 
 import '../css/carousel.css';
 

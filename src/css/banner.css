@@ -1,6 +1,15 @@
 .banner-container{
   height: 60vh;
   width: 100%;
+  background: linear-gradient(to right, black, #FFCC66, black, #FFCC66, black) !important;
+  background-size: 800% 200% !important;
+  background-position: center;
+  animation: animateGradient 8s ease infinite !important;
+}
+
+.banner-container-inner{
+  height: inherit;
+  width: 100%;
   background-size: cover;
   background-position: center;
 }

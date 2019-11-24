@@ -19,8 +19,6 @@ const TimeScaleLayout = ({...props}) => {
 }
 
 const TimeScaleCell = ({...props}) => {
-  // const{startDate} = props;
-  // const date = new Date(startDate);
   return(
     <DayView.TimeScaleCell {...props} className="time-scale-cell"/>
   );
@@ -32,7 +30,6 @@ const DayScaleLayout = ({...props}) => {
 
 const DayScaleCell = ({...props}) => {
   return <DayView.DayScaleCell {...props} className="day-scale-cell" />
-  // return null;
 }
 
 const DayScaleEmptyCell = ({...props}) => {
@@ -49,7 +46,6 @@ function TimeTableCell (onSelectTime, activeDate, {...props}) {
   const aDate = new Date(activeDate);
   const idNum = ''+date.getHours()+'-0';
   const idNum2 = ''+date.getHours()+'-30';
-  // const idNum3 = ''+date.getHours()+'-40';
   const active = ''+aDate.getHours()+'-'+aDate.getMinutes();
   const isValid = validTime(date);
   const isBooked = bookedTime(date);
@@ -103,7 +99,7 @@ const ScheduledAppointment = ({...props}) => {
   if(!booked.includes(data))
     booked.push(data);
   // console.log(booked);
-  bookedTime();
+  // bookedTime();
 
   return <Appointments.Appointment {...props} className="scheduled-appointment"/>
 }

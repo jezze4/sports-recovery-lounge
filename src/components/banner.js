@@ -105,29 +105,31 @@ export default class Banner extends PureComponent {
   render(){
 
     return(
-      <div className="banner-container"
-        style={{backgroundImage: 'linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.0)), url('+this.props.img+')'}}>
-        <Grid container
-          direction="column"
-          justify='center'
-          alignItems={this.textAlignment(this.props.align)}
-          style={{height: 'inherit', padding: '0 10%', background: 'rgba(0,0,0,.3)'}}>
+      <div className="banner-container">
+        <div className="banner-container-inner"
+        style={{backgroundImage: 'linear-gradient(rgba(0,0,0,.3), rgba(0,0,0,0.0)), url('+this.props.img+')'}}>
+          <Grid container
+            direction="column"
+            justify='center'
+            alignItems={this.textAlignment(this.props.align)}
+            style={{height: 'inherit', padding: '0 10%', background: 'rgba(0,0,0,.3)'}}>
 
-          <Grid container direction="column" justify='center' alignItems="flex-start"  id="banner-desc">
-            <Grid item>
-              <Typography className="banner-text" id="banner-title" component="div">
-                {this.props.title}
-              </Typography>
+            <Grid container direction="column" justify='center' alignItems="flex-start"  id="banner-desc">
+              <Grid item>
+                <Typography className="banner-text" id="banner-title" component="div">
+                  {this.props.title}
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Typography className="banner-text" id="banner-subtitle" gutterBottom>
+                  {this.props.subtitle}
+                </Typography>
+              </Grid>
+              {this.renderButton(this.props.buttonText, this.props.buttonIcon)}
             </Grid>
-            <Grid item>
-              <Typography className="banner-text" id="banner-subtitle" gutterBottom>
-                {this.props.subtitle}
-              </Typography>
-            </Grid>
-            {this.renderButton(this.props.buttonText, this.props.buttonIcon)}
           </Grid>
-        </Grid>
-        {this.renderButtonModal()}
+          {this.renderButtonModal()}
+        </div>
       </div>
     );
   }
